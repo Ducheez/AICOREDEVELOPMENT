@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sexual Harassment Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="form-title">Employment Law - Sexual Harassment</h2>
+        <form id="sexualHarassmentForm" onsubmit="return validateForm(event)">
+            <!-- Employment Information -->
+            <div class="form-section">
+                <h3>Employment Information</h3>
+                
+                <div class="form-group">
+                    <label class="form-label required">Date of Hire</label>
+                    <input type="date" name="hireDate" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Job Title</label>
+                    <input type="text" name="jobTitle" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Department/Division</label>
+                    <input type="text" name="department" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Current Employment Status</label>
+                    <select name="employmentStatus" class="form-control select-field" required>
+                        <option value="">Select status</option>
+                        <option value="employed">Currently Employed</option>
+                        <option value="leave">On Leave</option>
+                        <option value="terminated">Employment Terminated</option>
+                        <option value="resigned">Resigned</option>
+                        <option value="constructive-discharge">Forced to Resign</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" name="otherStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">If no longer employed, last day of work</label>
+                    <input type="date" name="lastWorkDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Employment Type</label>
+                    <select name="employmentType" class="form-control select-field" required>
+                        <option value="">Select type</option>
+                        <option value="full-time">Full-Time</option>
+                        <option value="part-time">Part-Time</option>
+                        <option value="temporary">Temporary</option>
+                        <option value="seasonal">Seasonal</option>
+                        <option value="contract">Contract</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" name="otherEmploymentType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                </div>
+            </div>
+
+            <!-- Harassment Information -->
+            <div class="form-section">
+                <h3>Harassment Information</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Type of Harassment</label>
+                    <div class="checkbox-group" data-required="true">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="harassmentType[]" value="verbal">
+                            <label>Verbal Harassment</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="harassmentType[]" value="physical">
+                            <label>Physical Harassment</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="harassmentType[]" value="visual">
+                            <label>Visual Harassment</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="harassmentType[]" value="electronic">
+                            <label>Electronic/Digital Harassment</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="harassmentType[]" value="quid-pro-quo">
+                            <label>Quid Pro Quo Harassment</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="harassmentType[]" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">When did the harassment begin?</label>
+                    <input type="date" name="harassmentStartDate" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Is the harassment ongoing?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="ongoingHarassment" value="yes" required>
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="ongoingHarassment" value="no" required data-conditional="harassmentEndDate">
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="harassmentEndDate" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">When did the harassment end?</label>
+                        <input type="date" name="harassmentEndDate" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Frequency of Harassment</label>
+                    <select name="harassmentFrequency" class="form-control select-field" required>
+                        <option value="">Select frequency</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="occasionally">Occasionally</option>
+                        <option value="one-time">One-time Incident</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description of Harassment</label>
+                    <textarea name="harassmentDescription" class="form-control textarea-field"
+                              placeholder="Please describe the harassment you experienced"></textarea>
+                </div>
+            </div>
+
+            <!-- Harasser Information -->
+            <div class="form-section">
+                <h3>Harasser Information</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Relationship to Harasser</label>
+                    <select name="harasserRelationship" class="form-control select-field" required>
+                        <option value="">Select relationship</option>
+                        <option value="supervisor">Direct Supervisor</option>
+                        <option value="manager">Other Manager/Supervisor</option>
+                        <option value="coworker">Co-worker</option>
+                        <option value="subordinate">Subordinate</option>
+                        <option value="client">Client/Customer</option>
+                        <option value="vendor">Vendor/Contractor</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Position/Title of Harasser</label>
+                    <input type="text" name="harasserTitle" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Are there multiple harassers?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="multipleHarassers" value="yes" data-conditional="multipleHarasserDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="multipleHarassers" value="no">
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="multipleHarasserDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Number of Harassers</label>
+                        <input type="number" name="harasserCount" class="form-control" min="2" max="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Relationship of Additional Harassers</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="additionalHarasserTypes[]" value="supervisors">
+                                <label>Supervisors/Managers</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="additionalHarasserTypes[]" value="coworkers">
+                                <label>Co-workers</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="additionalHarasserTypes[]" value="subordinates">
+                                <label>Subordinates</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="additionalHarasserTypes[]" value="others">
+                                <label>Others</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Witnesses -->
+            <div class="form-section">
+                <h3>Witnesses</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Were there witnesses to the harassment?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="witnessesPresent" value="yes" required data-conditional="witnessDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="witnessesPresent" value="no" required>
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="witnessDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Number of Witnesses</label>
+                        <input type="number" name="witnessCount" class="form-control" min="1" max="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Type of Witnesses</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="witnessTypes[]" value="supervisors">
+                                <label>Supervisors/Managers</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="witnessTypes[]" value="coworkers">
+                                <label>Co-workers</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="witnessTypes[]" value="subordinates">
+                                <label>Subordinates</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="witnessTypes[]" value="clients">
+                                <label>Clients/Customers</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="witnessTypes[]" value="others">
+                                <label>Others</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evidence -->
+            <div class="form-section">
+                <h3>Evidence</h3>
+
+                <div class="form-group">
+                    <label class="form-label">What evidence exists of the harassment?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="evidenceTypes[]" value="emails">
+                            <label>Emails/Text Messages</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="evidenceTypes[]" value="photos">
+                            <label>Photos/Videos</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="evidenceTypes[]" value="documents">
+                            <label>Documents/Notes</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="evidenceTypes[]" value="social-media">
+                            <label>Social Media Posts</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="evidenceTypes[]" value="recordings">
+                            <label>Audio/Video Recordings</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="evidenceTypes[]" value="security">
+                            <label>Security Camera Footage</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="evidenceTypes[]" value="witnesses">
+                            <label>Witness Statements</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="evidenceTypes[]" value="none">
+                            <label>No Physical Evidence</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Incident Reporting -->
+            <div class="form-section">
+                <h3>Incident Reporting</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Did you report the harassment?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="reportedHarassment" value="yes" required data-conditional="reportingDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="reportedHarassment" value="no" required data-conditional="nonReportingReason">
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="reportingDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Date of First Report</label>
+                        <input type="date" name="reportDate" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Who did you report to?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportedTo[]" value="supervisor">
+                                <label>Direct Supervisor</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportedTo[]" value="hr">
+                                <label>Human Resources</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportedTo[]" value="management">
+                                <label>Upper Management</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportedTo[]" value="hotline">
+                                <label>Company Hotline</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportedTo[]" value="union">
+                                <label>Union Representative</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportedTo[]" value="eeoc">
+                                <label>EEOC</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportedTo[]" value="state-agency">
+                                <label>State Agency</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportedTo[]" value="other">
+                                <label>Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">How was the report made?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportMethod[]" value="verbal">
+                                <label>Verbal Report</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportMethod[]" value="written">
+                                <label>Written Report</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportMethod[]" value="email">
+                                <label>Email</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportMethod[]" value="online">
+                                <label>Online System</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportMethod[]" value="form">
+                                <label>Company Form</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="reportMethod[]" value="other">
+                                <label>Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Were you given a copy or confirmation of your report?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="reportConfirmation" value="yes">
+                                <label>Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="reportConfirmation" value="no">
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="nonReportingReason" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Reason for not reporting</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="nonReportReason[]" value="fear-retaliation">
+                                <label>Fear of Retaliation</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="nonReportReason[]" value="no-confidence">
+                                <label>No Confidence in Reporting Process</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="nonReportReason[]" value="embarrassment">
+                                <label>Embarrassment</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="nonReportReason[]" value="career-impact">
+                                <label>Concern About Career Impact</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="nonReportReason[]" value="unaware">
+                                <label>Unaware of Reporting Process</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="nonReportReason[]" value="discouraged">
+                                <label>Discouraged from Reporting</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="nonReportReason[]" value="other">
+                                <label>Other</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employer Response -->
+            <div class="form-section">
+                <h3>Employer Response</h3>
+
+                <div class="form-group">
+                    <label class="form-label">Did the employer investigate?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="employerInvestigated" value="yes" data-conditional="investigationDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="employerInvestigated" value="no">
+                            <label>No</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="employerInvestigated" value="unknown">
+                            <label>Unknown</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="investigationDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Investigation Start Date</label>
+                        <input type="date" name="investigationStartDate" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Investigation Status</label>
+                        <select name="investigationStatus" class="form-control select-field">
+                            <option value="">Select status</option>
+                            <option value="ongoing">Ongoing</option>
+                            <option value="completed">Completed</option>
+                            <option value="suspended">Suspended</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Were you interviewed as part of the investigation?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="wasInterviewed" value="yes">
+                                <label>Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="wasInterviewed" value="no">
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Were you informed of the investigation outcome?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="informedOutcome" value="yes">
+                                <label>Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="informedOutcome" value="no">
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Actions taken by employer</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employerActions[]" value="none">
+                            <label>No Action Taken</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employerActions[]" value="harasser-disciplined">
+                            <label>Harasser Disciplined</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employerActions[]" value="harasser-terminated">
+                            <label>Harasser Terminated</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employerActions[]" value="harasser-transferred">
+                            <label>Harasser Transferred</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employerActions[]" value="victim-transferred">
+                            <label>Victim Transferred</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employerActions[]" value="training">
+                            <label>Additional Training Provided</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employerActions[]" value="policy-changes">
+                            <label>Policy Changes</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employerActions[]" value="other">
+                            <label>Other Action</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Retaliation -->
+            <div class="form-section">
+                <h3>Retaliation</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Have you experienced retaliation?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="experiencedRetaliation" value="yes" required data-conditional="retaliationDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="experiencedRetaliation" value="no" required>
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="retaliationDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Types of Retaliation</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="retaliationType[]" value="termination">
+                                <label>Termination</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="retaliationType[]" value="demotion">
+                                <label>Demotion</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="retaliationType[]" value="discipline">
+                                <label>Disciplinary Action</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="retaliationType[]" value="hostile">
+                                <label>Hostile Work Environment</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="retaliationType[]" value="schedule">
+                                <label>Schedule Changes</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="retaliationType[]" value="duties">
+                                <label>Changed Job Duties</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="retaliationType[]" value="performance">
+                                <label>Negative Performance Review</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="retaliationType[]" value="other">
+                                <label>Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">When did the retaliation begin?</label>
+                        <input type="date" name="retaliationStartDate" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Did you report the retaliation?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="reportedRetaliation" value="yes">
+                                <label>Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="reportedRetaliation" value="no">
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact -->
+            <div class="form-section">
+                <h3>Impact</h3>
+
+                <div class="form-group">
+                    <label class="form-label">Impact on Employment</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employmentImpact[]" value="lost-job">
+                            <label>Lost Job</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employmentImpact[]" value="lost-promotion">
+                            <label>Lost Promotion Opportunity</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employmentImpact[]" value="lost-income">
+                            <label>Lost Income/Benefits</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employmentImpact[]" value="transfer">
+                            <label>Forced Transfer</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employmentImpact[]" value="career-damage">
+                            <label>Career Damage</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="employmentImpact[]" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Have you sought medical or mental health treatment?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="soughtTreatment" value="yes" data-conditional="treatmentDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="soughtTreatment" value="no">
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="treatmentDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Type of Treatment</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="treatmentType[]" value="medical">
+                                <label>Medical Treatment</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="treatmentType[]" value="psychological">
+                                <label>Psychological Counseling</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="treatmentType[]" value="psychiatrist">
+                                <label>Psychiatric Treatment</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="treatmentType[]" value="support-group">
+                                <label>Support Group</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="treatmentType[]" value="other">
+                                <label>Other Treatment</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Date Treatment Began</label>
+                        <input type="date" name="treatmentStartDate" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Are you still receiving treatment?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="ongoingTreatment" value="yes">
+                                <label>Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="ongoingTreatment" value="no">
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Personal Impact</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="personalImpact[]" value="anxiety">
+                            <label>Anxiety</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="personalImpact[]" value="depression">
+                            <label>Depression</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="personalImpact[]" value="sleep">
+                            <label>Sleep Issues</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="personalImpact[]" value="relationships">
+                            <label>Relationship Issues</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="personalImpact[]" value="confidence">
+                            <label>Loss of Confidence</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="personalImpact[]" value="stress">
+                            <label>Stress</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="personalImpact[]" value="ptsd">
+                            <label>PTSD Symptoms</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="personalImpact[]" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Financial Impact</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="financialImpact[]" value="lost-wages">
+                            <label>Lost Wages</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="financialImpact[]" value="medical-expenses">
+                            <label>Medical Expenses</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="financialImpact[]" value="therapy-costs">
+                            <label>Therapy Costs</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="financialImpact[]" value="job-search">
+                            <label>Job Search Expenses</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="financialImpact[]" value="legal-fees">
+                            <label>Legal Fees</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="financialImpact[]" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EEOC/Administrative Charges -->
+            <div class="form-section">
+                <h3>Administrative Charges</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Have you filed an EEOC charge or state agency complaint?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="adminChargeFiled" value="yes" required data-conditional="chargeDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="adminChargeFiled" value="no" required>
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="chargeDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Type of Charge Filed</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="chargeType[]" value="eeoc">
+                                <label>EEOC Charge</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="chargeType[]" value="state">
+                                <label>State Agency Complaint</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="chargeType[]" value="other">
+                                <label>Other Administrative Charge</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Date Charge Filed</label>
+                        <input type="date" name="chargeDate" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Charge Status</label>
+                        <select name="chargeStatus" class="form-control select-field">
+                            <option value="">Select status</option>
+                            <option value="pending">Pending Investigation</option>
+                            <option value="mediation">In Mediation</option>
+                            <option value="investigation">Under Investigation</option>
+                            <option value="completed">Investigation Completed</option>
+                            <option value="right-to-sue">Right to Sue Issued</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal Representation -->
+            <div class="form-section">
+                <h3>Legal Representation Timeline</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">When are you planning to hire an attorney?</label>
+                    <select name="hiringTimeline" class="form-control select-field" required>
+                        <option value="">Select timeline</option>
+                        <option value="immediately">Immediately</option>
+                        <option value="this-week">This week</option>
+                        <option value="this-month">This month</option>
+                        <option value="this-year">This year</option>
+                        <option value="exploring">Just exploring options</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Form Navigation -->
+            <div class="form-navigation">
+                <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+                <button type="submit" class="nav-button submit-button">Submit Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle "Other" input fields
+        const selects = document.querySelectorAll('select');
+        selects.forEach(select => {
+            select.addEventListener('change', function() {
+                const otherInput = this.nextElementSibling;
+                if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                    otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                    otherInput.required = this.value === 'other';
+                }
+            });
+        });
+
+        // Handle conditional fields
+        const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+        conditionalTriggers.forEach(trigger => {
+            trigger.addEventListener('change', function() {
+                const targetId = this.dataset.conditional;
+                const targetField = document.getElementById(targetId);
+                if (targetField) {
+                    const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                    targetField.style.display = show ? 'block' : 'none';
+                    const requiredInputs = targetField.querySelectorAll('[required]');
+                    requiredInputs.forEach(input => {
+                        input.required = show;
+                    });
+                }
+            });
+        });
+
+        // Handle mutually exclusive checkboxes
+        const handleMutuallyExclusiveCheckboxes = function(groupName, exclusiveValue) {
+            const exclusiveCheckbox = document.querySelector(`input[name="${groupName}[]"][value="${exclusiveValue}"]`);
+            const otherCheckboxes = document.querySelectorAll(`input[name="${groupName}[]"]:not([value="${exclusiveValue}"])`);
+            
+            if (exclusiveCheckbox) {
+                exclusiveCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        otherCheckboxes.forEach(cb => {
+                            cb.checked = false;
+                            cb.disabled = true;
+                        });
+                    } else {
+                        otherCheckboxes.forEach(cb => {
+                            cb.disabled = false;
+                        });
+                    }
+                });
+
+                otherCheckboxes.forEach(cb => {
+                    cb.addEventListener('change', function() {
+                        if (this.checked) {
+                            exclusiveCheckbox.checked = false;
+                        }
+                    });
+                });
+            }
+        };
+
+        // Apply mutual exclusivity to relevant checkbox groups
+        handleMutuallyExclusiveCheckboxes('employerActions', 'none');
+        handleMutuallyExclusiveCheckboxes('evidenceTypes', 'none');
+
+        // Form validation
+        const form = document.getElementById('sexualHarassmentForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Validate required fields
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('invalid');
+                    const fieldLabel = field.previousElementSibling;
+                    alert(`Please fill in the field: ${fieldLabel.textContent}`);
+                } else {
+                    field.classList.remove('invalid');
+                }
+            });
+
+            // Validate required checkbox groups
+            const checkboxGroups = form.querySelectorAll('.checkbox-group[data-required="true"]');
+            checkboxGroups.forEach(group => {
+                const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+                const checked = Array.from(checkboxes).some(cb => cb.checked);
+                if (!checked) {
+                    isValid = false;
+                    const groupLabel = group.previousElementSibling;
+                    alert(`Please select at least one option for ${groupLabel.textContent}`);
+                }
+            });
+
+            if (!isValid) {
+                return;
+            }
+
+            // If all validations pass, submit the form
+            this.submit();
+        });
+    });
+    </script>
+</body>
+</html>

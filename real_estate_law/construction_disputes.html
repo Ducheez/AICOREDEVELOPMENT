@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Construction Disputes Intake Form</h1>
+        <p class="description">Provide details about your construction-related legal matter.</p>
+
+        <form id="construction-disputes-form">
+            <div class="form-group">
+                <label>Type of Construction Project</label>
+                <select id="project-type" name="project-type" required>
+                    <option value="">Select Project Type</option>
+                    <option value="residential">Private/Residential Property Project</option>
+                    <option value="commercial">Commercial Development Project</option>
+                    <option value="public">Public Construction Project</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Your Role in the Dispute</label>
+                <select id="dispute-role" name="dispute-role">
+                    <option value="">Select Your Role</option>
+                    <option value="property-owner">Property Owner</option>
+                    <option value="contractor">Contractor</option>
+                    <option value="subcontractor">Subcontractor</option>
+                    <option value="material-supplier">Material Supplier</option>
+                    <option value="lender">Lender/Investor</option>
+                    <option value="injured-party">Injured Person</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Dispute Party</label>
+                <select id="dispute-with" name="dispute-with">
+                    <option value="">Select Dispute Party</option>
+                    <option value="landowner">Landowner</option>
+                    <option value="contractor">Contractor</option>
+                    <option value="subcontractor">Subcontractor</option>
+                    <option value="material-supplier">Material Supplier</option>
+                    <option value="lender">Lender/Investor</option>
+                    <option value="no-dispute">No Active Dispute</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="project-cost">Estimated Cost of the Construction Project</label>
+                <input 
+                    type="number" 
+                    id="project-cost" 
+                    name="project-cost" 
+                    placeholder="Enter total project cost in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Nature of Construction Dispute</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="dispute-delay" name="dispute-nature" value="delay">
+                    <label for="dispute-delay">Project Delays</label>
+                    
+                    <input type="checkbox" id="dispute-quality" name="dispute-nature" value="quality">
+                    <label for="dispute-quality">Work Quality</label>
+                    
+                    <input type="checkbox" id="dispute-payment" name="dispute-nature" value="payment">
+                    <label for="dispute-payment">Payment Disputes</label>
+                    
+                    <input type="checkbox" id="dispute-contract" name="dispute-nature" value="contract">
+                    <label for="dispute-contract">Contract Interpretation</label>
+                    
+                    <input type="checkbox" id="dispute-changes" name="dispute-nature" value="changes">
+                    <label for="dispute-changes">Scope of Work Changes</label>
+                    
+                    <input type="checkbox" id="dispute-permit" name="dispute-nature" value="permit">
+                    <label for="dispute-permit">Permit or Regulatory Issues</label>
+                    
+                    <input type="checkbox" id="dispute-other" name="dispute-nature" value="other">
+                    <label for="dispute-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="project-location">Project Location</label>
+                <input 
+                    type="text" 
+                    id="project-location" 
+                    name="project-location" 
+                    placeholder="Street Address, City, State, ZIP"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="contract-date">Original Contract Date</label>
+                <input 
+                    type="date" 
+                    id="contract-date" 
+                    name="contract-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Specific Legal Assistance Needed</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="assistance-mediation" name="legal-assistance" value="mediation">
+                    <label for="assistance-mediation">Mediation</label>
+                    
+                    <input type="checkbox" id="assistance-arbitration" name="legal-assistance" value="arbitration">
+                    <label for="assistance-arbitration">Arbitration</label>
+                    
+                    <input type="checkbox" id="assistance-litigation" name="legal-assistance" value="litigation">
+                    <label for="assistance-litigation">Litigation</label>
+                    
+                    <input type="checkbox" id="assistance-contract-review" name="legal-assistance" value="contract-review">
+                    <label for="assistance-contract-review">Contract Review</label>
+                    
+                    <input type="checkbox" id="assistance-claim" name="legal-assistance" value="claim">
+                    <label for="assistance-claim">Claim Preparation</label>
+                    
+                    <input type="checkbox" id="assistance-other" name="legal-assistance" value="other">
+                    <label for="assistance-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="additional-details">Additional Details or Concerns</label>
+                <textarea 
+                    id="additional-details" 
+                    name="additional-details" 
+                    rows="4" 
+                    placeholder="Provide any additional information about your construction dispute"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Estimated Monetary Damages</label>
+                <input 
+                    type="number" 
+                    id="estimated-damages" 
+                    name="estimated-damages" 
+                    placeholder="Enter estimated damages in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Construction Dispute Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('construction-disputes-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // TODO: Implement form submission logic
+    alert('Form submission will be handled by the backend');
+});
+</script>
+{% endblock %}

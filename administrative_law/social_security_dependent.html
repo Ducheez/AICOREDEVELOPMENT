@@ -1,0 +1,219 @@
+<div class="form-container">
+    <h2 class="form-title">Administrative Law - Social Security Dependent Benefits</h2>
+    <form id="socialSecurityDependentForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="0" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Relationship to the Social Security Recipient</label>
+                <select name="relationship" class="form-control select-field" required>
+                    <option value="">Select relationship</option>
+                    <option value="spouse">Spouse</option>
+                    <option value="child">Child</option>
+                    <option value="dependent-parent">Dependent Parent</option>
+                    <option value="divorced-spouse">Divorced Spouse</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRelationship" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Primary Beneficiary Information -->
+        <div class="form-section">
+            <h3>Primary Beneficiary Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Primary Beneficiary's Status</label>
+                <select name="beneficiaryStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="retired">Retired</option>
+                    <option value="disabled">Disabled</option>
+                    <option value="deceased">Deceased</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Is the Primary Beneficiary Currently Receiving Social Security Benefits?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="isReceivingBenefits" value="yes" required>
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="isReceivingBenefits" value="no" required>
+                        <label>No</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="isReceivingBenefits" value="unknown" required>
+                        <label>Unknown</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dependent Benefits Status -->
+        <div class="form-section">
+            <h3>Benefits Application Status</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Have You Already Filed for Dependent Benefits?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="benefitsFiled" value="yes" required data-conditional="applicationDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="benefitsFiled" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="applicationDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Application Date</label>
+                    <input type="date" name="applicationDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Application Status</label>
+                    <select name="applicationStatus" class="form-control select-field">
+                        <option value="">Select status</option>
+                        <option value="pending">Application Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="denied">Denied</option>
+                        <option value="appealing">Appealing Decision</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Do You Currently Have a Social Security Attorney?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="hasAttorney" value="yes" required>
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="hasAttorney" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Your Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Other Sources of Income</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="otherIncome[]" value="employment">
+                        <label>Employment Income</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="otherIncome[]" value="pension">
+                        <label>Pension</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="otherIncome[]" value="investments">
+                        <label>Investment Income</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="otherIncome[]" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="form-container">
+    <h2 class="form-title">Administrative Law - Constitutional Law</h2>
+    <form id="constitutionalLawForm" onsubmit="return validateForm(event)">
+        <!-- Constitutional Rights -->
+        <div class="form-section">
+            <h3>Constitutional Rights at Issue</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Primary Constitutional Rights Involved</label>
+                <div class="checkbox-group" data-required="true">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="speech">
+                        <label>First Amendment - Freedom of Speech/Expression</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="religion">
+                        <label>First Amendment - Freedom of Religion</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="assembly">
+                        <label>First Amendment - Freedom of Assembly</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="press">
+                        <label>First Amendment - Freedom of Press</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="search">
+                        <label>Fourth Amendment - Search and Seizure</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="due-process">
+                        <label>Fifth/Fourteenth Amendment - Due Process</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="equal-protection">
+                        <label>Fourteenth Amendment - Equal Protection</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="voting">
+                        <label>Voting Rights</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="property">
+                        <label>Property Rights/Takings</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="cruel">
+                        <label>Eighth Amendment - Cruel and Unusual Punishment</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="constitutionalRights[]" value="other">
+                        <label>Other Constitutional Rights</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Description of Constitutional Violation</label>
+                <textarea name="violationDescription" class="form-control textarea-field"
+                          placeholder="Please describe how your constitutional rights were violated"></textarea>
+            </div>
+        </div>
+
+        <!-- Government Entity -->
+        <div class="form-section">
+            <h3>Government Entity Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Government Entity Involved</label>
+                <select name="governmentType" class="form-control select-field" required>
+                    <option value="">Select entity type</option>
+                    <option value="federal">Federal Government</option>
+                    <option value="state">State Government</option>
+                    <option value="local">Local Government</option>
+                    <option value="school">School District</option>
+                    <option value="law-enforcement">Law Enforcement Agency</option>
+                    <option value="corrections">Corrections Department</option>
+                    <option value="administrative">Administrative Agency</option>
+                    <option value="other">Other Government Entity</option>
+                </select>
+                <input type="text" name="otherEntityType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Specific Agency/Department Name</label>
+                <input type="text" name="agencyName" class="form-control" 
+                       placeholder="Name of the specific government entity involved">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Have You Filed Any Administrative Complaints?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="adminComplaints" value="yes" required data-conditional="complaintDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="adminComplaints" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="complaintDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Administrative Complaint</label>
+                    <input type="date" name="complaintDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Status of Administrative Complaint</label>
+                    <select name="complaintStatus" class="form-control select-field">
+                        <option value="">Select status</option>
+                        <option value="pending">Pending Review</option>
+                        <option value="investigation">Under Investigation</option>
+                        <option value="hearing">Hearing Scheduled</option>
+                        <option value="decided">Decision Issued</option>
+                        <option value="appealing">Under Appeal</option>
+                        <option value="closed">Case Closed</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Proceedings -->
+        <div class="form-section">
+            <h3>Legal Proceedings</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Current Stage of Proceedings</label>
+                <select name="proceedingStage" class="form-control select-field" required>
+                    <option value="">Select stage</option>
+                    <option value="pre-filing">Pre-Filing Investigation</option>
+                    <option value="administrative">Administrative Proceeding</option>
+                    <option value="district">Federal District Court</option>
+                    <option value="circuit">Circuit Court of Appeals</option>
+                    <option value="supreme">Supreme Court</option>
+                    <option value="state-trial">State Trial Court</option>
+                    <option value="state-appeal">State Court of Appeals</option>
+                    <option value="state-supreme">State Supreme Court</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Has a Lawsuit Been Filed?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="lawsuitFiled" value="yes" required data-conditional="lawsuitDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="lawsuitFiled" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="lawsuitDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date Lawsuit Filed</label>
+                    <input type="date" name="lawsuitDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Court/Venue</label>
+                    <input type="text" name="courtVenue" class="form-control" 
+                           placeholder="Name of court where case was filed">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Case Status</label>
+                    <select name="caseStatus" class="form-control select-field">
+                        <option value="">Select status</option>
+                        <option value="pending">Pending</option>
+                        <option value="discovery">In Discovery</option>
+                        <option value="motions">Motion Practice</option>
+                        <option value="trial">Trial Scheduled</option>
+                        <option value="appeal">On Appeal</option>
+                        <option value="settled">Settled</option>
+                        <option value="dismissed">Dismissed</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Relief Sought -->
+        <div class="form-section">
+            <h3>Relief Sought</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Relief Sought</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reliefType[]" value="injunction">
+                        <label>Injunctive Relief (Court Order)</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reliefType[]" value="declaratory">
+                        <label>Declaratory Judgment</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reliefType[]" value="damages">
+                        <label>Monetary Damages</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reliefType[]" value="attorneys-fees">
+                        <label>Attorney's Fees</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reliefType[]" value="other">
+                        <label>Other Relief</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">If Seeking Monetary Damages, Estimated Amount</label>
+                <select name="damagesAmount" class="form-control select-field">
+                    <option value="">Select range</option>
+                    <option value="under-10k">Under $10,000</option>
+                    <option value="10k-50k">$10,000 - $50,000</option>
+                    <option value="50k-100k">$50,000 - $100,000</option>
+                    <option value="100k-500k">$100,000 - $500,000</option>
+                    <option value="500k-1m">$500,000 - $1 million</option>
+                    <option value="over-1m">Over $1 million</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="form-section">
+            <h3>Additional Information</h3>
+
+            <div class="form-group">
+                <label class="form-label">Supporting Evidence Available</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="evidence[]" value="documents">
+                        <label>Documents/Records</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="evidence[]" value="witnesses">
+                        <label>Witnesses</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="evidence[]" value="video">
+                        <label>Video/Audio Recordings</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="evidence[]" value="photos">
+                        <label>Photographs</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="evidence[]" value="expert">
+                        <label>Expert Testimony</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="evidence[]" value="other">
+                        <label>Other Evidence</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Additional Comments</label>
+                <textarea name="additionalComments" class="form-control textarea-field"
+                          placeholder="Any additional information relevant to your constitutional law case"></textarea>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+
+    // Form validation
+    const form = document.getElementById('constitutionalLawForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Check required checkboxes
+        const checkboxGroups = document.querySelectorAll('.checkbox-group[data-required="true"]');
+        checkboxGroups.forEach(group => {
+            const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+            const checked = Array.from(checkboxes).some(cb => cb.checked);
+            if (!checked) {
+                const groupLabel = group.previousElementSibling;
+                alert(`Please select at least one option for ${groupLabel.textContent}`);
+                event.preventDefault();
+                return;
+            }
+        });
+
+        // Validate file inputs
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        fileInputs.forEach(input => {
+            if (input.files.length > 0) {
+                const file = input.files[0];
+                const maxSize = 10 * 1024 * 1024; // 10MB limit
+                if (file.size > maxSize) {
+                    alert('File size exceeds 10MB limit');
+                    event.preventDefault();
+                    return;
+                }
+            }
+        });
+
+        // Validate date fields
+        const dateInputs = document.querySelectorAll('input[type="date"]');
+        dateInputs.forEach(input => {
+            if (input.value) {
+                const selectedDate = new Date(input.value);
+                const today = new Date();
+                if (selectedDate > today) {
+                    alert('Date cannot be in the future');
+                    event.preventDefault();
+                    return;
+                }
+            }
+        });
+
+        // If all validations pass, submit the form
+        this.submit();
+    });
+
+    // Handle dependent dropdowns
+    const courtTypeSelect = document.querySelector('select[name="proceedingStage"]');
+    if (courtTypeSelect) {
+        courtTypeSelect.addEventListener('change', function() {
+            const value = this.value;
+            const venueInput = document.querySelector('input[name="courtVenue"]');
+            if (venueInput) {
+                venueInput.placeholder = value.includes('state') 
+                    ? 'Enter state court name and location'
+                    : 'Enter federal court name and location';
+            }
+        });
+    }
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});
+</script>
+</html>

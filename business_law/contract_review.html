@@ -1,0 +1,257 @@
+<div class="form-container">
+    <h2 class="form-title">Business Law - Contract Drafting and Review</h2>
+    <form id="contractDraftingReviewForm" onsubmit="return validateForm(event)">
+        <!-- Contract Overview -->
+        <div class="form-section">
+            <h3>Contract Details</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Primary Purpose of Contract</label>
+                <select name="contractPurpose" class="form-control select-field" required>
+                    <option value="">Select contract purpose</option>
+                    <option value="independent-contractor">Independent Contractor or Employee Agreement</option>
+                    <option value="purchase-goods">Purchase or Sale of Goods</option>
+                    <option value="manufacturing">Manufacturing of Goods</option>
+                    <option value="service-hiring">Hiring of a Business or Person to Perform a Service</option>
+                    <option value="partnership">Partnership Agreement</option>
+                    <option value="non-disclosure">Non-Disclosure Agreement (NDA)</option>
+                    <option value="lease">Lease Agreement</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherContractPurpose" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Legal Assistance Needed</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalAssistanceType" value="draft">
+                        <label>Draft a New Contract</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalAssistanceType" value="review">
+                        <label>Review an Existing Contract</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalAssistanceType" value="negotiate">
+                        <label>Negotiate Contract Terms</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalAssistanceType" value="modify">
+                        <label>Modify Existing Contract</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalAssistanceType" value="other" data-conditional="otherAssistanceDetails">
+                        <label>Other</label>
+                    </div>
+                </div>
+
+                <div id="otherAssistanceDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Specify Other Legal Assistance</label>
+                    <input type="text" name="otherLegalAssistanceType" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Approximate Value of Contract</label>
+                <input type="number" name="contractValue" class="form-control currency-input" 
+                       placeholder="Total contract value" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Proposed or Existing Contract Date</label>
+                <input type="date" name="contractDate" class="form-control">
+            </div>
+        </div>
+
+        <!-- Parties Involved -->
+        <div class="form-section">
+            <h3>Parties Involved</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Other Party</label>
+                <select name="otherPartyType" class="form-control select-field" required>
+                    <option value="">Select type of other party</option>
+                    <option value="individual">Individual</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="corporation">Business or Corporation</option>
+                    <option value="trust">Trust or Estate</option>
+                    <option value="government">Government Entity</option>
+                    <option value="nonprofit">Nonprofit Organization</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherPartyTypeSpecify" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Describe the Other Party's Role or Business</label>
+                <textarea name="otherPartyDescription" class="form-control textarea-field"
+                          placeholder="Provide a brief description of the other party"></textarea>
+            </div>
+        </div>
+
+        <!-- Contract Specifics -->
+        <div class="form-section">
+            <h3>Contract Specifics</h3>
+
+            <div class="form-group">
+                <label class="form-label">Key Terms to Address</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="payment">
+                        <label>Payment Terms</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="deliverables">
+                        <label>Deliverables or Scope of Work</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="timeline">
+                        <label>Project Timeline</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="termination">
+                        <label>Termination Conditions</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="confidentiality">
+                        <label>Confidentiality Provisions</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="dispute-resolution">
+                        <label>Dispute Resolution</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="other" data-conditional="otherTermsDetails">
+                        <label>Other</label>
+                    </div>
+                </div>
+
+                <div id="otherTermsDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Specify Other Key Terms</label>
+                    <input type="text" name="otherContractTerms" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Additional Context or Special Considerations</label>
+                <textarea name="additionalContext" class="form-control textarea-field"
+                          placeholder="Provide any additional context or special considerations for the contract"></textarea>
+            </div>
+        </div>
+
+        <!-- Business Owner Information -->
+        <div class="form-section">
+            <h3>Business Owner/Primary Contact</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Role in the Business</label>
+                <select name="businessRole" class="form-control select-field" required>
+                    <option value="">Select your role</option>
+                    <option value="owner">Business Owner</option>
+                    <option value="ceo">CEO/President</option>
+                    <option value="cfo">CFO/Financial Officer</option>
+                    <option value="partner">Business Partner</option>
+                    <option value="manager">Manager</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherBusinessRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Personal Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Your Gross Annual Income</label>
+                <select name="personalIncome" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle other legal assistance conditional field
+    const otherAssistanceCheckbox = document.querySelector('input[name="legalAssistanceType"][value="other"]');
+    const otherAssistanceField = document.getElementById('otherAssistanceDetails');
+    
+    otherAssistanceCheckbox.addEventListener('change', function() {
+        otherAssistanceField.style.display = this.checked ? 'block' : 'none';
+        const input = otherAssistanceField.querySelector('input');
+        input.required = this.checked;
+    });
+
+    // Handle other contract terms conditional field
+    const otherTermsCheckbox = document.querySelector('input[name="contractTerms"][value="other"]');
+    const otherTermsField = document.getElementById('otherTermsDetails');
+    
+    otherTermsCheckbox.addEventListener('change', function() {
+        otherTermsField.style.display = this.checked ? 'block' : 'none';
+        const input = otherTermsField.querySelector('input');
+        input.required = this.checked;
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});
+</script>

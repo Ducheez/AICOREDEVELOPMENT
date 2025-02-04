@@ -1,0 +1,309 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Landlord/Tenant - Eviction Case Information</h2>
+    <form id="evictionsForm" onsubmit="return validateForm(event)">
+        <!-- Property Information -->
+        <div class="form-section">
+            <h3>Property Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Property Type</label>
+                <select name="propertyType" class="form-control select-field" required>
+                    <option value="">Select property type</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="house">Single-Family House</option>
+                    <option value="condo">Condominium</option>
+                    <option value="townhouse">Townhouse</option>
+                    <option value="mobile-home">Mobile Home</option>
+                    <option value="commercial">Commercial Property</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherPropertyType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Property Address</label>
+                <input type="text" name="propertyAddress" class="form-control" required 
+                       placeholder="Full street address">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Tenant Occupancy Status</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="occupancyStatus" value="currently-occupied" required>
+                        <label>Currently Occupied</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="occupancyStatus" value="vacated">
+                        <label>Property Vacated</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Lease Type</label>
+                <select name="leaseType" class="form-control select-field" required>
+                    <option value="">Select lease type</option>
+                    <option value="month-to-month">Month-to-Month</option>
+                    <option value="fixed-term">Fixed-Term Lease</option>
+                    <option value="oral">Oral Agreement</option>
+                    <option value="written">Written Lease</option>
+                    <option value="no-lease">No Formal Lease</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherLeaseType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Lease Start Date</label>
+                <input type="date" name="leaseStartDate" class="form-control" max="{{ current_date }}">
+            </div>
+        </div>
+
+        <!-- Eviction Details -->
+        <div class="form-section">
+            <h3>Eviction Circumstances</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Primary Reason for Eviction</label>
+                <select name="evictionReason" class="form-control select-field" required>
+                    <option value="">Select primary reason</option>
+                    <option value="non-payment">Non-Payment of Rent</option>
+                    <option value="lease-violation">Lease Violation</option>
+                    <option value="property-damage">Property Damage</option>
+                    <option value="illegal-activity">Illegal Activity</option>
+                    <option value="end-lease">Lease Term Ended</option>
+                    <option value="no-cause">No-Cause Termination</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherEvictionReason" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Specific Details of Eviction Reason</label>
+                <textarea name="evictionDetails" class="form-control textarea-field" 
+                          placeholder="Provide detailed explanation of the eviction circumstances"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Notices Served</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="noticesServed" value="pay-or-quit" id="payOrQuit">
+                        <label for="payOrQuit">Pay or Quit Notice</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="noticesServed" value="cure-or-quit" id="cureOrQuit">
+                        <label for="cureOrQuit">Cure or Quit Notice</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="noticesServed" value="unconditional-quit" id="unconditionalQuit">
+                        <label for="unconditionalQuit">Unconditional Quit Notice</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="noticesServed" value="no-notice" id="noNotice">
+                        <label for="noNotice">No Notice Served</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date of First Notice</label>
+                <input type="date" name="firstNoticeDate" class="form-control" max="{{ current_date }}">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Details</h3>
+
+            <div class="form-group">
+                <label class="form-label">Unpaid Rent Amount</label>
+                <input type="number" name="unpaidRent" class="form-control currency-input" 
+                       placeholder="Total amount of unpaid rent" min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Additional Damages</label>
+                <input type="number" name="additionalDamages" class="form-control currency-input" 
+                       placeholder="Estimated cost of property damage" min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Monthly Rent Amount</label>
+                <input type="number" name="monthlyRent" class="form-control currency-input" 
+                       placeholder="Current monthly rent" required min="0">
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Proceeding Status</h3>
+
+            <div class="form-group">
+                <label class="form-label">Current Legal Status</label>
+                <select name="legalStatus" class="form-control select-field">
+                    <option value="">Select current status</option>
+                    <option value="pre-filing">Pre-Filing</option>
+                    <option value="filed">Eviction Lawsuit Filed</option>
+                    <option value="court-hearing">Court Hearing Scheduled</option>
+                    <option value="judgment-pending">Judgment Pending</option>
+                    <option value="appeal">Under Appeal</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherLegalStatus" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Court Hearing Date (if applicable)</label>
+                <input type="date" name="courtHearingDate" class="form-control" min="{{ current_date }}">
+            </div>
+        </div>
+
+        <!-- Client Information -->
+        <div class="form-section">
+            <h3>Client Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Your Role</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="clientRole" value="landlord" required>
+                        <label>Landlord</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="clientRole" value="tenant">
+                        <label>Tenant</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="clientRole" value="property-manager">
+                        <label>Property Manager</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="clientRole" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+                <input type="text" name="otherClientRole" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation Timeline -->
+        <div class="form-section">
+            <h3>Legal Representation</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<!-- Add form-specific script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show/hide "Other" input fields for selects
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle client role details
+    const clientRoleRadios = document.querySelectorAll('input[name="clientRole"]');
+    const otherClientRoleInput = document.querySelector('input[name="otherClientRole"]');
+
+    clientRoleRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            otherClientRoleInput.style.display = this.value === 'other' ? 'block' : 'none';
+            otherClientRoleInput.required = this.value === 'other';
+        });
+    });
+
+    // Handle "No Notice" checkbox disabling other notice checkboxes
+    const noNoticeCheckbox = document.getElementById('noNotice');
+    const otherNoticeCheckboxes = document.querySelectorAll('input[name="noticesServed"]:not(#noNotice)');
+
+    noNoticeCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            otherNoticeCheckboxes.forEach(cb => {
+                cb.checked = false;
+                cb.disabled = true;
+            });
+        } else {
+            otherNoticeCheckboxes.forEach(cb => {
+                cb.disabled = false;
+            });
+        }
+    });
+
+    otherNoticeCheckboxes.forEach(cb => {
+        cb.addEventListener('change', function() {
+            if (this.checked) {
+                noNoticeCheckbox.checked = false;
+                noNoticeCheckbox.disabled = true;
+            } else {
+                const anyChecked = Array.from(otherNoticeCheckboxes).some(checkbox => checkbox.checked);
+                noNoticeCheckbox.disabled = anyChecked;
+            }
+        });
+    });
+
+    // Currency input formatting
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                // Format as currency
+                this.value = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(this.value);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

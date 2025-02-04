@@ -1,0 +1,535 @@
+<!-- templates/forms/personal_injury/general_injury.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>General Personal Injury Case Information</h2>
+    <form id="general-injury-form" class="legal-form">
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label for="age">What is your age?</label>
+                <input type="number" 
+                       id="age" 
+                       name="age" 
+                       class="form-control" 
+                       min="0" 
+                       max="120" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="occupation">What is your occupation?</label>
+                <input type="text" 
+                       id="occupation" 
+                       name="occupation" 
+                       class="form-control" 
+                       required>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Incident Information</h3>
+
+            <div class="form-group">
+                <label>What type of legal assistance are you seeking?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="type_file" 
+                           name="assistance_type" 
+                           value="file" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="type_file">File a claim for an injury</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="type_defend" 
+                           name="assistance_type" 
+                           value="defend" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="type_defend">Defend against a claim for injury made by someone else</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="incident_date">When did the injury occur? (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="incident_date" 
+                       name="incident_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="incident_location">Where did the injury occur?</label>
+                <select id="incident_location" name="incident_location" class="form-control" required>
+                    <option value="">Select Location Type</option>
+                    <option value="private_residence">Private Residence</option>
+                    <option value="business">Business/Commercial Property</option>
+                    <option value="public_space">Public Space</option>
+                    <option value="workplace">Workplace</option>
+                    <option value="road">Road/Highway</option>
+                    <option value="medical">Medical Facility</option>
+                    <option value="government">Government Property</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Nature of Injuries</h3>
+
+            <div class="form-group">
+                <label>What are the nature and types of injuries sustained?</label>
+                <div class="checkbox-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_lower_back" name="injuries[]" value="lower_back" class="form-check-input">
+                        <label class="form-check-label" for="injury_lower_back">Lower back pain</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_upper_back" name="injuries[]" value="upper_back" class="form-check-input">
+                        <label class="form-check-label" for="injury_upper_back">Upper back pain</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_shoulder" name="injuries[]" value="shoulder" class="form-check-input">
+                        <label class="form-check-label" for="injury_shoulder">Shoulder pain</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_neck" name="injuries[]" value="neck" class="form-check-input">
+                        <label class="form-check-label" for="injury_neck">Neck pain</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_headaches" name="injuries[]" value="headaches" class="form-check-input">
+                        <label class="form-check-label" for="injury_headaches">Headaches</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_nausea" name="injuries[]" value="nausea" class="form-check-input">
+                        <label class="form-check-label" for="injury_nausea">Nausea</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_sleep" name="injuries[]" value="sleep" class="form-check-input">
+                        <label class="form-check-label" for="injury_sleep">Difficulty sleeping</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_anxiety" name="injuries[]" value="anxiety" class="form-check-input">
+                        <label class="form-check-label" for="injury_anxiety">Anxiety</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_cuts" name="injuries[]" value="cuts" class="form-check-input">
+                        <label class="form-check-label" for="injury_cuts">Cuts and bruises</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_broken" name="injuries[]" value="broken" class="form-check-input">
+                        <label class="form-check-label" for="injury_broken">Broken bones</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_numbness" name="injuries[]" value="numbness" class="form-check-input">
+                        <label class="form-check-label" for="injury_numbness">Loss of feeling in part of the body</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_breathing" name="injuries[]" value="breathing" class="form-check-input">
+                        <label class="form-check-label" for="injury_breathing">Difficulty breathing</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_vision" name="injuries[]" value="vision" class="form-check-input">
+                        <label class="form-check-label" for="injury_vision">Impaired vision</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_memory" name="injuries[]" value="memory" class="form-check-input">
+                        <label class="form-check-label" for="injury_memory">Memory loss</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_other" name="injuries[]" value="other" class="form-check-input">
+                        <label class="form-check-label" for="injury_other">Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" id="injury_details_div" style="display: none;">
+                <label for="injury_details">Please describe the injuries in detail:</label>
+                <textarea id="injury_details" 
+                         name="injury_details" 
+                         class="form-control" 
+                         rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Insurance and Medical Treatment</h3>
+
+            <div class="form-group">
+                <label>Does the injured party believe their insurance will cover this injury?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="insurance_yes" 
+                           name="insurance_coverage" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="insurance_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="insurance_no" 
+                           name="insurance_coverage" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="insurance_no">No</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="insurance_unknown" 
+                           name="insurance_coverage" 
+                           value="unknown" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="insurance_unknown">I don't know</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Does the injured party believe the other party's insurance will cover this injury?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="other_insurance_yes" 
+                           name="other_insurance_coverage" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="other_insurance_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="other_insurance_no" 
+                           name="other_insurance_coverage" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="other_insurance_no">No</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="other_insurance_unknown" 
+                           name="other_insurance_coverage" 
+                           value="unknown" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="other_insurance_unknown">I don't know</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Are there witnesses to the injury, and are their names known?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="witnesses_yes" 
+                           name="witnesses" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="witnesses_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="witnesses_no" 
+                           name="witnesses" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="witnesses_no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group" id="witness_count_div" style="display: none;">
+                <label for="witness_count">Number of witnesses:</label>
+                <input type="number" 
+                       id="witness_count" 
+                       name="witness_count" 
+                       class="form-control" 
+                       min="1">
+            </div>
+
+            <div class="form-group">
+                <label for="treatment_status">What is the status of medical treatment?</label>
+                <select id="treatment_status" name="treatment_status" class="form-control" required>
+                    <option value="">Select Status</option>
+                    <option value="no_treatment">No treatment yet</option>
+                    <option value="ongoing">Still receiving treatment</option>
+                    <option value="restart">Stopped treatment but needs to restart</option>
+                    <option value="completed">Treatment completed</option>
+                    <option value="unknown">I don't know</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Which medical practitioners have been consulted?</label>
+                <div class="checkbox-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="doctor_medical" name="doctors[]" value="medical" class="form-check-input">
+                        <label class="form-check-label" for="doctor_medical">Medical doctor</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="doctor_surgeon" name="doctors[]" value="surgeon" class="form-check-input">
+                        <label class="form-check-label" for="doctor_surgeon">Surgeon</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="doctor_chiro" name="doctors[]" value="chiropractor" class="form-check-input">
+                        <label class="form-check-label" for="doctor_chiro">Chiropractor</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="doctor_acupuncture" name="doctors[]" value="acupuncture" class="form-check-input">
+                        <label class="form-check-label" for="doctor_acupuncture">Acupuncturist</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="doctor_physical" name="doctors[]" value="physical" class="form-check-input">
+                        <label class="form-check-label" for="doctor_physical">Physical therapist</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="medical_costs">What are the approximate medical costs incurred to date? ($)</label>
+                <input type="number" 
+                       id="medical_costs" 
+                       name="medical_costs" 
+                       class="form-control" 
+                       min="0" 
+                       step="0.01">
+                <small class="form-text text-muted">Enter 0 if no medical costs</small>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Work Impact</h3>
+
+            <div class="form-group">
+                <label>Has the injured party missed work due to the injury?</label>
+                <select id="missed_work" name="missed_work" class="form-control" required>
+                    <option value="">Select Answer</option>
+                    <option value="no_missed">No work missed</option>
+                    <option value="days">Missed days</option>
+                    <option value="months">Missed months</option>
+                    <option value="unknown_return">Still receiving treatment and unsure when will return to work</option>
+                    <option value="return_date">Will return on specific date</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="missed_days_div" style="display: none;">
+                <label for="missed_days">Number of days missed:</label>
+                <input type="number" 
+                       id="missed_days" 
+                       name="missed_days" 
+                       class="form-control" 
+                       min="1">
+            </div>
+
+            <div class="form-group" id="missed_months_div" style="display: none;">
+                <label for="missed_months">Number of months missed:</label>
+                <input type="number" 
+                       id="missed_months" 
+                       name="missed_months" 
+                       class="form-control" 
+                       min="1">
+            </div>
+
+            <div class="form-group" id="return_date_div" style="display: none;">
+                <label for="return_date">Expected return to work date: (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="return_date" 
+                       name="return_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY">
+            </div>
+
+            <div class="form-group">
+                <label for="lost_income">What is the amount of lost work income to date? ($)</label>
+                <input type="number" 
+                       id="lost_income" 
+                       name="lost_income" 
+                       class="form-control" 
+                       min="0" 
+                       step="0.01">
+                <small class="form-text text-muted">Enter 0 if no lost income</small>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Prior History</h3>
+
+            <div class="form-group">
+                <label>Was there a prior injury to the same part of the body?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="prior_injury_yes" 
+                           name="prior_injury" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="prior_injury_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="prior_injury_no" 
+                           name="prior_injury" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="prior_injury_no">No</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="prior_injury_unknown" 
+                           name="prior_injury" 
+                           value="unknown" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="prior_injury_unknown">I don't know</label>
+                </div>
+            </div>
+
+            <div class="form-group" id="prior_injury_date_div" style="display: none;">
+                <label for="prior_injury_date">Date of prior injury: (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="prior_injury_date" 
+                       name="prior_injury_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Case Status</h3>
+
+            <div class="form-group">
+                <label for="claim_status">What is the current status of the claim?</label>
+                <select id="claim_status" name="claim_status" class="form-control" required>
+                    <option value="">Select Status</option>
+                    <option value="no_action">No action taken yet</option>
+                    <option value="demand">Demand for compensation made</option>
+                    <option value="lawsuit">Lawsuit filed</option>
+                    <option value="settlement">Settlement discussions ongoing</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="income">What is the injured party's gross annual income?</label>
+                <select id="income" name="income" class="form-control" required>
+                    <option value="">Select Income Range</option>
+                    <option value="25000">$25,000 or less</option>
+                    <option value="50000">$25,001–$50,000</option>
+                    <option value="75000">$50,001–$75,000</option>
+                    <option value="100000">$75,001–$100,000</option>
+                    <option value="125000">$100,001–$125,000</option>
+                    <option value="125001">$125,000+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hiring_timeframe">When are you planning to hire an attorney?</label>
+                <select id="hiring_timeframe" name="hiring_timeframe" class="form-control" required>
+                    <option value="">Select Timeframe</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this_week">This week</option>
+                    <option value="this_month">This month</option>
+                    <option value="this_year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle injury checkboxes and details
+    const injuryChecks = document.querySelectorAll('input[name="injuries[]"]');
+    const injuryDetails = document.getElementById('injury_details_div');
+    
+    injuryChecks.forEach(check => {
+        check.addEventListener('change', function() {
+            const anyChecked = Array.from(injuryChecks)
+                .some(box => box.checked);
+            injuryDetails.style.display = anyChecked ? 'block' : 'none';
+            document.getElementById('injury_details').required = anyChecked;
+        });
+    });
+
+    // Handle witnesses radio and count
+    document.getElementsByName('witnesses').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const countDiv = document.getElementById('witness_count_div');
+            countDiv.style.display = this.value === 'yes' ? 'block' : 'none';
+            document.getElementById('witness_count').required = this.value === 'yes';
+        });
+    });
+
+    // Handle missed work selection
+    document.getElementById('missed_work').addEventListener('change', function() {
+        const daysDiv = document.getElementById('missed_days_div');
+        const monthsDiv = document.getElementById('missed_months_div');
+        const returnDiv = document.getElementById('return_date_div');
+        
+        daysDiv.style.display = 'none';
+        monthsDiv.style.display = 'none';
+        returnDiv.style.display = 'none';
+        
+        if (this.value === 'days') {
+            daysDiv.style.display = 'block';
+            document.getElementById('missed_days').required = true;
+        } else if (this.value === 'months') {
+            monthsDiv.style.display = 'block';
+            document.getElementById('missed_months').required = true;
+        } else if (this.value === 'return_date') {
+            returnDiv.style.display = 'block';
+            document.getElementById('return_date').required = true;
+        }
+    });
+
+    // Handle prior injury radio and date
+    document.getElementsByName('prior_injury').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const dateDiv = document.getElementById('prior_injury_date_div');
+            dateDiv.style.display = this.value === 'yes' ? 'block' : 'none';
+            document.getElementById('prior_injury_date').required = this.value === 'yes';
+        });
+    });
+
+    // Date validation for all date inputs
+    document.querySelectorAll('.date-input').forEach(input => {
+        input.addEventListener('blur', function() {
+            const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/([12]\d{3})$/;
+            if (this.value && !dateRegex.test(this.value)) {
+                this.classList.add('is-invalid');
+                if (!this.nextElementSibling?.classList.contains('invalid-feedback')) {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'invalid-feedback';
+                    feedback.textContent = 'Please enter date in MM/DD/YYYY format';
+                    this.parentNode.appendChild(feedback);
+                }
+            } else {
+                this.classList.remove('is-invalid');
+                const feedback = this.nextElementSibling;
+                if (feedback?.classList.contains('invalid-feedback')) {
+                    feedback.remove();
+                }
+            }
+        });
+    });
+
+    // Form validation
+    document.getElementById('general-injury-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (this.checkValidity()) {
+            // Form is valid, submit data
+            console.log('Form is valid, submitting...');
+        } else {
+            e.stopPropagation();
+            this.classList.add('was-validated');
+        }
+    });
+});
+</script>
+{% endblock %}

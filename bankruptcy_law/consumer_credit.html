@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="form-container">
+    <h2 class="form-title">Bankruptcy Law - Consumer Credit</h2>
+    <form id="consumerCreditForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Type of Credit Issue</label>
+                <select name="creditIssueType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="credit-reporting">Credit Reporting Error</option>
+                    <option value="identity-theft">Identity Theft</option>
+                    <option value="credit-denial">Credit Denial</option>
+                    <option value="billing-dispute">Billing Dispute</option>
+                    <option value="collection-practices">Collection Practices</option>
+                    <option value="interest-rates">Interest Rate Issues</option>
+                    <option value="credit-discrimination">Credit Discrimination</option>
+                    <option value="loan-modification">Loan Modification</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherIssueType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Have you reviewed your credit report?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="reviewedCredit" value="yes" required data-conditional="creditReportDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="reviewedCredit" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="creditReportDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Last Credit Report Review</label>
+                    <input type="date" name="lastReviewDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Credit Bureaus Reviewed</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="creditBureaus[]" value="experian">
+                            <label>Experian</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="creditBureaus[]" value="equifax">
+                            <label>Equifax</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="creditBureaus[]" value="transunion">
+                            <label>TransUnion</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credit Account Information -->
+        <div class="form-section">
+            <h3>Credit Account Information</h3>
+
+            <div class="form-group">
+                <label class="form-label">Types of Credit Accounts</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="accountTypes[]" value="credit-cards">
+                        <label>Credit Cards</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="accountTypes[]" value="personal-loans">
+                        <label>Personal Loans</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="accountTypes[]" value="mortgage">
+                        <label>Mortgage</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="accountTypes[]" value="auto-loans">
+                        <label>Auto Loans</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="accountTypes[]" value="student-loans">
+                        <label>Student Loans</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="accountTypes[]" value="retail">
+                        <label>Retail Store Cards</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Total Number of Active Credit Accounts</label>
+                <input type="number" name="activeAccounts" class="form-control" required min="0" max="100">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Are any accounts currently past due?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="pastDueAccounts" value="yes" data-conditional="pastDueDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="pastDueAccounts" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pastDueDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Number of Past Due Accounts</label>
+                    <input type="number" name="numPastDue" class="form-control" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Total Past Due Amount</label>
+                    <input type="number" name="pastDueAmount" class="form-control currency-input" 
+                           placeholder="Enter total past due amount">
+                </div>
+            </div>
+        </div>
+
+        <!-- Credit Report Issues -->
+        <div class="form-section">
+            <h3>Credit Report Issues</h3>
+
+            <div class="form-group">
+                <label class="form-label">Types of Credit Report Issues</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportIssues[]" value="incorrect-balance">
+                        <label>Incorrect Balance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportIssues[]" value="wrong-payment-status">
+                        <label>Wrong Payment Status</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportIssues[]" value="unauthorized-accounts">
+                        <label>Unauthorized Accounts</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportIssues[]" value="wrong-personal-info">
+                        <label>Wrong Personal Information</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportIssues[]" value="duplicate-accounts">
+                        <label>Duplicate Accounts</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportIssues[]" value="old-debt">
+                        <label>Old Debt Not Removed</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportIssues[]" value="other">
+                        <label>Other Issues</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have you disputed any items on your credit report?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="disputed" value="yes" data-conditional="disputeDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="disputed" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="disputeDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Most Recent Dispute</label>
+                    <input type="date" name="disputeDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Status of Dispute</label>
+                    <select name="disputeStatus" class="form-control select-field">
+                        <option value="">Select status</option>
+                        <option value="pending">Pending Review</option>
+                        <option value="resolved-favor">Resolved in My Favor</option>
+                        <option value="denied">Dispute Denied</option>
+                        <option value="additional-info">Additional Information Requested</option>
+                        <option value="unknown">Unknown Status</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Identity Theft -->
+        <div class="form-section">
+            <h3>Identity Theft Concerns</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Do you suspect identity theft?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="identityTheft" value="yes" required data-conditional="theftDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="identityTheft" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="theftDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">When did you discover the potential identity theft?</label>
+                    <input type="date" name="theftDiscoveryDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Actions Taken</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="theftActions[]" value="police-report">
+                            <label>Filed Police Report</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="theftActions[]" value="ftc-report">
+                            <label>Filed FTC Report</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="theftActions[]" value="freeze">
+                            <label>Credit Freeze/Fraud Alert</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="theftActions[]" value="creditor-contact">
+                            <label>Contacted Creditors</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collection Activities -->
+        <div class="form-section">
+            <h3>Collection Activities</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Are any accounts in collections?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="inCollections" value="yes" required data-conditional="collectionDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="inCollections" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="collectionDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Number of Accounts in Collections</label>
+                    <input type="number" name="numCollections" class="form-control" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Total Amount in Collections</label>
+                    <input type="number" name="collectionsAmount" class="form-control currency-input" 
+                           placeholder="Enter total amount in collections">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Have you experienced any of these collection practices?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="collectionPractices[]" value="frequent-calls">
+                            <label>Frequent Phone Calls</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="collectionPractices[]" value="work-calls">
+                            <label>Calls at Work</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="collectionPractices[]" value="harassment">
+                            <label>Harassment/Threats</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="collectionPractices[]" value="false-statements">
+                            <label>False Statements</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="collectionPractices[]" value="third-party">
+                            <label>Contact Through Third Parties</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+
+    // Validate dates
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    dateInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            if (selectedDate > today) {
+                alert('Date cannot be in the future');
+                this.value = '';
+            }
+        });
+    });
+
+    // Form validation
+    const form = document.getElementById('consumerCreditForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Check required checkboxes in required groups
+        const checkboxGroups = document.querySelectorAll('.checkbox-group[data-required="true"]');
+        let isValid = true;
+        
+        checkboxGroups.forEach(group => {
+            const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+            const checked = Array.from(checkboxes).some(cb => cb.checked);
+            if (!checked) {
+                const groupLabel = group.previousElementSibling;
+                alert(`Please select at least one option for ${groupLabel.textContent}`);
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            return;
+        }
+
+        // If all validations pass, submit the form
+        this.submit();
+    });
+
+    // Toggle dependent fields based on credit issue type
+    const creditIssueSelect = document.querySelector('select[name="creditIssueType"]');
+    if (creditIssueSelect) {
+        creditIssueSelect.addEventListener('change', function() {
+            const value = this.value;
+            const identityTheftSection = document.querySelector('.form-section:nth-child(5)');
+            const collectionSection = document.querySelector('.form-section:nth-child(6)');
+
+            if (value === 'identity-theft') {
+                identityTheftSection.style.display = 'block';
+                collectionSection.style.display = 'none';
+            } else if (value === 'collection-practices') {
+                identityTheftSection.style.display = 'none';
+                collectionSection.style.display = 'block';
+            } else {
+                identityTheftSection.style.display = 'block';
+                collectionSection.style.display = 'block';
+            }
+        });
+    }
+});
+</script>
+</html>

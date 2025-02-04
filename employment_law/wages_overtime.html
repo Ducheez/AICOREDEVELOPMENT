@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wages and Overtime Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="form-title">Employment Law - Wages and Overtime Pay</h2>
+        <form id="wagesOvertimeForm" onsubmit="return validateForm(event)">
+            <!-- Employment Information -->
+            <div class="form-section">
+                <h3>Employment Information</h3>
+                
+                <div class="form-group">
+                    <label class="form-label required">Date of Hire</label>
+                    <input type="date" name="hireDate" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Job Title</label>
+                    <input type="text" name="jobTitle" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Department</label>
+                    <input type="text" name="department" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Employment Status</label>
+                    <select name="employmentStatus" class="form-control select-field" required>
+                        <option value="">Select status</option>
+                        <option value="current">Currently Employed</option>
+                        <option value="terminated">Employment Terminated</option>
+                        <option value="resigned">Resigned</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">If no longer employed, last day of work</label>
+                    <input type="date" name="lastWorkDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Employment Classification</label>
+                    <select name="employmentClassification" class="form-control select-field" required>
+                        <option value="">Select classification</option>
+                        <option value="hourly">Hourly Employee</option>
+                        <option value="salary-nonexempt">Salaried Non-Exempt</option>
+                        <option value="salary-exempt">Salaried Exempt</option>
+                        <option value="contractor">Independent Contractor</option>
+                        <option value="commission">Commission-Based</option>
+                        <option value="piece-rate">Piece Rate</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Wage Information -->
+            <div class="form-section">
+                <h3>Wage Information</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Pay Rate</label>
+                    <div class="field-group">
+                        <div>
+                            <label>Amount</label>
+                            <input type="number" name="payRate" class="form-control currency-input" 
+                                   placeholder="Enter pay rate" required step="0.01">
+                        </div>
+                        <div>
+                            <label>Pay Period</label>
+                            <select name="payPeriod" class="form-control select-field" required>
+                                <option value="">Select period</option>
+                                <option value="hourly">Per Hour</option>
+                                <option value="weekly">Per Week</option>
+                                <option value="biweekly">Bi-Weekly</option>
+                                <option value="monthly">Per Month</option>
+                                <option value="annually">Per Year</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Has your pay rate changed?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="payRateChanged" value="yes" data-conditional="payRateChangeDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="payRateChanged" value="no">
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="payRateChangeDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Previous Pay Rate</label>
+                        <input type="number" name="previousPayRate" class="form-control currency-input" 
+                               placeholder="Enter previous pay rate" step="0.01">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Date of Pay Rate Change</label>
+                        <input type="date" name="payRateChangeDate" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">How are you paid?</label>
+                    <div class="checkbox-group" data-required="true">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="paymentMethod[]" value="check">
+                            <label>Check</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="paymentMethod[]" value="direct-deposit">
+                            <label>Direct Deposit</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="paymentMethod[]" value="cash">
+                            <label>Cash</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="paymentMethod[]" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Pay Frequency</label>
+                    <select name="payFrequency" class="form-control select-field" required>
+                        <option value="">Select frequency</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="biweekly">Bi-Weekly</option>
+                        <option value="semimonthly">Semi-Monthly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Do you receive any additional compensation?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="additionalCompensation[]" value="commission">
+                            <label>Commission</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="additionalCompensation[]" value="bonus">
+                            <label>Bonuses</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="additionalCompensation[]" value="tips">
+                            <label>Tips</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="additionalCompensation[]" value="shift-differential">
+                            <label>Shift Differential</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="additionalCompensation[]" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work Hours -->
+            <div class="form-section">
+                <h3>Work Hours</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Scheduled Work Hours</label>
+                    <div class="field-group">
+                        <div>
+                            <label>Hours Per Week</label>
+                            <input type="number" name="scheduledHours" class="form-control" 
+                                   placeholder="Enter scheduled hours" required min="0" max="168" step="0.5">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">Do you typically work more than 40 hours per week?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="worksOvertime" value="yes" required data-conditional="overtimeDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="worksOvertime" value="no" required>
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="overtimeDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Average Overtime Hours Per Week</label>
+                        <input type="number" name="averageOvertimeHours" class="form-control" 
+                               placeholder="Enter average overtime hours" min="0" max="128" step="0.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Are you paid for overtime hours?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="paidOvertime" value="yes" data-conditional="overtimePayDetails">
+                                <label>Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="paidOvertime" value="no">
+                                <label>No</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="paidOvertime" value="sometimes">
+                                <label>Sometimes</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="overtimePayDetails" class="conditional-field" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Overtime Pay Rate</label>
+                            <select name="overtimeRate" class="form-control select-field">
+                                <option value="">Select rate</option>
+                                <option value="time-half">Time and a Half (1.5x)</option>
+                                <option value="double">Double Time (2x)</option>
+                                <option value="regular">Regular Rate</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wage Violations -->
+            <div class="form-section">
+                <h3>Wage Violations</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Have you experienced any of these wage issues?</label>
+                    <div class="checkbox-group" data-required="true">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="unpaid-overtime">
+                            <label>Unpaid Overtime</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="minimum-wage">
+                            <label>Below Minimum Wage</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="missed-breaks">
+                            <label>Unpaid Meal/Rest Breaks</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="off-clock">
+                            <label>Work Off the Clock</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="misclassification">
+                            <label>Misclassification</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="unauthorized-deductions">
+                            <label>Unauthorized Deductions</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="late-payment">
+                            <label>Late Payment of Wages</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="unpaid-wages">
+                            <label>Unpaid Wages</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="other">
+                            <label>Other</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="wageViolations[]" value="none">
+                            <label>No Wage Issues</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Estimated Amount of Unpaid Wages</label>
+                    <input type="number" name="unpaidAmount" class="form-control currency-input" 
+                           placeholder="Enter estimated amount owed" step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Time Period of Wage Violations</label>
+                    <div class="field-group">
+                        <div>
+                            <label>Start Date</label>
+                            <input type="date" name="violationStartDate" class="form-control">
+                        </div>
+                        <div>
+                            <label>End Date</label>
+                            <input type="date" name="violationEndDate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complaint History -->
+            <div class="form-section">
+                <h3>Complaint History</h3>
+
+                <div class="form-group">
+                    <label class="form-label required">Have you complained about wage issues?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="complainedWages" value="yes" required data-conditional="complaintDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="complainedWages" value="no" required>
+                            <label>No</label>
+                        </div>
+                    </div>
+    
+                    <div id="complaintDetails" class="conditional-field" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Who did you complain to?</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complainedTo[]" value="supervisor">
+                                    <label>Direct Supervisor</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complainedTo[]" value="hr">
+                                    <label>Human Resources</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complainedTo[]" value="payroll">
+                                    <label>Payroll Department</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complainedTo[]" value="management">
+                                    <label>Upper Management</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complainedTo[]" value="labor-board">
+                                    <label>Labor Board</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complainedTo[]" value="union">
+                                    <label>Union Representative</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complainedTo[]" value="other">
+                                    <label>Other</label>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="form-label">Date of Most Recent Complaint</label>
+                            <input type="date" name="complaintDate" class="form-control">
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="form-label">How was the complaint made?</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complaintMethod[]" value="verbal">
+                                    <label>Verbal</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complaintMethod[]" value="email">
+                                    <label>Email</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complaintMethod[]" value="letter">
+                                    <label>Written Letter</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complaintMethod[]" value="form">
+                                    <label>Company Form</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complaintMethod[]" value="online">
+                                    <label>Online System</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="complaintMethod[]" value="other">
+                                    <label>Other</label>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="form-label">Employer's Response</label>
+                            <select name="employerResponse" class="form-control select-field">
+                                <option value="">Select response</option>
+                                <option value="resolved">Issue Resolved</option>
+                                <option value="partial">Partially Resolved</option>
+                                <option value="investigating">Under Investigation</option>
+                                <option value="denied">Denied Issue</option>
+                                <option value="ignored">No Response</option>
+                                <option value="retaliation">Retaliation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Retaliation -->
+                <div class="form-section">
+                    <h3>Retaliation</h3>
+    
+                    <div class="form-group">
+                        <label class="form-label required">Have you experienced retaliation for wage complaints?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="experiencedRetaliation" value="yes" required data-conditional="retaliationDetails">
+                                <label>Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="experiencedRetaliation" value="no" required>
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div id="retaliationDetails" class="conditional-field" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Types of Retaliation</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="retaliationType[]" value="termination">
+                                    <label>Termination</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="retaliationType[]" value="hours-reduced">
+                                    <label>Hours Reduced</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="retaliationType[]" value="schedule-changes">
+                                    <label>Unfavorable Schedule Changes</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="retaliationType[]" value="demotion">
+                                    <label>Demotion</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="retaliationType[]" value="discipline">
+                                    <label>Disciplinary Action</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="retaliationType[]" value="hostile">
+                                    <label>Hostile Treatment</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="retaliationType[]" value="other">
+                                    <label>Other</label>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="form-label">When did the retaliation begin?</label>
+                            <input type="date" name="retaliationStartDate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Records and Documentation -->
+                <div class="form-section">
+                    <h3>Records and Documentation</h3>
+    
+                    <div class="form-group">
+                        <label class="form-label">What records do you have?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="records[]" value="paystubs">
+                                <label>Pay Stubs</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="records[]" value="timesheets">
+                                <label>Time Sheets</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="records[]" value="schedule">
+                                <label>Work Schedules</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="records[]" value="emails">
+                                <label>Emails/Communications</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="records[]" value="handbook">
+                                <label>Employee Handbook</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="records[]" value="contract">
+                                <label>Employment Contract</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="records[]" value="personal">
+                                <label>Personal Records</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="records[]" value="none">
+                                <label>No Records</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Legal Representation -->
+                <div class="form-section">
+                    <h3>Legal Representation Timeline</h3>
+    
+                    <div class="form-group">
+                        <label class="form-label required">When are you planning to hire an attorney?</label>
+                        <select name="hiringTimeline" class="form-control select-field" required>
+                            <option value="">Select timeline</option>
+                            <option value="immediately">Immediately</option>
+                            <option value="this-week">This week</option>
+                            <option value="this-month">This month</option>
+                            <option value="this-year">This year</option>
+                            <option value="exploring">Just exploring options</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <!-- Form Navigation -->
+                <div class="form-navigation">
+                    <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+                    <button type="submit" class="nav-button submit-button">Submit Form</button>
+                </div>
+            </form>
+        </div>
+    
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle "Other" input fields
+            const selects = document.querySelectorAll('select');
+            selects.forEach(select => {
+                select.addEventListener('change', function() {
+                    const otherInput = this.nextElementSibling;
+                    if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                        otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                        otherInput.required = this.value === 'other';
+                    }
+                });
+            });
+    
+            // Handle conditional fields
+            const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+            conditionalTriggers.forEach(trigger => {
+                trigger.addEventListener('change', function() {
+                    const targetId = this.dataset.conditional;
+                    const targetField = document.getElementById(targetId);
+                    if (targetField) {
+                        const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                        targetField.style.display = show ? 'block' : 'none';
+                        const requiredInputs = targetField.querySelectorAll('[required]');
+                        requiredInputs.forEach(input => {
+                            input.required = show;
+                        });
+                    }
+                });
+            });
+    
+            // Handle mutually exclusive checkboxes
+            const handleMutuallyExclusiveCheckboxes = function(groupName, exclusiveValue) {
+                const exclusiveCheckbox = document.querySelector(`input[name="${groupName}[]"][value="${exclusiveValue}"]`);
+                const otherCheckboxes = document.querySelectorAll(`input[name="${groupName}[]"]:not([value="${exclusiveValue}"])`);
+                
+                if (exclusiveCheckbox) {
+                    exclusiveCheckbox.addEventListener('change', function() {
+                        if (this.checked) {
+                            otherCheckboxes.forEach(cb => {
+                                cb.checked = false;
+                                cb.disabled = true;
+                            });
+                        } else {
+                            otherCheckboxes.forEach(cb => {
+                                cb.disabled = false;
+                            });
+                        }
+                    });
+    
+                    otherCheckboxes.forEach(cb => {
+                        cb.addEventListener('change', function() {
+                            if (this.checked) {
+                                exclusiveCheckbox.checked = false;
+                            }
+                        });
+                    });
+                }
+            };
+    
+            // Apply mutual exclusivity to relevant checkbox groups
+            handleMutuallyExclusiveCheckboxes('wageViolations', 'none');
+            handleMutuallyExclusiveCheckboxes('records', 'none');
+    
+            // Form validation
+            const form = document.getElementById('wagesOvertimeForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Validate required fields
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+    
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('invalid');
+                        const fieldLabel = field.previousElementSibling;
+                        alert(`Please fill in the field: ${fieldLabel.textContent}`);
+                    } else {
+                        field.classList.remove('invalid');
+                    }
+                });
+    
+                if (!isValid) {
+                    return;
+                }
+    
+                // If all validations pass, submit the form
+                this.submit();
+            });
+        });
+        </script>
+    </body>
+    </html>

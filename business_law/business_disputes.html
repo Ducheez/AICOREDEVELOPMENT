@@ -1,0 +1,313 @@
+<div class="form-container">
+    <h2 class="form-title">Business Law - Business Disputes</h2>
+    <form id="businessDisputesForm" onsubmit="return validateForm(event)">
+        <!-- Dispute Context -->
+        <div class="form-section">
+            <h3>Dispute Overview</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Nature of Business Dispute</label>
+                <select name="disputeType" class="form-control select-field" required>
+                    <option value="">Select type of dispute</option>
+                    <option value="contract-breach">Contract Breach</option>
+                    <option value="partnership-conflict">Partnership Conflict</option>
+                    <option value="intellectual-property">Intellectual Property Dispute</option>
+                    <option value="compensation">Compensation Disagreement</option>
+                    <option value="business-performance">Business Performance Issues</option>
+                    <option value="merger-acquisition">Merger or Acquisition Dispute</option>
+                    <option value="shareholder">Shareholder Dispute</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherDisputeType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Date Dispute Originated</label>
+                <input type="date" name="disputeOriginDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Detailed Description of Dispute</label>
+                <textarea name="disputeDescription" class="form-control textarea-field" required
+                          placeholder="Provide a comprehensive description of the business dispute"></textarea>
+            </div>
+        </div>
+
+        <!-- Contract Information -->
+        <div class="form-section">
+            <h3>Related Contract Details</h3>
+
+            <div class="form-group">
+                <label class="form-label">Is there a contract related to this dispute?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="contractRelated" value="yes" data-conditional="contractDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="contractRelated" value="no">
+                        <label>No</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="contractRelated" value="unsure">
+                        <label>Unsure</label>
+                    </div>
+                </div>
+
+                <div id="contractDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Date Contract Was Entered Into</label>
+                        <input type="date" name="contractDate" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Contract Type</label>
+                        <select name="contractType" class="form-control select-field">
+                            <option value="">Select contract type</option>
+                            <option value="written">Written</option>
+                            <option value="oral">Oral</option>
+                            <option value="implied">Implied</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" name="otherContractType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Approximate Contract Value</label>
+                        <input type="number" name="contractValue" class="form-control currency-input" 
+                               placeholder="Total contract value">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Estimated Loss Due to Dispute</label>
+                        <input type="number" name="disputeLossValue" class="form-control currency-input" 
+                               placeholder="Total monetary loss">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parties Involved -->
+        <div class="form-section">
+            <h3>Parties Involved in the Dispute</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Your Role in the Dispute</label>
+                <select name="disputeRole" class="form-control select-field" required>
+                    <option value="">Select your role</option>
+                    <option value="plaintiff">Plaintiff/Initiating Party</option>
+                    <option value="defendant">Defendant/Responding Party</option>
+                    <option value="third-party">Third Party Affected</option>
+                    <option value="mediator">Potential Mediator</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherDisputeRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Other Party Involved</label>
+                <select name="otherPartyType" class="form-control select-field" required>
+                    <option value="">Select type of other party</option>
+                    <option value="individual">Individual</option>
+                    <option value="partnership">Business Partnership</option>
+                    <option value="corporation">Corporation</option>
+                    <option value="llc">Limited Liability Company (LLC)</option>
+                    <option value="nonprofit">Nonprofit Organization</option>
+                    <option value="government">Government Entity</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherPartyTypeSpecify" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have You Attempted to Resolve the Dispute?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="disputeResolutionAttempted" value="yes" data-conditional="resolutionDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="disputeResolutionAttempted" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+
+                <div id="resolutionDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Details of Resolution Attempts</label>
+                    <textarea name="resolutionAttemptDetails" class="form-control textarea-field"
+                              placeholder="Describe previous attempts to resolve the dispute"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Potential Resolution Options -->
+        <div class="form-section">
+            <h3>Desired Resolution</h3>
+
+            <div class="form-group">
+                <label class="form-label required">What Outcome Are You Seeking?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="monetary-compensation">
+                        <label>Monetary Compensation</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="contract-enforcement">
+                        <label>Contract Enforcement</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="contract-termination">
+                        <label>Contract Termination</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="mediation">
+                        <label>Mediation</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="arbitration">
+                        <label>Arbitration</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="other" data-conditional="otherOutcomeDetails">
+                        <label>Other</label>
+                    </div>
+                </div>
+
+                <div id="otherOutcomeDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Specify Other Desired Outcome</label>
+                    <input type="text" name="otherDesiredOutcome" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Owner Information -->
+        <div class="form-section">
+            <h3>Business Owner/Primary Contact</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Role in the Business</label>
+                <select name="businessRole" class="form-control select-field" required>
+                    <option value="">Select your role</option>
+                    <option value="owner">Business Owner</option>
+                    <option value="ceo">CEO/President</option>
+                    <option value="cfo">CFO/Financial Officer</option>
+                    <option value="partner">Business Partner</option>
+                    <option value="manager">Manager</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherBusinessRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Your Gross Annual Income</label>
+                <select name="personalIncome" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle contract-related conditional field
+    const contractRadios = document.querySelectorAll('input[name="contractRelated"]');
+    const contractDetailsField = document.getElementById('contractDetails');
+
+    contractRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            contractDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            const inputs = contractDetailsField.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.required = this.value === 'yes';
+            });
+        });
+    });
+
+    // Handle dispute resolution conditional field
+    const disputeResolutionRadios = document.querySelectorAll('input[name="disputeResolutionAttempted"]');
+    const resolutionDetailsField = document.getElementById('resolutionDetails');
+
+    disputeResolutionRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            resolutionDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            const textarea = resolutionDetailsField.querySelector('textarea');
+            textarea.required = this.value === 'yes';
+        });
+    });
+
+    // Handle other outcome details conditional field
+    const otherOutcomeCheckbox = document.querySelector('input[name="desiredOutcome"][value="other"]');
+    const otherOutcomeField = document.getElementById('otherOutcomeDetails');
+    
+    otherOutcomeCheckbox.addEventListener('change', function() {
+        otherOutcomeField.style.display = this.checked ? 'block' : 'none';
+        const input = otherOutcomeField.querySelector('input');
+        input.required = this.checked;
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});
+</script>

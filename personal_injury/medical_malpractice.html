@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Medical Malpractice Claim Form</h1>
+        <p class="description">Provide detailed information about your medical malpractice experience.</p>
+
+        <form id="medical-malpractice-form">
+            <div class="form-group">
+                <label>Personal Information</label>
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="occupation" 
+                        name="occupation" 
+                        placeholder="Your Occupation"
+                    >
+                    <input 
+                        type="number" 
+                        id="patient-age" 
+                        name="patient-age" 
+                        placeholder="Patient's Age" 
+                        min="0" 
+                        max="120"
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="injury-date">Date of Injury or Medical Incident</label>
+                <input 
+                    type="date" 
+                    id="injury-date" 
+                    name="injury-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Insurance Coverage</label>
+                <div class="radio-group">
+                    <label>Do you believe your insurance will cover this injury?</label>
+                    <input type="radio" id="insurance-yes" name="insurance-coverage" value="yes">
+                    <label for="insurance-yes">Yes</label>
+                    
+                    <input type="radio" id="insurance-no" name="insurance-coverage" value="no">
+                    <label for="insurance-no">No</label>
+                    
+                    <input type="radio" id="insurance-unknown" name="insurance-coverage" value="unknown">
+                    <label for="insurance-unknown">I'm Not Sure</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Third Party Insurance</label>
+                <div class="radio-group">
+                    <label>Do you believe the healthcare provider's insurance will cover this injury?</label>
+                    <input type="radio" id="third-party-yes" name="third-party-insurance" value="yes">
+                    <label for="third-party-yes">Yes</label>
+                    
+                    <input type="radio" id="third-party-no" name="third-party-insurance" value="no">
+                    <label for="third-party-no">No</label>
+                    
+                    <input type="radio" id="third-party-unknown" name="third-party-insurance" value="unknown">
+                    <label for="third-party-unknown">I'm Not Sure</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Medical Treatment Status</label>
+                <select id="medical-status" name="medical-status">
+                    <option value="">Select Current Medical Status</option>
+                    <option value="no-treatment">No Treatment Yet</option>
+                    <option value="ongoing">Still Receiving Treatment</option>
+                    <option value="stopped-restart">Stopped Treatment, Needs to Restart</option>
+                    <option value="completed">Treatment Completed</option>
+                    <option value="unsure">Unsure</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="medical-costs">Approximate Medical Costs to Date</label>
+                <input 
+                    type="number" 
+                    id="medical-costs" 
+                    name="medical-costs" 
+                    placeholder="Enter total medical costs in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Work Impact</label>
+                <div class="radio-group">
+                    <label>Have you missed work due to the injury?</label>
+                    <input type="radio" id="work-missed-no" name="work-missed" value="no">
+                    <label for="work-missed-no">No Work Missed</label>
+                    
+                    <input type="radio" id="work-missed-days" name="work-missed" value="days">
+                    <label for="work-missed-days">Missed Days</label>
+                    
+                    <input type="radio" id="work-missed-months" name="work-missed" value="months">
+                    <label for="work-missed-months">Missed Months</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lost-income">Lost Work Income</label>
+                <input 
+                    type="number" 
+                    id="lost-income" 
+                    name="lost-income" 
+                    placeholder="Enter total lost income in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>When Was Medical Malpractice Discovered?</label>
+                <input 
+                    type="date" 
+                    id="malpractice-discovery-date" 
+                    name="malpractice-discovery-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Consequences of Medical Malpractice</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="consequence-none" name="consequences" value="none">
+                    <label for="consequence-none">No Injury</label>
+                    
+                    <input type="checkbox" id="consequence-minor" name="consequences" value="minor">
+                    <label for="consequence-minor">Minor Injury</label>
+                    
+                    <input type="checkbox" id="consequence-disfigurement" name="consequences" value="disfigurement">
+                    <label for="consequence-disfigurement">Disfigurement or Cosmetic Injury</label>
+                    
+                    <input type="checkbox" id="consequence-short-term" name="consequences" value="short-term">
+                    <label for="consequence-short-term">Short-term Loss of Physical Ability</label>
+                    
+                    <input type="checkbox" id="consequence-long-term" name="consequences" value="long-term">
+                    <label for="consequence-long-term">Long-term or Permanent Loss of Physical Ability</label>
+                    
+                    <input type="checkbox" id="consequence-future-harm" name="consequences" value="future-harm">
+                    <label for="consequence-future-harm">Possibility of Future Harm</label>
+                    
+                    <input type="checkbox" id="consequence-other" name="consequences" value="other">
+                    <label for="consequence-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Healthcare Provider Response</label>
+                <select id="provider-response" name="provider-response">
+                    <option value="">Select Provider's Response</option>
+                    <option value="refund">Provided a Partial or Full Refund</option>
+                    <option value="additional-treatment">Directed Additional Treatment</option>
+                    <option value="denied">Denied Wrongdoing</option>
+                    <option value="no-complaint">I Did Not Complain</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Type of Healthcare Organization</label>
+                <select id="healthcare-org-type" name="healthcare-org-type">
+                    <option value="">Select Organization Type</option>
+                    <option value="solo-practitioner">Solo Practitioner</option>
+                    <option value="medical-group">Medical Group</option>
+                    <option value="hospital">Hospital</option>
+                    <option value="hmo">HMO/Group Benefit</option>
+                    <option value="free-clinic">Free Clinic</option>
+                    <option value="government">Government Facility</option>
+                    <option value="other">Other</option>
+                    <option value="unsure">Unsure</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Gross Annual Income</label>
+                <select id="annual-income" name="annual-income">
+                    <option value="">Select Annual Income Range</option>
+                    <option value="25000-or-less">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125000-plus">$125,000+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Previous Injury</label>
+                <div class="radio-group">
+                    <label>Was there a prior injury to the same body part?</label>
+                    <input type="radio" id="prior-injury-yes" name="prior-injury" value="yes">
+                    <label for="prior-injury-yes">Yes, on:</label>
+                    <input 
+                        type="date" 
+                        id="prior-injury-date" 
+                        name="prior-injury-date" 
+                        format="mm/dd/yyyy"
+                    >
+                    
+                    <input type="radio" id="prior-injury-no" name="prior-injury" value="no">
+                    <label for="prior-injury-no">No</label>
+                    
+                    <input type="radio" id="prior-injury-unsure" name="prior-injury" value="unsure">
+                    <label for="prior-injury-unsure">Unsure</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="additional-details">Additional Case Details</label>
+                <textarea 
+                    id="additional-details" 
+                    name="additional-details" 
+                    rows="4" 
+                    placeholder="Provide any additional information about your medical malpractice experience"
+                ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Medical Malpractice Claim Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('medical-malpractice-form');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Collect form data
+        const formData = new FormData(form);
+        const formObject = {};
+        
+        for (const [key, value] of formData.entries()) {
+            // Handle checkboxes and multi-select fields
+            if (formObject[key]) {
+                if (!Array.isArray(formObject[key])) {
+                    formObject[key] = [formObject[key]];
+                }
+                formObject[key].push(value);
+            } else {
+                formObject[key] = value;
+            }
+        }
+        
+        // Basic validation
+        const requiredFields = ['injury-date', 'patient-age'];
+        const missingFields = requiredFields.filter(field => !formObject[field]);
+        
+        if (missingFields.length > 0) {
+            alert('Please fill out all required fields: ' + missingFields.join(', '));
+            return;
+        }
+        
+        // TODO: Implement actual form submission logic
+        console.log('Form Data:', formObject);
+        
+        // Placeholder submission message
+        alert('Your medical malpractice claim details have been submitted. We will review your case and contact you shortly.');
+        
+        // Optional: Reset form after submission
+        form.reset();
+    });
+});
+</script>
+{% endblock %}

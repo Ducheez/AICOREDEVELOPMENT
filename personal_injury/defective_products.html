@@ -1,0 +1,315 @@
+<!-- templates/forms/personal_injury/defective_products.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Defective Products Case Information</h2>
+    <form id="defective-products-form" class="legal-form">
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label for="age">What is your age?</label>
+                <input type="number" 
+                       id="age" 
+                       name="age" 
+                       class="form-control" 
+                       min="0" 
+                       max="120" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="occupation">What is your occupation?</label>
+                <input type="text" 
+                       id="occupation" 
+                       name="occupation" 
+                       class="form-control" 
+                       required>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Product Information</h3>
+
+            <div class="form-group">
+                <label for="product_type">What type of defective product caused the injury or needs replacement?</label>
+                <select id="product_type" name="product_type" class="form-control" required>
+                    <option value="">Select Product Type</option>
+                    <option value="appliance">Household Appliance</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="vehicle">Vehicle or Vehicle Part</option>
+                    <option value="tool">Tool or Equipment</option>
+                    <option value="toy">Toy or Children's Product</option>
+                    <option value="medical">Medical Device</option>
+                    <option value="pharmaceutical">Pharmaceutical Product</option>
+                    <option value="food">Food Product</option>
+                    <option value="clothing">Clothing or Accessories</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="other_product_div" style="display: none;">
+                <label for="other_product">Please specify the product:</label>
+                <input type="text" 
+                       id="other_product" 
+                       name="other_product" 
+                       class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="purchase_date">When was the product purchased? (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="purchase_date" 
+                       name="purchase_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="purchase_location">Who was the product purchased from?</label>
+                <select id="purchase_location" name="purchase_location" class="form-control" required>
+                    <option value="">Select Purchase Source</option>
+                    <option value="retailer">Retail Store</option>
+                    <option value="online">Online Retailer</option>
+                    <option value="manufacturer">Directly from Manufacturer</option>
+                    <option value="individual">Individual Seller</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product_cost">How much did the product cost? ($)</label>
+                <input type="number" 
+                       id="product_cost" 
+                       name="product_cost" 
+                       class="form-control" 
+                       min="0" 
+                       step="0.01" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="defect_date">When was the product determined to be defective? (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="defect_date" 
+                       name="defect_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY" 
+                       required>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Injury Information</h3>
+
+            <div class="form-group">
+                <label>What injuries were caused by the product?</label>
+                <div class="checkbox-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_none" name="injuries[]" value="none" class="form-check-input">
+                        <label class="form-check-label" for="injury_none">No injuries</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_cuts" name="injuries[]" value="cuts" class="form-check-input">
+                        <label class="form-check-label" for="injury_cuts">Cuts and bruises</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_burns" name="injuries[]" value="burns" class="form-check-input">
+                        <label class="form-check-label" for="injury_burns">Burns</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_broken" name="injuries[]" value="broken" class="form-check-input">
+                        <label class="form-check-label" for="injury_broken">Broken bones</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_internal" name="injuries[]" value="internal" class="form-check-input">
+                        <label class="form-check-label" for="injury_internal">Internal injuries</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_respiratory" name="injuries[]" value="respiratory" class="form-check-input">
+                        <label class="form-check-label" for="injury_respiratory">Respiratory issues</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_vision" name="injuries[]" value="vision" class="form-check-input">
+                        <label class="form-check-label" for="injury_vision">Vision impairment</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="injury_other" name="injuries[]" value="other" class="form-check-input">
+                        <label class="form-check-label" for="injury_other">Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group injury-details" style="display: none;">
+                <label for="injury_description">Please describe the injuries in detail:</label>
+                <textarea id="injury_description" 
+                         name="injury_description" 
+                         class="form-control" 
+                         rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="medical_treatment">Have you received medical treatment for these injuries?</label>
+                <select id="medical_treatment" name="medical_treatment" class="form-control" required>
+                    <option value="">Select Answer</option>
+                    <option value="no_treatment">No treatment needed</option>
+                    <option value="emergency">Emergency room visit</option>
+                    <option value="hospitalized">Hospitalized</option>
+                    <option value="ongoing">Ongoing treatment</option>
+                    <option value="completed">Treatment completed</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="medical_costs">What are the approximate medical costs to date? ($)</label>
+                <input type="number" 
+                       id="medical_costs" 
+                       name="medical_costs" 
+                       class="form-control" 
+                       min="0" 
+                       step="0.01">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Case Status</h3>
+
+            <div class="form-group">
+                <label for="claim_status">What is the current status of your claim?</label>
+                <select id="claim_status" name="claim_status" class="form-control" required>
+                    <option value="">Select Status</option>
+                    <option value="no_action">No action taken yet</option>
+                    <option value="reported">Reported to manufacturer/seller</option>
+                    <option value="demand">Demand for compensation made</option>
+                    <option value="lawsuit">Lawsuit filed</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Have you reported this to any government agencies?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="reported_yes" 
+                           name="govt_reported" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="reported_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="reported_no" 
+                           name="govt_reported" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="reported_no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="income">What is your gross annual income?</label>
+                <select id="income" name="income" class="form-control" required>
+                    <option value="">Select Income Range</option>
+                    <option value="25000">$25,000 or less</option>
+                    <option value="50000">$25,001–$50,000</option>
+                    <option value="75000">$50,001–$75,000</option>
+                    <option value="100000">$75,001–$100,000</option>
+                    <option value="125000">$100,001–$125,000</option>
+                    <option value="125001">$125,000+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hiring_timeframe">When are you planning to hire an attorney?</label>
+                <select id="hiring_timeframe" name="hiring_timeframe" class="form-control" required>
+                    <option value="">Select Timeframe</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this_week">This week</option>
+                    <option value="this_month">This month</option>
+                    <option value="this_year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Product type other field toggle
+    document.getElementById('product_type').addEventListener('change', function() {
+        const otherDiv = document.getElementById('other_product_div');
+        otherDiv.style.display = this.value === 'other' ? 'block' : 'none';
+        document.getElementById('other_product').required = this.value === 'other';
+    });
+
+    // Injury description toggle
+    const injuryChecks = document.querySelectorAll('input[name="injuries[]"]');
+    const injuryDetails = document.querySelector('.injury-details');
+    
+    injuryChecks.forEach(check => {
+        check.addEventListener('change', function() {
+            const anyChecked = Array.from(injuryChecks)
+                .some(box => box.checked && box.value !== 'none');
+            injuryDetails.style.display = anyChecked ? 'block' : 'none';
+            document.getElementById('injury_description').required = anyChecked;
+
+            // Handle "No injuries" checkbox
+            if (this.value === 'none' && this.checked) {
+                injuryChecks.forEach(box => {
+                    if (box.value !== 'none') {
+                        box.checked = false;
+                        box.disabled = true;
+                    }
+                });
+            } else if (this.value !== 'none' && this.checked) {
+                document.getElementById('injury_none').checked = false;
+                injuryChecks.forEach(box => box.disabled = false);
+            }
+        });
+    });
+
+    // Date validation
+    document.querySelectorAll('.date-input').forEach(input => {
+        input.addEventListener('blur', function() {
+            const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/([12]\d{3})$/;
+            if (this.value && !dateRegex.test(this.value)) {
+                this.classList.add('is-invalid');
+                if (!this.nextElementSibling?.classList.contains('invalid-feedback')) {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'invalid-feedback';
+                    feedback.textContent = 'Please enter date in MM/DD/YYYY format';
+                    this.parentNode.appendChild(feedback);
+                }
+            } else {
+                this.classList.remove('is-invalid');
+                const feedback = this.nextElementSibling;
+                if (feedback?.classList.contains('invalid-feedback')) {
+                    feedback.remove();
+                }
+            }
+        });
+    });
+
+    // Form validation
+    document.getElementById('defective-products-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (this.checkValidity()) {
+            // Form is valid, submit data
+            console.log('Form is valid, submitting...');
+        } else {
+            e.stopPropagation();
+            this.classList.add('was-validated');
+        }
+    });
+});
+</script>
+{% endblock %}

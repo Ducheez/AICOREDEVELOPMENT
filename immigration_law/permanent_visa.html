@@ -1,0 +1,293 @@
+<div class="form-container">
+    <h2 class="form-title">Immigration Law - Permanent Visa / Green Card Application</h2>
+    <form id="permanentVisaForm" onsubmit="return validateForm(event)">
+        <!-- Current Immigration Status -->
+        <div class="form-section">
+            <h3>Current Immigration Status</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Current Location and Status</label>
+                <select name="currentStatus" class="form-control select-field" required>
+                    <option value="">Select current status</option>
+                    <option value="outside-us">Outside the United States</option>
+                    <option value="visa">In the United States on a Visa</option>
+                    <option value="undocumented">In the United States without Proper Documentation</option>
+                    <option value="removal-proceedings">In Deportation/Removal Proceedings</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Hearing Information</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="hearingScheduled" value="yes" data-conditional="hearingDetails">
+                        <label>Hearing is Scheduled</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="hearingScheduled" value="no">
+                        <label>No Hearing Scheduled</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="hearingScheduled" value="unknown">
+                        <label>Unsure</label>
+                    </div>
+                </div>
+
+                <div id="hearingDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Hearing Date</label>
+                        <input type="date" name="hearingDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Court Location</label>
+                        <input type="text" name="courtLocation" class="form-control" 
+                               placeholder="City, State, Court Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Green Card Category -->
+        <div class="form-section">
+            <h3>Green Card Application Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Permanent Visa/Green Card</label>
+                <select name="greenCardType" class="form-control select-field" required>
+                    <option value="">Select green card type</option>
+                    <option value="marriage">Marriage to U.S. Citizen or Permanent Resident</option>
+                    <option value="immediate-relative">Immediate Relative of U.S. Citizen</option>
+                    <option value="refugee">Refugee or Political Asylum</option>
+                    <option value="employment">Employment-Based</option>
+                    <option value="long-term-resident">Long-Term Resident</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherGreenCardType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div id="marriageDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Marriage</label>
+                    <input type="date" name="marriageDate" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Spouse's Citizenship Status</label>
+                    <select name="spouseStatus" class="form-control select-field">
+                        <option value="">Select spouse's status</option>
+                        <option value="us-citizen">U.S. Citizen</option>
+                        <option value="permanent-resident">Permanent Resident</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="employmentDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Employment-Based Green Card Category</label>
+                    <select name="employmentCategory" class="form-control select-field">
+                        <option value="">Select employment category</option>
+                        <option value="eb1">EB-1: Priority Workers</option>
+                        <option value="eb2">EB-2: Advanced Degree or Exceptional Ability</option>
+                        <option value="eb3">EB-3: Skilled Workers, Professionals, Unskilled Workers</option>
+                        <option value="eb4">EB-4: Special Immigrants</option>
+                        <option value="eb5">EB-5: Immigrant Investors</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" name="otherEmploymentCategory" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Details</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Gender</label>
+                <select name="gender" class="form-control select-field" required>
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="nonbinary">Non-binary</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherGender" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Education Level</label>
+                <select name="educationLevel" class="form-control select-field" required>
+                    <option value="">Select education level</option>
+                    <option value="none">No formal education</option>
+                    <option value="primary">Primary School</option>
+                    <option value="secondary">Secondary School</option>
+                    <option value="high-school">High School</option>
+                    <option value="some-college">Some College</option>
+                    <option value="associates">Associate's Degree</option>
+                    <option value="bachelors">Bachelor's Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="doctorate">Doctorate</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherEducationLevel" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Marital Status</label>
+                <select name="maritalStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherMaritalStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Country of Origin</label>
+                <select name="countryOfOrigin" class="form-control select-field" required>
+                    <option value="">Select country</option>
+                    <option value="mexico">Mexico</option>
+                    <option value="canada">Canada</option>
+                    <option value="india">India</option>
+                    <option value="china">China</option>
+                    <option value="philippines">Philippines</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherCountry" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Language Assistance -->
+        <div class="form-section">
+            <h3>Language Assistance</h3>
+
+            <div class="form-group">
+                <label class="form-label">Do you need a translator?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="languageAssistance" value="yes" data-conditional="translatorDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="languageAssistance" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+
+                <div id="translatorDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Preferred Language</label>
+                        <input type="text" name="preferredLanguage" class="form-control" 
+                               placeholder="Enter your preferred language">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle green card type conditional fields
+    const greenCardTypeSelect = document.querySelector('select[name="greenCardType"]');
+    const marriageDetailsField = document.getElementById('marriageDetails');
+    const employmentDetailsField = document.getElementById('employmentDetails');
+
+    greenCardTypeSelect.addEventListener('change', function() {
+        // Hide all conditional fields first
+        marriageDetailsField.style.display = 'none';
+        employmentDetailsField.style.display = 'none';
+
+        // Show relevant field based on selection
+        if (this.value === 'marriage') {
+            marriageDetailsField.style.display = 'block';
+            const inputs = marriageDetailsField.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.required = true;
+            });
+        } else if (this.value === 'employment') {
+            employmentDetailsField.style.display = 'block';
+            const inputs = employmentDetailsField.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.required = true;
+            });
+        }
+    });
+
+    // Handle hearing details conditional field
+    const hearingRadios = document.querySelectorAll('input[name="hearingScheduled"]');
+    const hearingDetailsField = document.getElementById('hearingDetails');
+
+    hearingRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            hearingDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            const inputs = hearingDetailsField.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.required = this.value === 'yes';
+            });
+        });
+    });
+
+    // Handle language assistance conditional field
+    const languageAssistanceRadios = document.querySelectorAll('input[name="languageAssistance"]');
+    const translatorDetailsField = document.getElementById('translatorDetails');
+
+    languageAssistanceRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            translatorDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            const languageInput = translatorDetailsField.querySelector('input');
+            languageInput.required = this.value === 'yes';
+        });
+    });
+});
+</script>

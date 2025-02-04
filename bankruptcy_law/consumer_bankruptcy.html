@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="form-container">
+    <h2 class="form-title">Bankruptcy Law - Consumer Bankruptcy</h2>
+    <form id="consumerBankruptcyForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Marital Status</label>
+                <select name="maritalStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="separated">Legally Separated</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherMaritalStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Employment Status</label>
+                <select name="employmentStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="full-time">Employed Full-Time</option>
+                    <option value="part-time">Employed Part-Time</option>
+                    <option value="self-employed">Self-Employed</option>
+                    <option value="unemployed">Unemployed</option>
+                    <option value="retired">Retired</option>
+                    <option value="disabled">Unable to Work Due to Disability</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Number of People in Household</label>
+                <input type="number" name="householdSize" class="form-control" required min="1" max="20">
+            </div>
+        </div>
+
+        <!-- Bankruptcy Type -->
+        <div class="form-section">
+            <h3>Bankruptcy Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Primary Reason for Filing Bankruptcy</label>
+                <select name="bankruptcyReason" class="form-control select-field" required>
+                    <option value="">Select primary reason</option>
+                    <option value="medical">Medical Bills</option>
+                    <option value="job-loss">Job Loss/Reduction in Income</option>
+                    <option value="credit-cards">Credit Card Debt</option>
+                    <option value="mortgage">Mortgage/Housing Costs</option>
+                    <option value="business">Failed Business</option>
+                    <option value="divorce">Divorce/Separation</option>
+                    <option value="student-loans">Student Loans</option>
+                    <option value="tax-debt">Tax Debt</option>
+                    <option value="lawsuits">Lawsuits/Judgments</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherReason" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Have you filed for bankruptcy before?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="previousBankruptcy" value="yes" required data-conditional="previousBankruptcyDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="previousBankruptcy" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="previousBankruptcyDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Previous Bankruptcy Type</label>
+                    <select name="previousBankruptcyType" class="form-control select-field">
+                        <option value="">Select type</option>
+                        <option value="chapter7">Chapter 7 (Liquidation)</option>
+                        <option value="chapter13">Chapter 13 (Repayment Plan)</option>
+                        <option value="chapter11">Chapter 11</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Date of Previous Filing</label>
+                    <input type="date" name="previousBankruptcyDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Was the Previous Bankruptcy Discharged?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="previousDischarge" value="yes">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="previousDischarge" value="no">
+                            <label>No</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="previousDischarge" value="unknown">
+                            <label>Unknown</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Have you received credit counseling in the last 180 days?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="creditCounseling" value="yes" required data-conditional="counselingDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="creditCounseling" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="counselingDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Credit Counseling</label>
+                    <input type="date" name="counselingDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Name of Credit Counseling Agency</label>
+                    <input type="text" name="counselingAgency" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Property and Assets -->
+        <div class="form-section">
+            <h3>Property and Assets</h3>
+
+            <div class="form-group">
+                <label class="form-label">Real Estate Property</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="realEstate[]" value="primary-home" data-conditional="primaryHomeDetails">
+                        <label>Primary Home</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="realEstate[]" value="rental">
+                        <label>Rental Property</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="realEstate[]" value="vacation">
+                        <label>Vacation Property</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="realEstate[]" value="timeshare">
+                        <label>Timeshare</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="realEstate[]" value="land">
+                        <label>Vacant Land</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="primaryHomeDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Estimated Value of Primary Home</label>
+                    <input type="number" name="homeValue" class="form-control currency-input" 
+                           placeholder="Enter estimated value">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Remaining Mortgage Balance</label>
+                    <input type="number" name="mortgageBalance" class="form-control currency-input" 
+                           placeholder="Enter remaining balance">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Vehicles</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="vehicles[]" value="car">
+                        <label>Car/Truck</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="vehicles[]" value="motorcycle">
+                        <label>Motorcycle</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="vehicles[]" value="boat">
+                        <label>Boat</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="vehicles[]" value="rv">
+                        <label>RV/Camper</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Financial Assets</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="financialAssets[]" value="checking">
+                        <label>Checking Accounts</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="financialAssets[]" value="savings">
+                        <label>Savings Accounts</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="financialAssets[]" value="retirement">
+                        <label>401(k)/IRA/Retirement Accounts</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="financialAssets[]" value="stocks">
+                        <label>Stocks/Bonds</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="financialAssets[]" value="life-insurance">
+                        <label>Life Insurance (Cash Value)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Total Estimated Value of All Assets</label>
+                <select name="totalAssets" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-10000">$0 - $10,000</option>
+                    <option value="10001-50000">$10,001 - $50,000</option>
+                    <option value="50001-100000">$50,001 - $100,000</option>
+                    <option value="100001-250000">$100,001 - $250,000</option>
+                    <option value="250001-500000">$250,001 - $500,000</option>
+                    <option value="500001-1000000">$500,001 - $1,000,000</option>
+                    <option value="1000001+">Over $1,000,000</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Debts and Liabilities -->
+        <div class="form-section">
+            <h3>Debts and Liabilities</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Types of Debts</label>
+                <div class="checkbox-group" data-required="true">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="debtTypes[]" value="mortgage">
+                        <label>Mortgage/Home Loans</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="debtTypes[]" value="car">
+                        <label>Car Loans</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="debtTypes[]" value="credit-cards">
+                        <label>Credit Cards</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="debtTypes[]" value="medical">
+                        <label>Medical Bills</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="debtTypes[]" value="student-loans">
+                        <label>Student Loans</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="debtTypes[]" value="taxes">
+                        <label>Tax Debt</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="debtTypes[]" value="personal-loans">
+                        <label>Personal Loans</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="debtTypes[]" value="judgments">
+                        <label>Court Judgments</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="debtTypes[]" value="business">
+                        <label>Business Debts</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Total Estimated Debt Amount</label>
+                <select name="totalDebt" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-10000">$0 - $10,000</option>
+                    <option value="10001-25000">$10,001 - $25,000</option>
+                    <option value="25001-50000">$25,001 - $50,000</option>
+                    <option value="50001-100000">$50,001 - $100,000</option>
+                    <option value="100001-250000">$100,001 - $250,000</option>
+                    <option value="250001-500000">$250,001 - $500,000</option>
+                    <option value="500001-1000000">$500,001 - $

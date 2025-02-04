@@ -1,0 +1,180 @@
+<div class="form-container">
+    <h2 class="form-title">Criminal Law - Speeding and Moving Violations</h2>
+    <form id="speedingViolationsForm" onsubmit="return validateForm(event)">
+        <!-- Violation Details -->
+        <div class="form-section">
+            <h3>Traffic Violation Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Type of Violation</label>
+                <select name="violationType" class="form-control select-field" required>
+                    <option value="">Select violation</option>
+                    <option value="speeding">Speeding</option>
+                    <option value="reckless-driving">Reckless Driving</option>
+                    <option value="red-light">Running a Red Light</option>
+                    <option value="illegal-turn">Illegal Turn</option>
+                    <option value="accident">Causing an Accident</option>
+                    <option value="suspended-license">Driving with Suspended License</option>
+                    <option value="no-insurance">No Proof of Insurance</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherViolationType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Date of Traffic Ticket</label>
+                <input type="date" name="violationDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Location of Violation</label>
+                <input type="text" name="violationLocation" class="form-control" 
+                       placeholder="Street, City, County, State">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Details of Violation</label>
+                <textarea name="violationDetails" class="form-control textarea-field"
+                          placeholder="Provide additional details about the traffic violation"></textarea>
+            </div>
+        </div>
+
+        <!-- Driving Record -->
+        <div class="form-section">
+            <h3>Driving Record</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Number of Previous Traffic Violations</label>
+                <input type="number" name="previousViolations" class="form-control" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Status of Driver's License</label>
+                <select name="licenseStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="valid">Valid</option>
+                    <option value="suspended">Suspended</option>
+                    <option value="revoked">Revoked</option>
+                    <option value="restricted">Restricted</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Driver's License Points</label>
+                <input type="number" name="licensePoints" class="form-control" min="0" max="100">
+            </div>
+        </div>
+
+        <!-- Court Information -->
+        <div class="form-section">
+            <h3>Court Information</h3>
+
+            <div class="form-group">
+                <label class="form-label">Next Court Appearance Date</label>
+                <input type="date" name="nextCourtDate" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Court Location</label>
+                <input type="text" name="courtLocation" class="form-control" 
+                       placeholder="Court Name, City, County, State">
+            </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="16" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Citizenship or Residency Status</label>
+                <select name="citizenshipStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="us-citizen">U.S. Citizen</option>
+                    <option value="permanent-resident">Permanent Resident</option>
+                    <option value="temporary-visa">Temporary Visa Holder</option>
+                    <option value="undocumented">Undocumented</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherCitizenshipStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Validate that points are within reasonable range
+    const licensePointsInput = document.querySelector('input[name="licensePoints"]');
+    licensePointsInput.addEventListener('change', function() {
+        const points = parseInt(this.value);
+        if (points < 0) {
+            this.value = 0;
+        } else if (points > 100) {
+            this.value = 100;
+        }
+    });
+});
+</script>

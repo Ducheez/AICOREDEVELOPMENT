@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Title and Boundary Disputes Intake Form</h1>
+        <p class="description">Provide details about your property title or boundary legal matter.</p>
+
+        <form id="title-boundary-disputes-form">
+            <div class="form-group">
+                <label>Your Role in This Dispute</label>
+                <select id="dispute-role" name="dispute-role" required>
+                    <option value="">Select Your Role</option>
+                    <option value="property-owner">Owner of the Property with a Title or Boundary Issue</option>
+                    <option value="neighboring-owner">Contesting Title or Boundary on Another Property</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="property-location">Property Location</label>
+                <input 
+                    type="text" 
+                    id="property-location" 
+                    name="property-location" 
+                    placeholder="Full Street Address, City, State, ZIP Code"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Type of Dispute</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="dispute-boundary" name="dispute-types" value="boundary">
+                    <label for="dispute-boundary">Property Boundary Dispute</label>
+                    
+                    <input type="checkbox" id="dispute-easement" name="dispute-types" value="easement">
+                    <label for="dispute-easement">Easement Dispute</label>
+                    
+                    <input type="checkbox" id="dispute-title-ownership" name="dispute-types" value="title-ownership">
+                    <label for="dispute-title-ownership">Title Ownership Dispute</label>
+                    
+                    <input type="checkbox" id="dispute-encroachment" name="dispute-types" value="encroachment">
+                    <label for="dispute-encroachment">Encroachment</label>
+                    
+                    <input type="checkbox" id="dispute-deed-error" name="dispute-types" value="deed-error">
+                    <label for="dispute-deed-error">Deed Error</label>
+                    
+                    <input type="checkbox" id="dispute-other" name="dispute-types" value="other">
+                    <label for="dispute-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Dispute Involves</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="involves-fence" name="dispute-involves" value="fence">
+                    <label for="involves-fence">Fence Line</label>
+                    
+                    <input type="checkbox" id="involves-building" name="dispute-involves" value="building">
+                    <label for="involves-building">Building Location</label>
+                    
+                    <input type="checkbox" id="involves-road" name="dispute-involves" value="road">
+                    <label for="involves-road">Road or Access</label>
+                    
+                    <input type="checkbox" id="involves-parking" name="dispute-involves" value="parking">
+                    <label for="involves-parking">Parking Area</label>
+                    
+                    <input type="checkbox" id="involves-landscaping" name="dispute-involves" value="landscaping">
+                    <label for="involves-landscaping">Landscaping</label>
+                    
+                    <input type="checkbox" id="involves-other" name="dispute-involves" value="other">
+                    <label for="involves-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="property-value">Estimated Property Value</label>
+                <input 
+                    type="number" 
+                    id="property-value" 
+                    name="property-value" 
+                    placeholder="Enter property value in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Legal Actions Taken</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="action-survey" name="legal-actions" value="survey">
+                    <label for="action-survey">Professional Survey Conducted</label>
+                    
+                    <input type="checkbox" id="action-mediation" name="legal-actions" value="mediation">
+                    <label for="action-mediation">Attempted Mediation</label>
+                    
+                    <input type="checkbox" id="action-notice" name="legal-actions" value="notice">
+                    <label for="action-notice">Sent Legal Notice</label>
+                    
+                    <input type="checkbox" id="action-court" name="legal-actions" value="court">
+                    <label for="action-court">Filed Court Petition</label>
+                    
+                    <input type="checkbox" id="action-none" name="legal-actions" value="none">
+                    <label for="action-none">No Actions Taken</label>
+                    
+                    <input type="checkbox" id="action-other" name="legal-actions" value="other">
+                    <label for="action-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="additional-details">Additional Details or Concerns</label>
+                <textarea 
+                    id="additional-details" 
+                    name="additional-details" 
+                    rows="4" 
+                    placeholder="Provide any additional information about your title or boundary dispute"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Title and Boundary Dispute Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('title-boundary-disputes-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // TODO: Implement form submission logic
+    alert('Form submission will be handled by the backend');
+});
+</script>
+{% endblock %}

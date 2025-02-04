@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Employment Law - Workplace Disputes Case Information</h2>
+    <form id="workplaceDisputesForm" onsubmit="return validateForm(event)">
+        <!-- Employment Information -->
+        <div class="form-section">
+            <h3>Employment Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Date of Hire</label>
+                <input type="date" name="hireDate" class="form-control" required max="{{ current_date }}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Occupation/Job Title</label>
+                <input type="text" name="jobTitle" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Employment Status</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="employmentStatus" value="current" required>
+                        <label>Yes, still employed</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="employmentStatus" value="former">
+                        <label>No, last day was: </label>
+                        <input type="date" name="lastWorkDate" class="form-control" style="width: 200px;">
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="employmentStatus" value="notStarted">
+                        <label>Employment has not yet started</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Relationship to Employer</label>
+                <select name="employerRelationship" class="form-control select-field" required>
+                    <option value="">Select relationship</option>
+                    <option value="employee">Employee</option>
+                    <option value="former">Former employee</option>
+                    <option value="applicant">Job applicant</option>
+                    <option value="contractor">Independent contractor</option>
+                    <option value="employer">Employer</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRelationship" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Employer Information -->
+        <div class="form-section">
+            <h3>Employer Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Organization Type</label>
+                <select name="organizationType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="sole">Sole proprietorship</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="franchise">Franchise</option>
+                    <option value="private">Privately held corporation</option>
+                    <option value="public">Public corporation</option>
+                    <option value="nonprofit">Nonprofit</option>
+                    <option value="professional">Professional organization</option>
+                    <option value="government">Government agency</option>
+                    <option value="other">Other</option>
+                    <option value="unknown">I don't know</option>
+                </select>
+                <input type="text" name="otherOrganizationType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Industry</label>
+                <select name="industry" class="form-control select-field" required>
+                    <option value="">Select industry</option>
+                    <option value="tech">High technology</option>
+                    <option value="retail">Retail</option>
+                    <option value="services">Professional services</option>
+                    <option value="construction">Construction</option>
+                    <option value="education">Education</option>
+                    <option value="government">Government</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="transportation">Transportation</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherIndustry" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Number of Employees</label>
+                <select name="employeeCount" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="1-4">1–4</option>
+                    <option value="5-50">5–50</option>
+                    <option value="51-100">51–100</option>
+                    <option value="101+">101+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Workplace Dispute Details -->
+        <div class="form-section">
+            <h3>Dispute Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Specific Dispute Description</label>
+                <textarea name="disputeDescription" class="form-control textarea-field" 
+                          placeholder="Please provide a detailed description of your workplace dispute" 
+                          required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Dispute</label>
+                <select name="disputeType" class="form-control select-field" required>
+                    <option value="">Select type of dispute</option>
+                    <option value="compensation">Compensation Issues</option>
+                    <option value="harassment">Workplace Harassment</option>
+                    <option value="discrimination">Discrimination</option>
+                    <option value="working-conditions">Working Conditions</option>
+                    <option value="promotion">Promotion Disputes</option>
+                    <option value="performance-review">Performance Review Disagreements</option>
+                    <option value="termination">Termination Dispute</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherDisputeType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">When Did the Dispute Begin?</label>
+                <input type="date" name="disputeStartDate" class="form-control" max="{{ current_date }}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have You Taken Any Internal Actions?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="internalActions" value="hr-complaint" id="hrComplaint">
+                        <label for="hrComplaint">Filed HR Complaint</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="internalActions" value="mediation" id="mediation">
+                        <label for="mediation">Requested Mediation</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="internalActions" value="union-grievance" id="unionGrievance">
+                        <label for="unionGrievance">Filed Union Grievance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="internalActions" value="none" id="noActions">
+                        <label for="noActions">No Actions Taken</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<!-- Add form-specific script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show/hide "Other" input fields for selects
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle last work date for employment status
+    const statusRadios = document.querySelectorAll('input[name="employmentStatus"]');
+    const lastWorkDate = document.querySelector('input[name="lastWorkDate"]');
+    statusRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'former') {
+                lastWorkDate.required = true;
+                lastWorkDate.style.display = 'inline-block';
+            } else {
+                lastWorkDate.required = false;
+                lastWorkDate.value = ''; // Clear the date
+                lastWorkDate.style.display = 'none';
+            }
+        });
+    });
+
+    // Prevent "No Actions Taken" from being combined with other actions
+    const noActionsCheckbox = document.getElementById('noActions');
+    const otherActionCheckboxes = document.querySelectorAll('input[name="internalActions"]:not(#noActions)');
+    
+    noActionsCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            otherActionCheckboxes.forEach(cb => {
+                cb.checked = false;
+                cb.disabled = this.checked;
+            });
+        } else {
+            otherActionCheckboxes.forEach(cb => {
+                cb.disabled = false;
+            });
+        }
+    });
+
+    otherActionCheckboxes.forEach(cb => {
+        cb.addEventListener('change', function() {
+            if (this.checked) {
+                noActionsCheckbox.checked = false;
+                noActionsCheckbox.disabled = true;
+            } else {
+                const anyChecked = Array.from(otherActionCheckboxes).some(checkbox => checkbox.checked);
+                noActionsCheckbox.disabled = anyChecked;
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

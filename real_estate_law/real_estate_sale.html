@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Purchase and Sale of Residence Form</h1>
+        <p class="description">Provide details about your residential real estate transaction.</p>
+
+        <form id="real-estate-sale-form">
+            <!-- Previous form content remains the same -->
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="additional-details">Additional Transaction Details</label>
+                <textarea 
+                    id="additional-details" 
+                    name="additional-details" 
+                    rows="4" 
+                    placeholder="Provide any additional information about your real estate transaction"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="transaction-date">Proposed or Actual Transaction Date</label>
+                <input 
+                    type="date" 
+                    id="transaction-date" 
+                    name="transaction-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="property-location">Property Location</label>
+                <input 
+                    type="text" 
+                    id="property-location" 
+                    name="property-location" 
+                    placeholder="Full Street Address, City, State, ZIP Code"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="purchase-price">Proposed Purchase Price</label>
+                <input 
+                    type="number" 
+                    id="purchase-price" 
+                    name="purchase-price" 
+                    placeholder="Enter proposed purchase price" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Financing Method</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="financing-cash" name="financing-method" value="cash">
+                    <label for="financing-cash">Cash Purchase</label>
+                    
+                    <input type="checkbox" id="financing-conventional" name="financing-method" value="conventional">
+                    <label for="financing-conventional">Conventional Mortgage</label>
+                    
+                    <input type="checkbox" id="financing-fha" name="financing-method" value="fha">
+                    <label for="financing-fha">FHA Loan</label>
+                    
+                    <input type="checkbox" id="financing-va" name="financing-method" value="va">
+                    <label for="financing-va">VA Loan</label>
+                    
+                    <input type="checkbox" id="financing-owner" name="financing-method" value="owner">
+                    <label for="financing-owner">Owner Financing</label>
+                    
+                    <input type="checkbox" id="financing-other" name="financing-method" value="other">
+                    <label for="financing-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Contingencies</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="contingency-inspection" name="contingencies" value="inspection">
+                    <label for="contingency-inspection">Home Inspection</label>
+                    
+                    <input type="checkbox" id="contingency-appraisal" name="contingencies" value="appraisal">
+                    <label for="contingency-appraisal">Appraisal</label>
+                    
+                    <input type="checkbox" id="contingency-financing" name="contingencies" value="financing">
+                    <label for="contingency-financing">Financing</label>
+                    
+                    <input type="checkbox" id="contingency-sale" name="contingencies" value="sale">
+                    <label for="contingency-sale">Sale of Existing Home</label>
+                    
+                    <input type="checkbox" id="contingency-title" name="contingencies" value="title">
+                    <label for="contingency-title">Clear Title</label>
+                    
+                    <input type="checkbox" id="contingency-other" name="contingencies" value="other">
+                    <label for="contingency-other">Other</label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Real Estate Transaction Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('real-estate-sale-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // TODO: Implement form submission logic
+    alert('Form submission will be handled by the backend');
+});
+</script>
+{% endblock %}

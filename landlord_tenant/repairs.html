@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Landlord/Tenant - Repairs Case Information</h2>
+    <form id="repairsForm" onsubmit="return validateForm(event)">
+        <!-- Property Information -->
+        <div class="form-section">
+            <h3>Property Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Property Type</label>
+                <select name="propertyType" class="form-control select-field" required>
+                    <option value="">Select property type</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="house">Single-Family House</option>
+                    <option value="condo">Condominium</option>
+                    <option value="townhouse">Townhouse</option>
+                    <option value="mobile-home">Mobile Home</option>
+                    <option value="commercial">Commercial Property</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherPropertyType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Property Address</label>
+                <input type="text" name="propertyAddress" class="form-control" required 
+                       placeholder="Full street address">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Role</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="clientRole" value="landlord" required>
+                        <label>Landlord</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="clientRole" value="tenant">
+                        <label>Tenant</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="clientRole" value="property-manager">
+                        <label>Property Manager</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="clientRole" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+                <input type="text" name="otherClientRole" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Repair Details -->
+        <div class="form-section">
+            <h3>Repair Issue Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Repair Needed</label>
+                <select name="repairType" class="form-control select-field" required>
+                    <option value="">Select repair type</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="heating">Heating/Cooling</option>
+                    <option value="structural">Structural</option>
+                    <option value="pest-control">Pest Control</option>
+                    <option value="water-damage">Water Damage</option>
+                    <option value="mold">Mold</option>
+                    <option value="appliance">Appliance Repair</option>
+                    <option value="safety-hazard">Safety Hazard</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRepairType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Severity of Repair</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="repairSeverity" value="emergency" required>
+                        <label>Emergency (Immediate Threat to Health/Safety)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="repairSeverity" value="urgent">
+                        <label>Urgent (Significant Impact on Habitability)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="repairSeverity" value="routine">
+                        <label>Routine Maintenance</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Detailed Description of Repair Issue</label>
+                <textarea name="repairDescription" class="form-control textarea-field" 
+                          placeholder="Provide a detailed description of the repair needed" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date Issue Was First Noticed</label>
+                <input type="date" name="issueFirstNoticed" class="form-control" max="{{ current_date }}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Previous Repair Attempts</label>
+                <textarea name="previousRepairAttempts" class="form-control textarea-field" 
+                          placeholder="Describe any previous attempts to address this issue"></textarea>
+            </div>
+        </div>
+
+        <!-- Communication and Notices -->
+        <div class="form-section">
+            <h3>Communication History</h3>
+
+            <div class="form-group">
+                <label class="form-label">How Was the Repair Issue Reported?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportMethod" value="verbal" id="verbalReport">
+                        <label for="verbalReport">Verbal Communication</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportMethod" value="written" id="writtenReport">
+                        <label for="writtenReport">Written Notice</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportMethod" value="email" id="emailReport">
+                        <label for="emailReport">Email</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportMethod" value="maintenance-request" id="maintenanceRequest">
+                        <label for="maintenanceRequest">Formal Maintenance Request</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="reportMethod" value="other" id="otherReportMethod">
+                        <label for="otherReportMethod">Other</label>
+                    </div>
+                </div>
+                <input type="text" name="otherReportMethod" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Dates of Communication</label>
+                <textarea name="communicationDates" class="form-control textarea-field" 
+                          placeholder="List dates and methods of communication about the repair issue"></textarea>
+            </div>
+        </div>
+
+        <!-- Financial Considerations -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Repair Cost</label>
+                <input type="number" name="estimatedRepairCost" class="form-control currency-input" 
+                       placeholder="Estimated cost of repairs" min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Who Should Pay for Repairs?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="repairResponsibility" value="landlord">
+                        <label>Landlord's Responsibility</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="repairResponsibility" value="tenant">
+                        <label>Tenant's Responsibility</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="repairResponsibility" value="shared">
+                        <label>Shared Responsibility</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="repairResponsibility" value="uncertain">
+                        <label>Uncertain</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Considerations -->
+        <div class="form-section">
+            <h3>Legal Considerations</h3>
+
+            <div class="form-group">
+                <label class="form-label">Have You Considered Legal Action?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="legalConsideration" value="no-action">
+                        <label>No Action Considered</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="legalConsideration" value="potential-lawsuit">
+                        <label>Potential Lawsuit</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="legalConsideration" value="mediation">
+                        <label>Considering Mediation</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="legalConsideration" value="negotiation">
+                        <label>Seeking Negotiation</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<!-- Add form-specific script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show/hide "Other" input fields for selects
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle client role details
+    const clientRoleRadios = document.querySelectorAll('input[name="clientRole"]');
+    const otherClientRoleInput = document.querySelector('input[name="otherClientRole"]');
+
+    clientRoleRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            otherClientRoleInput.style.display = this.value === 'other' ? 'block' : 'none';
+            otherClientRoleInput.required = this.value === 'other';
+        });
+    });
+
+    // Handle report method "Other" input
+    const otherReportMethodCheckbox = document.getElementById('otherReportMethod');
+    const otherReportMethodInput = document.querySelector('input[name="otherReportMethod"]');
+
+    otherReportMethodCheckbox.addEventListener('change', function() {
+        otherReportMethodInput.style.display = this.checked ? 'block' : 'none';
+        otherReportMethodInput.required = this.checked;
+    });
+
+    // Currency input formatting
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                // Format as currency
+                this.value = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(this.value);
+            }
+        });
+    });
+
+    // Limit date of issue first noticed to current date
+    const issueFirstNoticedInput = document.querySelector('input[name="issueFirstNoticed"]');
+    const today = new Date().toISOString().split('T')[0];
+    issueFirstNoticedInput.max = today;
+});
+</script>
+{% endblock %}

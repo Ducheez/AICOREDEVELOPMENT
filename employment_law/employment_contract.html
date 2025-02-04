@@ -1,0 +1,352 @@
+<div class="form-container">
+    <h2 class="form-title">Employment Law - Employment Contracts Information</h2>
+    <form id="employmentContractsForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Role</label>
+                <select name="role" class="form-control select-field" required>
+                    <option value="">Select your role</option>
+                    <option value="employee">Employee</option>
+                    <option value="employer">Employer</option>
+                    <option value="prospective">Prospective Employee</option>
+                    <option value="contractor">Independent Contractor</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Employment Status</label>
+                <select name="employmentStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="current">Currently Employed</option>
+                    <option value="offered">Received Job Offer</option>
+                    <option value="negotiating">In Negotiations</option>
+                    <option value="terminated">Employment Terminated</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Job Title/Position</label>
+                <input type="text" name="jobTitle" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Contract Information -->
+        <div class="form-section">
+            <h3>Contract Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Contract Matter</label>
+                <select name="contractMatter" class="form-control select-field" required>
+                    <option value="">Select matter type</option>
+                    <option value="review">Contract Review</option>
+                    <option value="negotiate">Contract Negotiation</option>
+                    <option value="draft">Contract Drafting</option>
+                    <option value="dispute">Contract Dispute</option>
+                    <option value="breach">Contract Breach</option>
+                    <option value="modification">Contract Modification</option>
+                    <option value="termination">Contract Termination</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Contract Status</label>
+                <select name="contractStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="proposed">Proposed/Draft</option>
+                    <option value="negotiating">Under Negotiation</option>
+                    <option value="signed">Signed</option>
+                    <option value="expired">Expired</option>
+                    <option value="terminated">Terminated</option>
+                    <option value="disputed">In Dispute</option>
+                    <option value="none">No Contract Yet</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Contract Start Date</label>
+                <input type="date" name="contractStart" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Contract End Date (if applicable)</label>
+                <input type="date" name="contractEnd" class="form-control">
+            </div>
+        </div>
+
+        <!-- Contract Terms -->
+        <div class="form-section">
+            <h3>Contract Terms</h3>
+
+            <div class="form-group">
+                <label class="form-label">Which terms are included/proposed? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="compensation">
+                        <label>Compensation/Salary</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="benefits">
+                        <label>Benefits</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="duration">
+                        <label>Duration of Employment</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="duties">
+                        <label>Job Duties/Responsibilities</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="noncompete">
+                        <label>Non-Compete Clause</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="confidentiality">
+                        <label>Confidentiality/NDA</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="intellectual">
+                        <label>Intellectual Property Rights</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="termination">
+                        <label>Termination Provisions</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="severance">
+                        <label>Severance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="arbitration">
+                        <label>Arbitration Clause</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="contractTerms" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compensation Details -->
+        <div class="form-section">
+            <h3>Compensation Details</h3>
+
+            <div class="form-group">
+                <label class="form-label">Base Compensation</label>
+                <input type="number" name="baseCompensation" class="form-control currency-input" placeholder="$">
+                <select name="compensationType" class="form-control select-field">
+                    <option value="">Select type</option>
+                    <option value="annual">Annual Salary</option>
+                    <option value="hourly">Hourly Rate</option>
+                    <option value="commission">Commission Based</option>
+                    <option value="project">Project Based</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Additional Compensation Elements (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="additionalCompensation" value="bonus">
+                        <label>Bonus</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="additionalCompensation" value="commission">
+                        <label>Commission</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="additionalCompensation" value="equity">
+                        <label>Stock/Equity</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="additionalCompensation" value="profit">
+                        <label>Profit Sharing</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="additionalCompensation" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits Information -->
+        <div class="form-section">
+            <h3>Benefits Information</h3>
+
+            <div class="form-group">
+                <label class="form-label">Benefits Included (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="benefits" value="health">
+                        <label>Health Insurance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="benefits" value="dental">
+                        <label>Dental Insurance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="benefits" value="vision">
+                        <label>Vision Insurance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="benefits" value="life">
+                        <label>Life Insurance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="benefits" value="disability">
+                        <label>Disability Insurance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="benefits" value="retirement">
+                        <label>Retirement Plan</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="benefits" value="pto">
+                        <label>Paid Time Off</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="benefits" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restrictive Covenants -->
+        <div class="form-section">
+            <h3>Restrictive Covenants</h3>
+
+            <div class="form-group">
+                <label class="form-label">Does the contract include any of the following? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="restrictions" value="noncompete">
+                        <label>Non-Compete Agreement</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="restrictions" value="nonsolicitation">
+                        <label>Non-Solicitation Agreement</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="restrictions" value="confidentiality">
+                        <label>Confidentiality Agreement</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="restrictions" value="intellectual">
+                        <label>Intellectual Property Assignment</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="restrictions" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="noncompeteDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Non-Compete Duration</label>
+                <input type="text" name="noncompeteDuration" class="form-control" 
+                       placeholder="Duration of non-compete restriction">
+                
+                <label class="form-label">Geographic Scope</label>
+                <input type="text" name="noncompeteScope" class="form-control" 
+                       placeholder="Geographic scope of restriction">
+            </div>
+        </div>
+
+        <!-- Contract Concerns -->
+        <div class="form-section">
+            <h3>Contract Concerns</h3>
+
+            <div class="form-group">
+                <label class="form-label">Do you have concerns about any of the following? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="concerns" value="fairness">
+                        <label>Fairness of Terms</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="concerns" value="clarity">
+                        <label>Clarity of Terms</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="concerns" value="enforceability">
+                        <label>Enforceability</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="concerns" value="compensation">
+                        <label>Compensation Terms</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="concerns" value="termination">
+                        <label>Termination Provisions</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="concerns" value="restrictions">
+                        <label>Restrictive Covenants</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="concerns" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Please describe your specific concerns</label>
+                <textarea name="concernsDescription" class="form-control textarea-field"
+                    placeholder="Describe any specific concerns about the contract"></textarea>
+            </div>
+        </div>
+
+        <!-- Current Status -->
+        <div class="form-section">
+            <h3>Current Status and Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">What is the current status of your contract matter?</label>
+                <select name="currentStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="reviewing">Need Contract Review</option>
+                    <option value="negotiating">In Negotiations</option>
+                    <option value="drafting">Need Contract Drafted</option>
+                    <option value="dispute">In Dispute</option>
+                    <option value="breach">Contract Breach</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Is there a deadline?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="hasDeadline" value="yes" data-conditional="deadlineDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="hasDeadline" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deadlineDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Deadline Date</label>
+                <input type="date" name="deadline" class="form-control">
+                
+                <label class="form-label">Reason for Deadline</label>
+                <textarea name="deadlineReason" class="form-control textarea-field"
+                    placeholder="Explain why this deadline is important"></textarea>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>

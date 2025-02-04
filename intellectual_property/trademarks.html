@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Intellectual Property - Trademarks Case Information</h2>
+    <form id="trademarksForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Trademark Owner/Applicant Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Trademark Assistance</label>
+                <select name="trademarkAssistanceType" class="form-control select-field" required>
+                    <option value="">Select type of assistance</option>
+                    <option value="register">Register a trademark</option>
+                    <option value="defend">Defend against trademark infringement</option>
+                    <option value="prevent">Prevent trademark infringement</option>
+                    <option value="license">License my trademark</option>
+                    <option value="obtain-license">Obtain a trademark license</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherAssistanceType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Trademark Details -->
+        <div class="form-section">
+            <h3>Trademark Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Trademark Name/Mark</label>
+                <input type="text" name="trademarkName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Goods or Services Associated with Trademark</label>
+                <textarea name="trademarkGoods" class="form-control textarea-field" 
+                          placeholder="Describe the goods or services this trademark will represent" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date First Used in Commerce</label>
+                <input type="date" name="firstUseDate" class="form-control" max="{{ current_date }}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Trademark Registration Status</label>
+                <select name="registrationStatus" class="form-control select-field" required>
+                    <option value="">Select registration status</option>
+                    <option value="not-started">Not yet begun</option>
+                    <option value="in-progress">Registration process started</option>
+                    <option value="federally-registered">Federally registered</option>
+                    <option value="denied">Application denied</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="date" name="registrationDate" class="form-control" 
+                       placeholder="Date of registration or denial" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Trademark Usage Scope</label>
+                <select name="usageScope" class="form-control select-field" required>
+                    <option value="">Select usage scope</option>
+                    <option value="local">Local (city/county)</option>
+                    <option value="state">Statewide</option>
+                    <option value="multi-state">Multi-state</option>
+                    <option value="national">Nationwide</option>
+                    <option value="international">U.S. and overseas</option>
+                    <option value="global">International</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Ownership Details -->
+        <div class="form-section">
+            <h3>Trademark Ownership</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Trademark Ownership Type</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="ownershipType" value="individual" required>
+                        <label>Individual Owner</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="ownershipType" value="business">
+                        <label>Business/Corporate Owner</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="ownershipType" value="joint">
+                        <label>Joint Ownership</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="ownershipType" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+                <input type="text" name="otherOwnershipDetails" class="form-control" 
+                       placeholder="Provide details about ownership" style="display: none;">
+            </div>
+
+            <div class="form-group conditional-field" id="businessOwnerSection" style="display: none;">
+                <label class="form-label">Business Name</label>
+                <input type="text" name="businessName" class="form-control" 
+                       placeholder="Name of the business owning the trademark">
+            </div>
+
+            <div class="form-group conditional-field" id="jointOwnersSection" style="display: none;">
+                <label class="form-label">Joint Owners Details</label>
+                <textarea name="jointOwnersInfo" class="form-control textarea-field" 
+                          placeholder="List names and contact information of joint trademark owners"></textarea>
+            </div>
+        </div>
+
+        <!-- Potential Infringement -->
+        <div class="form-section">
+            <h3>Trademark Concerns</h3>
+
+            <div class="form-group">
+                <label class="form-label">Are You Aware of Any Potential Trademark Infringement?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="infringementStatus" value="yes">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="infringementStatus" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group conditional-field" id="infringementDetails" style="display: none;">
+                <label class="form-label">Infringement Details</label>
+                <textarea name="infringementDescription" class="form-control textarea-field" 
+                          placeholder="Describe the potential trademark infringement or conflicts"></textarea>
+            </div>
+        </div>
+
+        <!-- Marketing and Branding -->
+        <div class="form-section">
+            <h3>Marketing and Branding</h3>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Marketing Investment</label>
+                <input type="number" name="marketingInvestment" class="form-control currency-input" 
+                       placeholder="Total marketing investment in trademark" min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Marketing Channels</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="marketingChannels" value="website" id="websiteChannel">
+                        <label for="websiteChannel">Website</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="marketingChannels" value="social-media" id="socialMediaChannel">
+                        <label for="socialMediaChannel">Social Media</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="marketingChannels" value="print" id="printChannel">
+                        <label for="printChannel">Print Advertising</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="marketingChannels" value="tv" id="tvChannel">
+                        <label for="tvChannel">Television</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="marketingChannels" value="other" id="otherChannel">
+                        <label for="otherChannel">Other</label>
+                    </div>
+                </div>
+                <input type="text" name="otherMarketingChannels" class="form-control" 
+                       placeholder="Specify other marketing channels" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<!-- Add form-specific script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show/hide "Other" input fields for selects
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle trademark ownership details
+    const ownershipTypeRadios = document.querySelectorAll('input[name="ownershipType"]');
+    const otherOwnershipDetails = document.querySelector('input[name="otherOwnershipDetails"]');
+    const businessOwnerSection = document.getElementById('businessOwnerSection');
+    const jointOwnersSection = document.getElementById('jointOwnersSection');
+    const businessNameField = document.querySelector('input[name="businessName"]');
+    const jointOwnersField = document.querySelector('textarea[name="jointOwnersInfo"]');
+
+    ownershipTypeRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Other ownership details
+            otherOwnershipDetails.style.display = this.value === 'other' ? 'block' : 'none';
+            otherOwnershipDetails.required = this.value === 'other';
+
+            // Business owner section
+            if (this.value === 'business') {
+                businessOwnerSection.style.display = 'block';
+                businessNameField.required = true;
+            } else {
+                businessOwnerSection.style.display = 'none';
+                businessNameField.required = false;
+                businessNameField.value = '';
+            }
+
+            // Joint owners section
+            if (this.value === 'joint') {
+                jointOwnersSection.style.display = 'block';
+                jointOwnersField.required = true;
+            } else {
+                jointOwnersSection.style.display = 'none';
+                jointOwnersField.required = false;
+                jointOwnersField.value = '';
+            }
+        });
+    });
+
+    // Handle registration date
+    const registrationStatusSelect = document.querySelector('select[name="registrationStatus"]');
+    const registrationDateInput = document.querySelector('input[name="registrationDate"]');
+
+    registrationStatusSelect.addEventListener('change', function() {
+        const showDateInput = ['federally-registered', 'denied'].includes(this.value);
+        registrationDateInput.style.display = showDateInput ? 'block' : 'none';
+        registrationDateInput.required = showDateInput;
+    });
+
+    // Show/hide infringement details
+    const infringementRadios = document.querySelectorAll('input[name="infringementStatus"]');
+    const infringementDetailsSection = document.getElementById('infringementDetails');
+    const infringementDescriptionField = document.querySelector('textarea[name="infringementDescription"]');
+    
+    infringementRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'yes') {
+                infringementDetailsSection.style.display = 'block';
+                infringementDescriptionField.required = true;
+            } else {
+                infringementDetailsSection.style.display = 'none';
+                infringementDescriptionField.required = false;
+                infringementDescriptionField.value = '';
+            }
+        });
+    });
+
+    // Handle other marketing channels
+    const otherChannelCheckbox = document.getElementById('otherChannel');
+    const otherMarketingChannelsInput = document.querySelector('input[name="otherMarketingChannels"]');
+
+    otherChannelCheckbox.addEventListener('change', function() {
+        otherMarketingChannelsInput.style.display = this.checked ? 'block' : 'none';
+        otherMarketingChannelsInput.required = this.checked;
+    });
+
+    // Currency input formatting
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                // Format as currency
+                this.value = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(this.value);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

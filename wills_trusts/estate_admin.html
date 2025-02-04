@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Estate Administration Form</h1>
+        <p class="description">Please provide detailed information about the estate you need to administer.</p>
+
+        <form id="estate-admin-form">
+            <div class="form-group">
+                <label for="estate-value">Estimated Value of the Estate</label>
+                <input 
+                    type="number" 
+                    id="estate-value" 
+                    name="estate-value" 
+                    placeholder="Enter estimated estate value in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="deceased-date">Date of Deceased's Passing</label>
+                <input 
+                    type="date" 
+                    id="deceased-date" 
+                    name="deceased-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Your Role in the Estate</label>
+                <select id="estate-role" name="estate-role">
+                    <option value="">Select Your Role</option>
+                    <option value="executor">Executor of the Estate</option>
+                    <option value="beneficiary">Beneficiary of the Estate</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Types of Assets to be Administered</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="asset-home" name="assets" value="home">
+                    <label for="asset-home">Home</label>
+                    
+                    <input type="checkbox" id="asset-bank-accounts" name="assets" value="bank-accounts">
+                    <label for="asset-bank-accounts">Bank Accounts</label>
+                    
+                    <input type="checkbox" id="asset-stocks-bonds" name="assets" value="stocks-bonds">
+                    <label for="asset-stocks-bonds">Stocks or Bonds</label>
+                    
+                    <input type="checkbox" id="asset-trust-fund" name="assets" value="trust-fund">
+                    <label for="asset-trust-fund">Trust Fund</label>
+                    
+                    <input type="checkbox" id="asset-investment-property" name="assets" value="investment-property">
+                    <label for="asset-investment-property">Investment Property</label>
+                    
+                    <input type="checkbox" id="asset-business" name="assets" value="business">
+                    <label for="asset-business">Business</label>
+                    
+                    <input type="checkbox" id="asset-retirement-account" name="assets" value="retirement-account">
+                    <label for="asset-retirement-account">Retirement Account</label>
+                    
+                    <input type="checkbox" id="asset-other" name="assets" value="other">
+                    <label for="asset-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="additional-details">Additional Estate Administration Details</label>
+                <textarea 
+                    id="additional-details" 
+                    name="additional-details" 
+                    rows="4" 
+                    placeholder="Provide any additional information about the estate administration process"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Probate Status</label>
+                <div class="radio-group">
+                    <input type="radio" id="probate-not-started" name="probate-status" value="not-started">
+                    <label for="probate-not-started">Probate Not Started</label>
+                    
+                    <input type="radio" id="probate-in-progress" name="probate-status" value="in-progress">
+                    <label for="probate-in-progress">Probate In Progress</label>
+                    
+                    <input type="radio" id="probate-completed" name="probate-status" value="completed">
+                    <label for="probate-completed">Probate Completed</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="court-jurisdiction">Probate Court Jurisdiction</label>
+                <select id="court-jurisdiction" name="court-jurisdiction">
+                    <option value="">Select State</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <!-- Add all 50 states -->
+                    <option value="WY">Wyoming</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Are There Any Contested Aspects of the Estate?</label>
+                <div class="radio-group">
+                    <input type="radio" id="contested-yes" name="contested" value="yes">
+                    <label for="contested-yes">Yes</label>
+                    
+                    <input type="radio" id="contested-no" name="contested" value="no">
+                    <label for="contested-no">No</label>
+                    
+                    <input type="radio" id="contested-unsure" name="contested" value="unsure">
+                    <label for="contested-unsure">Unsure</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Estate Administration Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('estate-admin-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // TODO: Implement form submission logic
+    alert('Form submission will be handled by the backend');
+});
+</script>
+{% endblock %}

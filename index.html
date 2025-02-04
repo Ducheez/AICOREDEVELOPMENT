@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Legal Case Assistant{% endblock %}
+{% block content %}
+<div class="legal-case-intake">
+    <h1>Legal Case Intake System</h1>
+
+    <!-- Summary Input Stage -->
+    <div id="summary-input-stage" class="stage">
+        <h2>Initial Case Summary</h2>
+        <textarea id="case-summary" placeholder="Provide a detailed summary of your legal case. Be precise but avoid sharing personally identifiable information." rows="6"></textarea>
+        <button id="submit-summary" class="submit-btn">Analyze Case</button>
+    </div>
+
+    <!-- Category Suggestion Stage -->
+    <div id="category-suggestion-stage" class="stage hidden">
+        <h2>Suggested Legal Category</h2>
+        <div class="category-prediction">
+            <p><strong>Main Category:</strong> <span id="main-category">Loading...</span></p>
+            <p><strong>Subcategory:</strong> <span id="sub-category">Loading...</span></p>
+            <p><strong>Confidence Level:</strong> <span id="confidence-level">Loading...</span></p>
+        </div>
+        <div class="category-actions">
+            <button id="accept-category" class="accept-btn">Accept Suggested Category</button>
+            <button id="override-category" class="override-btn">Manually Select Category</button>
+        </div>
+    </div>
+
+    <!-- Dynamic Form Stage -->
+    <div id="dynamic-form-container" class="stage hidden">
+        <!-- Dynamically generated form will be inserted here -->
+    </div>
+
+    <!-- Final Summary Stage -->
+    <div id="final-summary-stage" class="stage hidden">
+        <h2>Comprehensive Case Summary</h2>
+        <div id="final-summary-content">
+            <!-- Generated summary will be inserted here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{% endblock %}

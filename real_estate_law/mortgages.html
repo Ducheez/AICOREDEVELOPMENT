@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Mortgage Legal Assistance Form</h1>
+        <p class="description">Provide details about your mortgage-related legal matter.</p>
+
+        <form id="mortgages-form">
+            <div class="form-group">
+                <label for="property-value">Current Market Value of the Property</label>
+                <input 
+                    type="number" 
+                    id="property-value" 
+                    name="property-value" 
+                    placeholder="Enter current property value in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="property-owed">Approximate Amount Owed on the Property</label>
+                <input 
+                    type="number" 
+                    id="property-owed" 
+                    name="property-owed" 
+                    placeholder="Enter total amount owed in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Mortgage Type</label>
+                <select id="mortgage-type" name="mortgage-type">
+                    <option value="">Select Mortgage Type</option>
+                    <option value="fixed-rate">Fixed-Rate Mortgage</option>
+                    <option value="adjustable-rate">Adjustable-Rate Mortgage (ARM)</option>
+                    <option value="interest-only">Interest-Only Mortgage</option>
+                    <option value="jumbo">Jumbo Mortgage</option>
+                    <option value="fha">FHA Loan</option>
+                    <option value="va">VA Loan</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Mortgage-Related Legal Issues</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="issue-refinancing" name="mortgage-issues" value="refinancing">
+                    <label for="issue-refinancing">Refinancing</label>
+                    
+                    <input type="checkbox" id="issue-modification" name="mortgage-issues" value="modification">
+                    <label for="issue-modification">Loan Modification</label>
+                    
+                    <input type="checkbox" id="issue-foreclosure-prevention" name="mortgage-issues" value="foreclosure-prevention">
+                    <label for="issue-foreclosure-prevention">Foreclosure Prevention</label>
+                    
+                    <input type="checkbox" id="issue-predatory-lending" name="mortgage-issues" value="predatory-lending">
+                    <label for="issue-predatory-lending">Predatory Lending</label>
+                    
+                    <input type="checkbox" id="issue-deed-in-lieu" name="mortgage-issues" value="deed-in-lieu">
+                    <label for="issue-deed-in-lieu">Deed in Lieu of Foreclosure</label>
+                    
+                    <input type="checkbox" id="issue-short-sale" name="mortgage-issues" value="short-sale">
+                    <label for="issue-short-sale">Short Sale</label>
+                    
+                    <input type="checkbox" id="issue-other" name="mortgage-issues" value="other">
+                    <label for="issue-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mortgage-date">Original Mortgage Date</label>
+                <input 
+                    type="date" 
+                    id="mortgage-date" 
+                    name="mortgage-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Missed Payments</label>
+                <select id="missed-payments" name="missed-payments">
+                    <option value="">Select Number of Missed Payments</option>
+                    <option value="0">No Missed Payments</option>
+                    <option value="1-3">1-3 Months</option>
+                    <option value="4-6">4-6 Months</option>
+                    <option value="7-plus">More than 6 Months</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Property Type</label>
+                <select id="property-type" name="property-type">
+                    <option value="">Select Property Type</option>
+                    <option value="primary-residence">Primary Residence</option>
+                    <option value="second-home">Second Home</option>
+                    <option value="investment-property">Investment Property</option>
+                    <option value="vacation-home">Vacation Home</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Specific Legal Assistance Needed</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="assistance-contract-review" name="legal-assistance" value="contract-review">
+                    <label for="assistance-contract-review">Mortgage Contract Review</label>
+                    
+                    <input type="checkbox" id="assistance-negotiation" name="legal-assistance" value="negotiation">
+                    <label for="assistance-negotiation">Lender Negotiations</label>
+                    
+                    <input type="checkbox" id="assistance-litigation" name="legal-assistance" value="litigation">
+                    <label for="assistance-litigation">Mortgage Litigation</label>
+                    
+                    <input type="checkbox" id="assistance-mediation" name="legal-assistance" value="mediation">
+                    <label for="assistance-mediation">Mediation</label>
+                    
+                    <input type="checkbox" id="assistance-other" name="legal-assistance" value="other">
+                    <label for="assistance-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="additional-details">Additional Details or Concerns</label>
+                <textarea 
+                    id="additional-details" 
+                    name="additional-details" 
+                    rows="4" 
+                    placeholder="Provide any additional information about your mortgage situation"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Mortgage Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('mortgages-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // TODO: Implement form submission logic
+    alert('Form submission will be handled by the backend');
+});
+</script>
+{% endblock %}

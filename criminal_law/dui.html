@@ -1,0 +1,236 @@
+<div class="form-container">
+    <h2 class="form-title">Criminal Law - Drunk Driving/DUI/DWI</h2>
+    <form id="duiDwiform" onsubmit="return validateForm(event)">
+        <!-- DUI/DWI Specifics -->
+        <div class="form-section">
+            <h3>DUI/DWI Incident Details</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Specific DUI/DWI Offense</label>
+                <select name="duiOffenseType" class="form-control select-field" required>
+                    <option value="">Select offense type</option>
+                    <option value="first-offense">First-time Offense</option>
+                    <option value="repeat-offense">Repeat Offense</option>
+                    <option value="aggravated">Aggravated DUI</option>
+                    <option value="commercial">Commercial Vehicle DUI</option>
+                    <option value="underage">Underage DUI</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherOffenseType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Date of Incident</label>
+                <input type="date" name="incidentDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Location of Incident</label>
+                <input type="text" name="incidentLocation" class="form-control" 
+                       placeholder="Street, City, County, State">
+            </div>
+        </div>
+
+        <!-- Traffic Stop Details -->
+        <div class="form-section">
+            <h3>Traffic Stop Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Reason for Traffic Stop</label>
+                <select name="stopReason" class="form-control select-field" required>
+                    <option value="">Select reason</option>
+                    <option value="speeding">Speeding</option>
+                    <option value="reckless-driving">Reckless Driving</option>
+                    <option value="equipment-issue">Equipment Issue</option>
+                    <option value="sobriety-checkpoint">Sobriety Checkpoint</option>
+                    <option value="accident">Accident Involvement</option>
+                    <option value="no-reason">No Specific Reason Given</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherStopReason" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Sobriety Tests Conducted</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="sobrietyTests" value="field-test">
+                        <label>Field Sobriety Test</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="sobrietyTests" value="breathalyzer-scene">
+                        <label>Breathalyzer Test at Scene</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="sobrietyTests" value="blood-breath-urine">
+                        <label>Blood, Breath, or Urine Test at Station</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="sobrietyTests" value="no-test">
+                        <label>No Test Given</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Blood Alcohol Content (BAC) Level</label>
+                <select name="bacLevel" class="form-control select-field">
+                    <option value="">Select BAC Level</option>
+                    <option value="0-07">0.07 or less</option>
+                    <option value="0.08-0.09">0.08 to 0.09</option>
+                    <option value="0.10-0.15">0.10 to 0.15</option>
+                    <option value="0.16-0.20">0.16 to 0.20</option>
+                    <option value="0.21+">0.21 or more</option>
+                    <option value="no-test">No test given</option>
+                    <option value="unknown">I don't know</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Witnesses and Evidence -->
+        <div class="form-section">
+            <h3>Witnesses and Evidence</h3>
+
+            <div class="form-group">
+                <label class="form-label">Witnesses Present</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="witnesses" value="in-vehicle">
+                        <label>Witnesses in my vehicle</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="witnesses" value="at-scene">
+                        <label>Witnesses at the scene or in another vehicle</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="witnesses" value="none">
+                        <label>No witnesses</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Number of Previous DUI/DWI Offenses</label>
+                <input type="number" name="previousOffenses" class="form-control" min="0" max="10">
+            </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Custody and Legal Status -->
+        <div class="form-section">
+            <h3>Current Legal Status</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Current Custody Status</label>
+                <select name="custodyStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="in-custody">In custody (jail)</option>
+                    <option value="out-of-custody">Out of custody</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Bail Status</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="bailStatus" value="set">
+                        <label>Bail set at: </label>
+                        <input type="number" name="bailAmount" class="form-control currency-input" placeholder="$">
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="bailStatus" value="not-set">
+                        <label>No bail set</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="bailStatus" value="unknown">
+                        <label>I don't know</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});
+</script>

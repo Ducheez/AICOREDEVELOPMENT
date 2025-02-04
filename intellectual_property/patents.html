@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Intellectual Property - Patents Case Information</h2>
+    <form id="patentsForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Inventor/Applicant Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Patent Assistance</label>
+                <select name="patentAssistanceType" class="form-control select-field" required>
+                    <option value="">Select type of assistance</option>
+                    <option value="obtain">Obtain a patent</option>
+                    <option value="avoid-infringement">Avoid potential patent infringement</option>
+                    <option value="sue-infringement">Sue for patent infringement</option>
+                    <option value="defend-infringement">Defend against patent infringement claim</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherAssistanceType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Invention Details -->
+        <div class="form-section">
+            <h3>Invention Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Patent</label>
+                <select name="patentType" class="form-control select-field" required>
+                    <option value="">Select type of patent</option>
+                    <option value="product">Product or Machine</option>
+                    <option value="process">Process</option>
+                    <option value="software">Computer Software</option>
+                    <option value="organism">Living Organism or Plant</option>
+                    <option value="design">Ornamental Design</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherPatentType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Invention Name/Title</label>
+                <input type="text" name="inventionTitle" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Invention Description</label>
+                <textarea name="inventionDescription" class="form-control textarea-field" 
+                          placeholder="Provide a detailed description of your invention" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date of Invention Completion</label>
+                <input type="date" name="inventionCompletionDate" class="form-control" max="{{ current_date }}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date of First Public Disclosure</label>
+                <input type="date" name="publicDisclosureDate" class="form-control" max="{{ current_date }}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Stage of Invention</label>
+                <select name="inventionStage" class="form-control select-field" required>
+                    <option value="">Select invention stage</option>
+                    <option value="concept">Conceptual Stage</option>
+                    <option value="prototype">Prototype Developed</option>
+                    <option value="tested">Tested and Functional</option>
+                    <option value="market">Already Produced/Sold</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherInventionStage" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Ownership and Inventors -->
+        <div class="form-section">
+            <h3>Ownership Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Patent Ownership</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="patentOwnership" value="individual" required>
+                        <label>Individual Inventor</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="patentOwnership" value="joint">
+                        <label>Joint Inventors</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="patentOwnership" value="employer">
+                        <label>Employer-Owned Invention</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="patentOwnership" value="other">
+                        <label>Other Ownership</label>
+                    </div>
+                </div>
+                <input type="text" name="otherOwnershipDetails" class="form-control" 
+                       placeholder="Provide details about ownership" style="display: none;">
+            </div>
+
+            <div class="form-group conditional-field" id="jointInventorsSection" style="display: none;">
+                <label class="form-label">Joint Inventors Details</label>
+                <textarea name="jointInventorsInfo" class="form-control textarea-field" 
+                          placeholder="List names and contact information of other inventors"></textarea>
+            </div>
+        </div>
+
+        <!-- Potential Infringement or Dispute -->
+        <div class="form-section">
+            <h3>Potential Infringement</h3>
+
+            <div class="form-group">
+                <label class="form-label">Are You Aware of Any Potential Patent Infringement?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="infringementStatus" value="yes">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="infringementStatus" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group conditional-field" id="infringementDetails" style="display: none;">
+                <label class="form-label">Infringement Details</label>
+                <textarea name="infringementDescription" class="form-control textarea-field" 
+                          placeholder="Describe the potential patent infringement"></textarea>
+            </div>
+        </div>
+
+        <!-- Commercial Potential -->
+        <div class="form-section">
+            <h3>Commercial Potential</h3>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Commercial Value</label>
+                <input type="number" name="estimatedValue" class="form-control currency-input" 
+                       placeholder="Estimated potential value of the invention" min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Potential Market</label>
+                <select name="potentialMarket" class="form-control select-field">
+                    <option value="">Select market scope</option>
+                    <option value="local">Local</option>
+                    <option value="regional">Regional</option>
+                    <option value="national">National</option>
+                    <option value="international">International</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<!-- Add form-specific script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show/hide "Other" input fields for selects
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle patent ownership details
+    const patentOwnershipRadios = document.querySelectorAll('input[name="patentOwnership"]');
+    const otherOwnershipDetails = document.querySelector('input[name="otherOwnershipDetails"]');
+    const jointInventorsSection = document.getElementById('jointInventorsSection');
+    const jointInventorsField = document.querySelector('textarea[name="jointInventorsInfo"]');
+
+    patentOwnershipRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Other ownership details
+            otherOwnershipDetails.style.display = this.value === 'other' ? 'block' : 'none';
+            otherOwnershipDetails.required = this.value === 'other';
+
+            // Joint inventors section
+            if (this.value === 'joint') {
+                jointInventorsSection.style.display = 'block';
+                jointInventorsField.required = true;
+            } else {
+                jointInventorsSection.style.display = 'none';
+                jointInventorsField.required = false;
+                jointInventorsField.value = '';
+            }
+        });
+    });
+
+    // Show/hide infringement details
+    const infringementRadios = document.querySelectorAll('input[name="infringementStatus"]');
+    const infringementDetailsSection = document.getElementById('infringementDetails');
+    const infringementDescriptionField = document.querySelector('textarea[name="infringementDescription"]');
+    
+    infringementRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'yes') {
+                infringementDetailsSection.style.display = 'block';
+                infringementDescriptionField.required = true;
+            } else {
+                infringementDetailsSection.style.display = 'none';
+                infringementDescriptionField.required = false;
+                infringementDescriptionField.value = '';
+            }
+        });
+    });
+
+    // Currency input formatting
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                // Format as currency
+                this.value = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(this.value);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

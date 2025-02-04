@@ -1,0 +1,211 @@
+<div class="form-container">
+    <h2 class="form-title">Family Law - Child Custody & Visitation Information</h2>
+    <form id="custodyForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Relationship to the Child(ren)</label>
+                <select name="relationshipToChild" class="form-control select-field" required>
+                    <option value="">Select relationship</option>
+                    <option value="mother">Mother</option>
+                    <option value="father">Father</option>
+                    <option value="grandparent">Grandparent</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRelationship" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Child Information -->
+        <div class="form-section">
+            <h3>Child Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Number of Children</label>
+                <select name="childrenCount" class="form-control select-field" required>
+                    <option value="">Select number</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5 or more</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Children's Ages</label>
+                <input type="text" name="childrenAges" class="form-control" required 
+                       placeholder="e.g., 2, 5, 7">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Special Needs or Circumstances</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="specialNeeds" value="medical">
+                        <label>Medical Issues</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="specialNeeds" value="educational">
+                        <label>Educational Requirements</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="specialNeeds" value="behavioral">
+                        <label>Behavioral Concerns</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="specialNeeds" value="other" data-conditional="specialNeedsDetails">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="specialNeedsDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Please Describe Special Needs</label>
+                <textarea name="specialNeedsDescription" class="form-control textarea-field"></textarea>
+            </div>
+        </div>
+
+        <!-- Current Arrangement -->
+        <div class="form-section">
+            <h3>Current Custody Arrangement</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Current Living Situation</label>
+                <select name="currentCustody" class="form-control select-field" required>
+                    <option value="">Select current arrangement</option>
+                    <option value="with-me">Children live primarily with me</option>
+                    <option value="with-other">Children live primarily with other parent</option>
+                    <option value="shared">Shared custody arrangement</option>
+                    <option value="split">Split custody (different children with each parent)</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherCustody" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Visitation Schedule</label>
+                <select name="currentVisitation" class="form-control select-field" required>
+                    <option value="">Select current schedule</option>
+                    <option value="regular">Regular scheduled visits</option>
+                    <option value="irregular">Irregular/sporadic visits</option>
+                    <option value="supervised">Supervised visits only</option>
+                    <option value="none">No visitation occurring</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherVisitation" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Other Parent Information -->
+        <div class="form-section">
+            <h3>Other Parent Information</h3>
+
+            <div class="form-group">
+                <label class="form-label">Other Parent's Occupation</label>
+                <input type="text" name="otherParentOccupation" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Distance Between Parents' Residences</label>
+                <select name="parentDistance" class="form-control select-field">
+                    <option value="">Select approximate distance</option>
+                    <option value="same">Same neighborhood</option>
+                    <option value="close">Within 10 miles</option>
+                    <option value="medium">10-50 miles</option>
+                    <option value="far">50+ miles</option>
+                    <option value="different-state">Different state</option>
+                    <option value="different-country">Different country</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Court Orders -->
+        <div class="form-section">
+            <h3>Existing Court Orders</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Is there a current court order regarding custody/visitation?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="existingOrder" value="yes" data-conditional="orderDetails" required>
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="existingOrder" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="orderDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Date of Current Order</label>
+                <input type="date" name="orderDate" class="form-control" data-nofuture="true">
+                
+                <label class="form-label">County/State of Order</label>
+                <input type="text" name="orderLocation" class="form-control">
+            </div>
+        </div>
+
+        <!-- Desired Outcome -->
+        <div class="form-section">
+            <h3>Desired Custody Arrangement</h3>
+
+            <div class="form-group">
+                <label class="form-label required">What type of custody are you seeking?</label>
+                <select name="desiredCustody" class="form-control select-field" required>
+                    <option value="">Select desired arrangement</option>
+                    <option value="sole-physical">Sole physical custody</option>
+                    <option value="sole-legal">Sole legal custody</option>
+                    <option value="joint-physical">Joint physical custody</option>
+                    <option value="joint-legal">Joint legal custody</option>
+                    <option value="both-sole">Both sole physical and legal custody</option>
+                    <option value="both-joint">Both joint physical and legal custody</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherDesiredCustody" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Proposed Visitation Schedule</label>
+                <textarea name="proposedVisitation" class="form-control textarea-field"
+                          placeholder="Describe your proposed visitation schedule"></textarea>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>

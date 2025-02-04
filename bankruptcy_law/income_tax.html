@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="form-container">
+    <h2 class="form-title">Bankruptcy Law - Income Tax Issues</h2>
+    <form id="incomeTaxForm" onsubmit="return validateForm(event)">
+        <!-- Type of Tax Issue -->
+        <div class="form-section">
+            <h3>Type of Tax Issue</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Primary Tax Issue</label>
+                <select name="taxIssueType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="unpaid">Unpaid Tax Debt</option>
+                    <option value="audit">IRS Audit</option>
+                    <option value="payment-plan">Payment Plan Issues</option>
+                    <option value="offer-compromise">Offer in Compromise</option>
+                    <option value="penalties">Tax Penalties</option>
+                    <option value="liens">Tax Liens</option>
+                    <option value="levy">Bank/Wage Levy</option>
+                    <option value="criminal">Criminal Tax Investigation</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherIssueType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Tax</label>
+                <select name="taxType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="individual">Individual Income Tax</option>
+                    <option value="self-employment">Self-Employment Tax</option>
+                    <option value="business">Business Income Tax</option>
+                    <option value="payroll">Payroll Tax</option>
+                    <option value="estate">Estate Tax</option>
+                    <option value="gift">Gift Tax</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherTaxType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Tax Years Information -->
+        <div class="form-section">
+            <h3>Tax Years Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Tax Years at Issue</label>
+                <div class="checkbox-group" data-required="true">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears[]" value="2024">
+                        <label>2024</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears[]" value="2023">
+                        <label>2023</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears[]" value="2022">
+                        <label>2022</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears[]" value="2021">
+                        <label>2021</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears[]" value="2020">
+                        <label>2020</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears[]" value="older">
+                        <label>2019 or Earlier</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Were tax returns filed for these years?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="returnsFiled" value="yes" data-conditional="filingDetails">
+                        <label>Yes, all filed</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="returnsField" value="some">
+                        <label>Some filed</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="returnsField" value="no">
+                        <label>No returns filed</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="filingDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Most Recent Filing</label>
+                    <input type="date" name="recentFilingDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Filing Method</label>
+                    <select name="filingMethod" class="form-control select-field">
+                        <option value="">Select method</option>
+                        <option value="self">Self-Prepared</option>
+                        <option value="tax-professional">Tax Professional</option>
+                        <option value="accountant">Accountant/CPA</option>
+                        <option value="online">Online Service</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tax Debt Information -->
+        <div class="form-section">
+            <h3>Tax Debt Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Total Amount Owed to IRS</label>
+                <input type="number" name="totalTaxOwed" class="form-control currency-input" 
+                       placeholder="Enter total amount owed" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Breakdown of Amount Owed</label>
+                <div class="field-group">
+                    <div>
+                        <label>Original Tax Amount</label>
+                        <input type="number" name="originalTax" class="form-control currency-input" 
+                               placeholder="Original tax amount">
+                    </div>
+                    <div>
+                        <label>Penalties</label>
+                        <input type="number" name="penalties" class="form-control currency-input" 
+                               placeholder="Penalty amount">
+                    </div>
+                    <div>
+                        <label>Interest</label>
+                        <input type="number" name="interest" class="form-control currency-input" 
+                               placeholder="Interest amount">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Are you currently making payments?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="makingPayments" value="yes" data-conditional="paymentDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="makingPayments" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="paymentDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Current Monthly Payment Amount</label>
+                    <input type="number" name="monthlyPayment" class="form-control currency-input" 
+                           placeholder="Enter monthly payment amount">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Payment Agreement Type</label>
+                    <select name="paymentAgreement" class="form-control select-field">
+                        <option value="">Select type</option>
+                        <option value="installment">Installment Agreement</option>
+                        <option value="partial-pay">Partial Payment Agreement</option>
+                        <option value="offer">Offer in Compromise</option>
+                        <option value="voluntary">Voluntary Payments</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- IRS Actions -->
+        <div class="form-section">
+            <h3>IRS Actions</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Has the IRS taken any of these actions?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsActions[]" value="notice">
+                        <label>Sent Notices/Letters</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsActions[]" value="lien">
+                        <label>Filed Tax Lien</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsActions[]" value="levy">
+                        <label>Bank Account Levy</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsActions[]" value="wage-garnishment">
+                        <label>Wage Garnishment</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsActions[]" value="audit">
+                        <label>Audit Notice</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsActions[]" value="summons">
+                        <label>IRS Summons</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsActions[]" value="investigation">
+                        <label>Criminal Investigation</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsActions[]" value="none">
+                        <label>No Actions Taken</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Most Recent IRS Notice</label>
+                <div class="field-group">
+                    <div>
+                        <label>Notice Date</label>
+                        <input type="date" name="noticeDate" class="form-control">
+                    </div>
+                    <div>
+                        <label>Notice Number (if known)</label>
+                        <input type="text" name="noticeNumber" class="form-control" 
+                               placeholder="e.g., CP501, CP504">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Previous Resolution Attempts -->
+        <div class="form-section">
+            <h3>Previous Resolution Attempts</h3>
+
+            <div class="form-group">
+                <label class="form-label">Have you attempted any of these resolutions?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="resolutionAttempts[]" value="payment-plan">
+                        <label>Payment Plan Request</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="resolutionAttempts[]" value="oic">
+                        <label>Offer in Compromise</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="resolutionAttempts[]" value="hardship">
+                        <label>Hardship Request</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="resolutionAttempts[]" value="penalty-abatement">
+                        <label>Penalty Abatement</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="resolutionAttempts[]" value="appeal">
+                        <label>Appeals Process</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="resolutionAttempts[]" value="none">
+                        <label>No Previous Attempts</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have you previously worked with a tax professional?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="previousProfessional" value="yes" data-conditional="professionalDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="previousProfessional" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="professionalDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Type of Professional</label>
+                    <select name="professionalType" class="form-control select-field">
+                        <option value="">Select type</option>
+                        <option value="cpa">CPA</option>
+                        <option value="enrolled-agent">Enrolled Agent</option>
+                        <option value="tax-attorney">Tax Attorney</option>
+                        <option value="tax-preparer">Tax Preparer</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+
+    // Validate dates
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    dateInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            
+            // Allow future dates only for payment plan dates
+            if (input.name !== 'plannedPaymentDate' && selectedDate > today) {
+                alert('Date cannot be in the future');
+                this.value = '';
+            }
+        });
+    });
+
+    // Handle mutually exclusive checkboxes
+    const noneActions = document.querySelector('input[name="irsActions[]"][value="none"]');
+    const otherActions = document.querySelectorAll('input[name="irsActions[]"]:not([value="none"])');
+    
+    if (noneActions) {
+        noneActions.addEventListener('change', function() {
+            if (this.checked) {
+                otherActions.forEach(cb => {
+                    cb.checked = false;
+                    cb.disabled = true;
+                });
+            } else {
+                otherActions.forEach(cb => {
+                    cb.disabled = false;
+                });
+            }
+        });
+
+        otherActions.forEach(cb => {
+            cb.addEventListener('change', function() {
+                if (this.checked) {
+                    noneActions.checked = false;
+                }
+            });
+        });
+    }
+
+    // Calculate total amount owed
+    const amountInputs = document.querySelectorAll('input[name="originalTax"], input[name="penalties"], input[name="interest"]');
+    const totalInput = document.querySelector('input[name="totalTaxOwed"]');
+    
+    amountInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            let total = 0;
+            amountInputs.forEach(inp => {
+                total += parseFloat(inp.value || 0);
+            });
+            if (totalInput) {
+                totalInput.value = total.toFixed(2);
+            }
+        });
+    });
+
+    // Form validation
+    const form = document.getElementById('incomeTaxForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Validate required checkbox groups
+        const checkboxGroups = document.querySelectorAll('.checkbox-group[data-required="true"]');
+        let isValid = true;
+        
+        checkboxGroups.forEach(group => {
+            const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+            const checked = Array.from(checkboxes).some(cb => cb.checked);
+            if (!checked) {
+                const groupLabel = group.previousElementSibling;
+                alert(`Please select at least one option for ${groupLabel.textContent}`);
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            return;
+        }
+
+        // Validate currency amounts
+        const currencyInputs = document.querySelectorAll('.currency-input');
+        currencyInputs.forEach(input => {
+            if (input.required && (!input.value || isNaN(parseFloat(input.value)))) {
+                alert('Please enter valid amount for ' + input.name);
+                isValid = false;
+                return;
+            }
+        });
+
+        if (!isValid) {
+            return;
+        }
+
+        // If all validations pass, submit the form
+        this.submit();
+    });
+
+    // Handle tax issue type dependencies
+    const taxIssueSelect = document.querySelector('select[name="taxIssueType"]');
+    if (taxIssueSelect) {
+        taxIssueSelect.addEventListener('change', function() {
+            const value = this.value;
+            const paymentSection = document.querySelector('#paymentDetails').closest('.form-section');
+            const irsActionsSection = document.querySelector('h3:contains("IRS Actions")').closest('.form-section');
+
+            // Show/hide relevant sections based on issue type
+            if (value === 'payment-plan' || value === 'offer-compromise') {
+                paymentSection.style.display = 'block';
+                irsActionsSection.style.display = 'none';
+            } else if (value === 'audit' || value === 'criminal') {
+                paymentSection.style.display = 'none';
+                irsActionsSection.style.display = 'block';
+            } else {
+                paymentSection.style.display = 'block';
+                irsActionsSection.style.display = 'block';
+            }
+        });
+    }
+});
+</script>
+</html>

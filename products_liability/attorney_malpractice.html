@@ -1,0 +1,273 @@
+<!-- templates/forms/product_liability/attorney_malpractice.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Attorney Malpractice Case Information</h2>
+    <form id="attorney-malpractice-form" class="legal-form">
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label for="occupation">What is your occupation?</label>
+                <input type="text" 
+                       id="occupation" 
+                       name="occupation" 
+                       class="form-control" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Why are you seeking legal assistance?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="type_victim" 
+                           name="assistance_type" 
+                           value="victim" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="type_victim">The lawyer I hired committed malpractice</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="type_defense" 
+                           name="assistance_type" 
+                           value="defense" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="type_defense">I am a lawyer accused of malpractice</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Original Legal Service Information</h3>
+
+            <div class="form-group">
+                <label for="hire_date">When did you hire the lawyer? (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="hire_date" 
+                       name="hire_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="malpractice_date">When did the alleged malpractice occur? (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="malpractice_date" 
+                       name="malpractice_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>What does the malpractice involve?</label>
+                <div class="checkbox-group">
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="malpractice_filing" 
+                               name="malpractice_type[]" 
+                               value="filing_deadline" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="malpractice_filing">Failure to file a lawsuit on time</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="malpractice_money" 
+                               name="malpractice_type[]" 
+                               value="money_return" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="malpractice_money">Failure to return the client's money</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="malpractice_results" 
+                               name="malpractice_type[]" 
+                               value="promised_results" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="malpractice_results">Failure to achieve the promised case results</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="malpractice_understanding" 
+                               name="malpractice_type[]" 
+                               value="law_understanding" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="malpractice_understanding">Lack of understanding of the law related to the case</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="malpractice_other" 
+                               name="malpractice_type[]" 
+                               value="other" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="malpractice_other">Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" id="malpractice_other_div" style="display: none;">
+                <label for="malpractice_other_desc">Please describe the malpractice:</label>
+                <textarea id="malpractice_other_desc" 
+                         name="malpractice_other_desc" 
+                         class="form-control" 
+                         rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Damages and Financial Impact</h3>
+
+            <div class="form-group">
+                <label for="original_case_value">What was the approximate value of your original case? ($)</label>
+                <input type="number" 
+                       id="original_case_value" 
+                       name="original_case_value" 
+                       class="form-control" 
+                       min="0" 
+                       step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="fees_paid">How much did you pay in legal fees? ($)</label>
+                <input type="number" 
+                       id="fees_paid" 
+                       name="fees_paid" 
+                       class="form-control" 
+                       min="0" 
+                       step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="additional_costs">Have you incurred any additional costs due to the malpractice? ($)</label>
+                <input type="number" 
+                       id="additional_costs" 
+                       name="additional_costs" 
+                       class="form-control" 
+                       min="0" 
+                       step="0.01">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Current Status</h3>
+
+            <div class="form-group">
+                <label>Have you filed a complaint with the state bar association?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="bar_complaint_yes" 
+                           name="bar_complaint" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="bar_complaint_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="bar_complaint_no" 
+                           name="bar_complaint" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="bar_complaint_no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group bar-complaint-date" style="display: none;">
+                <label for="complaint_date">When did you file the complaint? (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="complaint_date" 
+                       name="complaint_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY">
+            </div>
+
+            <div class="form-group">
+                <label for="income">What is your gross annual income?</label>
+                <select id="income" name="income" class="form-control" required>
+                    <option value="">Select Income Range</option>
+                    <option value="25000">$25,000 or less</option>
+                    <option value="50000">$25,001–$50,000</option>
+                    <option value="75000">$50,001–$75,000</option>
+                    <option value="100000">$75,001–$100,000</option>
+                    <option value="125000">$100,001–$125,000</option>
+                    <option value="125001">$125,000+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hiring_timeframe">When are you looking to hire an attorney?</label>
+                <select id="hiring_timeframe" name="hiring_timeframe" class="form-control" required>
+                    <option value="">Select Timeframe</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this_week">This week</option>
+                    <option value="this_month">This month</option>
+                    <option value="this_year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle Other malpractice type description
+    document.getElementById('malpractice_other').addEventListener('change', function() {
+        const otherDiv = document.getElementById('malpractice_other_div');
+        otherDiv.style.display = this.checked ? 'block' : 'none';
+        document.getElementById('malpractice_other_desc').required = this.checked;
+    });
+
+    // Handle bar complaint date
+    document.getElementsByName('bar_complaint').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const dateDiv = document.querySelector('.bar-complaint-date');
+            dateDiv.style.display = this.value === 'yes' ? 'block' : 'none';
+            document.getElementById('complaint_date').required = this.value === 'yes';
+        });
+    });
+
+    // Date validation
+    document.querySelectorAll('.date-input').forEach(input => {
+        input.addEventListener('blur', function() {
+            const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/([12]\d{3})$/;
+            if (this.value && !dateRegex.test(this.value)) {
+                this.classList.add('is-invalid');
+                if (!this.nextElementSibling?.classList.contains('invalid-feedback')) {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'invalid-feedback';
+                    feedback.textContent = 'Please enter date in MM/DD/YYYY format';
+                    this.parentNode.appendChild(feedback);
+                }
+            } else {
+                this.classList.remove('is-invalid');
+                const feedback = this.nextElementSibling;
+                if (feedback?.classList.contains('invalid-feedback')) {
+                    feedback.remove();
+                }
+            }
+        });
+    });
+
+    // Form validation
+    document.getElementById('attorney-malpractice-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (this.checkValidity()) {
+            // Form is valid, submit data
+            console.log('Form is valid, submitting...');
+        } else {
+            e.stopPropagation();
+            this.classList.add('was-validated');
+        }
+    });
+});
+</script>
+{% endblock %}

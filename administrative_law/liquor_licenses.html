@@ -1,0 +1,242 @@
+<div class="form-container">
+    <h2 class="form-title">Administrative Law - Liquor License</h2>
+    <form id="liquorLicenseForm" onsubmit="return validateForm(event)">
+        <!-- Business Information -->
+        <div class="form-section">
+            <h3>Business Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Type of Business</label>
+                <select name="businessType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="bar">Bar/Tavern</option>
+                    <option value="nightclub">Nightclub</option>
+                    <option value="hotel">Hotel</option>
+                    <option value="retail">Retail Store</option>
+                    <option value="brewery">Brewery</option>
+                    <option value="winery">Winery</option>
+                    <option value="distillery">Distillery</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherBusinessType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Business Structure</label>
+                <select name="businessStructure" class="form-control select-field" required>
+                    <option value="">Select structure</option>
+                    <option value="sole-proprietorship">Sole Proprietorship</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="llc">LLC</option>
+                    <option value="corporation">Corporation</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherStructure" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Years in Business</label>
+                <input type="number" name="yearsInBusiness" class="form-control" min="0" max="100">
+            </div>
+        </div>
+
+        <!-- License Information -->
+        <div class="form-section">
+            <h3>License Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of License Needed</label>
+                <select name="licenseType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="beer">Beer Only</option>
+                    <option value="beer-wine">Beer and Wine</option>
+                    <option value="full-liquor">Full Liquor License</option>
+                    <option value="temporary">Temporary Event License</option>
+                    <option value="wholesale">Wholesale License</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherLicenseType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Purpose of Application</label>
+                <select name="applicationPurpose" class="form-control select-field" required>
+                    <option value="">Select purpose</option>
+                    <option value="new">New License</option>
+                    <option value="renewal">License Renewal</option>
+                    <option value="transfer">License Transfer</option>
+                    <option value="modification">License Modification</option>
+                    <option value="appeal">Appeal of License Denial/Revocation</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherPurpose" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Current License Number (if applicable)</label>
+                <input type="text" name="currentLicense" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">License Expiration Date (if applicable)</label>
+                <input type="date" name="licenseExpiration" class="form-control">
+            </div>
+        </div>
+
+        <!-- Location Information -->
+        <div class="form-section">
+            <h3>Location Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Property Status</label>
+                <select name="propertyStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="owned">Owned</option>
+                    <option value="leased">Leased</option>
+                    <option value="pending">Purchase/Lease Pending</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Zoning Verification</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="zoningVerified" value="yes" required>
+                        <label>Zoning Allows Alcohol Sales</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="zoningVerified" value="no" required>
+                        <label>Zoning Status Unknown</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="zoningVerified" value="pending" required>
+                        <label>Zoning Change Pending</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Distance from Protected Locations</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="nearbyLocations[]" value="school">
+                        <label>School Within 1000 feet</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="nearbyLocations[]" value="church">
+                        <label>Church Within 1000 feet</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="nearbyLocations[]" value="hospital">
+                        <label>Hospital Within 1000 feet</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="nearbyLocations[]" value="residence">
+                        <label>Residential Area Within 1000 feet</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compliance History -->
+        <div class="form-section">
+            <h3>Compliance History</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Previous License History</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="previousLicense" value="yes" required data-conditional="previousLicenseDetails">
+                        <label>Yes, had previous license</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="previousLicense" value="no" required>
+                        <label>No previous license</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="previousLicenseDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Any Previous Violations?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="violations[]" value="sales-minor">
+                            <label>Sales to Minors</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="violations[]" value="hours">
+                            <label>Hours of Operation</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="violations[]" value="overcrowding">
+                            <label>Overcrowding</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="violations[]" value="other">
+                            <label>Other Violations</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+});
+</script>

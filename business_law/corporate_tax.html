@@ -1,0 +1,294 @@
+<div class="form-container">
+    <h2 class="form-title">Business Law - Corporate Tax</h2>
+    <form id="corporateTaxForm" onsubmit="return validateForm(event)">
+        <!-- Organization Details -->
+        <div class="form-section">
+            <h3>Business Organization Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Type of Organization</label>
+                <select name="organizationType" class="form-control select-field" required>
+                    <option value="">Select organization type</option>
+                    <option value="privately-held">Privately Held</option>
+                    <option value="publicly-traded">Publicly Traded</option>
+                    <option value="nonprofit">Nonprofit</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherOrganizationType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Tax Election Status</label>
+                <select name="taxElection" class="form-control select-field" required>
+                    <option value="">Select tax election</option>
+                    <option value="s-corporation">S Corporation</option>
+                    <option value="c-corporation">C Corporation</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="sole-proprietorship">Sole Proprietorship</option>
+                    <option value="other">Other</option>
+                    <option value="unsure">Unsure</option>
+                </select>
+                <input type="text" name="otherTaxElection" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Date of Business Formation</label>
+                <input type="date" name="businessFormationDate" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Tax Matter Details -->
+        <div class="form-section">
+            <h3>Tax Assistance Needed</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Primary Reason for Seeking Tax Assistance</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxAssistanceReasons" value="consultation">
+                        <label>Consultation / Advice</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxAssistanceReasons" value="preparation">
+                        <label>Tax Preparation</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxAssistanceReasons" value="audit">
+                        <label>Audit Assistance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxAssistanceReasons" value="hearing">
+                        <label>IRS Hearing or Trial</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxAssistanceReasons" value="other" data-conditional="otherReasonDetails">
+                        <label>Other</label>
+                    </div>
+                </div>
+
+                <div id="otherReasonDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Specify Other Reason</label>
+                    <input type="text" name="otherTaxAssistanceReason" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Annual Gross Revenue</label>
+                <input type="number" name="annualGrossRevenue" class="form-control currency-input" 
+                       placeholder="Total annual gross revenue">
+            </div>
+        </div>
+
+        <!-- Tax Years and Liabilities -->
+        <div class="form-section">
+            <h3>Tax Years and Potential Liabilities</h3>
+
+            <div class="form-group">
+                <label class="form-label">Tax Years Requiring Assistance</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="current">
+                        <label>Current Tax Year</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="previous-1">
+                        <label>Previous Tax Year</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="previous-2">
+                        <label>Two Years Back</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="previous-3">
+                        <label>Three Years Back</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="other" data-conditional="otherYearDetails">
+                        <label>Other Years</label>
+                    </div>
+                </div>
+
+                <div id="otherYearDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Specify Other Tax Years</label>
+                    <input type="text" name="otherTaxYears" class="form-control" 
+                           placeholder="Enter specific tax years (e.g., 2015, 2016)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Unpaid Taxes or Potential Liabilities</label>
+                <input type="number" name="estimatedUnpaidTaxes" class="form-control currency-input" 
+                       placeholder="Total estimated unpaid taxes">
+            </div>
+        </div>
+
+        <!-- Audit or Investigation Status -->
+        <div class="form-section">
+            <h3>Current Tax Audit/Investigation Status</h3>
+
+            <div class="form-group">
+                <label class="form-label">Are you currently under a tax audit or investigation?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="auditStatus" value="yes" data-conditional="auditDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="auditStatus" value="no">
+                        <label>No</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="auditStatus" value="unsure">
+                        <label>I'm not sure</label>
+                    </div>
+                </div>
+
+                <div id="auditDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Investigating Tax Authority</label>
+                        <select name="taxAuthority" class="form-control select-field">
+                            <option value="">Select tax authority</option>
+                            <option value="irs">Internal Revenue Service (IRS)</option>
+                            <option value="state">State Tax Agency</option>
+                            <option value="local">Local Tax Authority</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" name="otherTaxAuthority" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date of Initial Contact</label>
+                        <input type="date" name="auditContactDate" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Owner/Contact Information -->
+        <div class="form-section">
+            <h3>Business Owner/Primary Contact Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Role in the Business</label>
+                <select name="businessRole" class="form-control select-field" required>
+                    <option value="">Select your role</option>
+                    <option value="owner">Business Owner</option>
+                    <option value="ceo">CEO/President</option>
+                    <option value="cfo">CFO/Financial Officer</option>
+                    <option value="controller">Controller</option>
+                    <option value="accountant">Accountant</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherBusinessRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Personal Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Your Gross Annual Income</label>
+                <select name="personalIncome" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional checkboxes
+    const otherReasonCheckbox = document.querySelector('input[name="taxAssistanceReasons"][value="other"]');
+    const otherReasonField = document.getElementById('otherReasonDetails');
+    
+    otherReasonCheckbox.addEventListener('change', function() {
+        otherReasonField.style.display = this.checked ? 'block' : 'none';
+        const input = otherReasonField.querySelector('input');
+        input.required = this.checked;
+    });
+
+    // Handle other tax years checkbox
+    const otherYearsCheckbox = document.querySelector('input[name="taxYears"][value="other"]');
+    const otherYearsField = document.getElementById('otherYearDetails');
+    
+    otherYearsCheckbox.addEventListener('change', function() {
+        otherYearsField.style.display = this.checked ? 'block' : 'none';
+        const input = otherYearsField.querySelector('input');
+        input.required = this.checked;
+    });
+
+    // Handle audit status conditional field
+    const auditStatusRadios = document.querySelectorAll('input[name="auditStatus"]');
+    const auditDetailsField = document.getElementById('auditDetails');
+
+    auditStatusRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            auditDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            const inputs = auditDetailsField.querySelectorAll('select, input');
+            inputs.forEach(input => {
+                input.required = this.value === 'yes';
+            });
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});
+</script>

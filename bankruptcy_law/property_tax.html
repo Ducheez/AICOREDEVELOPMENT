@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="form-container">
+    <h2 class="form-title">Bankruptcy Law - Property Tax Issues</h2>
+    <form id="propertyTaxForm" onsubmit="return validateForm(event)">
+        <!-- Property Information -->
+        <div class="form-section">
+            <h3>Property Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Property Type</label>
+                <select name="propertyType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="residential">Residential - Single Family</option>
+                    <option value="multi-family">Residential - Multi-Family</option>
+                    <option value="commercial">Commercial Property</option>
+                    <option value="industrial">Industrial Property</option>
+                    <option value="vacant">Vacant Land</option>
+                    <option value="agricultural">Agricultural Property</option>
+                    <option value="mixed-use">Mixed-Use Property</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherPropertyType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Property Ownership</label>
+                <select name="ownershipType" class="form-control select-field" required>
+                    <option value="">Select ownership type</option>
+                    <option value="individual">Individual Owner</option>
+                    <option value="joint">Joint Ownership</option>
+                    <option value="llc">LLC</option>
+                    <option value="corporation">Corporation</option>
+                    <option value="trust">Trust</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Year Property Acquired</label>
+                <input type="number" name="acquisitionYear" class="form-control" required 
+                       min="1900" max="2025" placeholder="Enter year property was purchased">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Property Value at Purchase</label>
+                <input type="number" name="purchaseValue" class="form-control currency-input" 
+                       placeholder="Enter purchase price" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Estimated Value</label>
+                <input type="number" name="currentValue" class="form-control currency-input" 
+                       placeholder="Enter current estimated value" required>
+            </div>
+        </div>
+
+        <!-- Property Tax Assessment -->
+        <div class="form-section">
+            <h3>Property Tax Assessment</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Current Assessment Value</label>
+                <input type="number" name="assessmentValue" class="form-control currency-input" 
+                       placeholder="Enter assessed value" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date of Last Assessment</label>
+                <input type="date" name="lastAssessmentDate" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have you appealed the assessment?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="appealedAssessment" value="yes" data-conditional="appealDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="appealedAssessment" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="appealDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Appeal</label>
+                    <input type="date" name="appealDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Appeal Status</label>
+                    <select name="appealStatus" class="form-control select-field">
+                        <option value="">Select status</option>
+                        <option value="pending">Pending Review</option>
+                        <option value="scheduled">Hearing Scheduled</option>
+                        <option value="approved">Appeal Approved</option>
+                        <option value="denied">Appeal Denied</option>
+                        <option value="withdrawn">Appeal Withdrawn</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Property Tax Debt -->
+        <div class="form-section">
+            <h3>Property Tax Debt</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Total Property Tax Owed</label>
+                <input type="number" name="totalTaxOwed" class="form-control currency-input" 
+                       placeholder="Enter total amount owed" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Delinquent Tax Years</label>
+                <div class="checkbox-group" data-required="true">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="delinquentYears[]" value="2024">
+                        <label>2024</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="delinquentYears[]" value="2023">
+                        <label>2023</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="delinquentYears[]" value="2022">
+                        <label>2022</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="delinquentYears[]" value="2021">
+                        <label>2021</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="delinquentYears[]" value="2020">
+                        <label>2020</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="delinquentYears[]" value="older">
+                        <label>2019 or Earlier</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Are you currently on a payment plan?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="paymentPlan" value="yes" data-conditional="paymentPlanDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="paymentPlan" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="paymentPlanDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Monthly Payment Amount</label>
+                    <input type="number" name="monthlyPayment" class="form-control currency-input" 
+                           placeholder="Enter monthly payment amount">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Payment Plan Start Date</label>
+                    <input type="date" name="planStartDate" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Collection Actions -->
+        <div class="form-section">
+            <h3>Collection Actions</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Has the tax authority taken any of these actions?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="collectionActions[]" value="notices">
+                        <label>Sent Notices/Demands</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="collectionActions[]" value="lien">
+                        <label>Filed Tax Lien</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="collectionActions[]" value="foreclosure">
+                        <label>Started Foreclosure</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="collectionActions[]" value="seizure">
+                        <label>Property Seizure Notice</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="collectionActions[]" value="other">
+                        <label>Other Actions</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="collectionActions[]" value="none">
+                        <label>No Actions Taken</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date of Most Recent Notice/Action</label>
+                <input type="date" name="recentActionDate" class="form-control">
+            </div>
+        </div>
+
+        <!-- Tax Exemptions -->
+        <div class="form-section">
+            <h3>Tax Exemptions</h3>
+
+            <div class="form-group">
+                <label class="form-label">Do you currently have any tax exemptions?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="exemptions[]" value="homestead">
+                        <label>Homestead Exemption</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="exemptions[]" value="senior">
+                        <label>Senior Citizen Exemption</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="exemptions[]" value="disabled">
+                        <label>Disability Exemption</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="exemptions[]" value="veteran">
+                        <label>Veteran Exemption</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="exemptions[]" value="agricultural">
+                        <label>Agricultural Exemption</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="exemptions[]" value="other">
+                        <label>Other Exemption</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="exemptions[]" value="none">
+                        <label>No Exemptions</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have you applied for any exemptions that were denied?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="deniedExemptions" value="yes" data-conditional="deniedExemptionDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="deniedExemptions" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deniedExemptionDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Type of Denied Exemption</label>
+                    <input type="text" name="deniedExemptionType" class="form-control" 
+                           placeholder="Enter type of exemption that was denied">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Date of Denial</label>
+                    <input type="date" name="exemptionDenialDate" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+
+    // Handle mutually exclusive checkboxes for Collection Actions
+    const noActionCheckbox = document.querySelector('input[name="collectionActions[]"][value="none"]');
+    const otherActionCheckboxes = document.querySelectorAll('input[name="collectionActions[]"]:not([value="none"])');
+    
+    if (noActionCheckbox) {
+        noActionCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                otherActionCheckboxes.forEach(cb => {
+                    cb.checked = false;
+                    cb.disabled = true;
+                });
+            } else {
+                otherActionCheckboxes.forEach(cb => {
+                    cb.disabled = false;
+                });
+            }
+        });
+
+        otherActionCheckboxes.forEach(cb => {
+            cb.addEventListener('change', function() {
+                if (this.checked) {
+                    noActionCheckbox.checked = false;
+                }
+            });
+        });
+    }
+
+    // Handle mutually exclusive checkboxes for Exemptions
+    const noExemptionsCheckbox = document.querySelector('input[name="exemptions[]"][value="none"]');
+    const otherExemptionsCheckboxes = document.querySelectorAll('input[name="exemptions[]"]:not([value="none"])');
+    
+    if (noExemptionsCheckbox) {
+        noExemptionsCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                otherExemptionsCheckboxes.forEach(cb => {
+                    cb.checked = false;
+                    cb.disabled = true;
+                });
+            } else {
+                otherExemptionsCheckboxes.forEach(cb => {
+                    cb.disabled = false;
+                });
+            }
+        });
+
+        otherExemptionsCheckboxes.forEach(cb => {
+            cb.addEventListener('change', function() {
+                if (this.checked) {
+                    noExemptionsCheckbox.checked = false;
+                }
+            });
+        });
+    }
+
+    // Validate dates
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    dateInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            
+            // Allow future dates only for payment plan dates
+            if (input.name !== 'planStartDate' && selectedDate > today) {
+                alert('Date cannot be in the future');
+                this.value = '';
+            }
+        });
+    });
+
+    // Validate property acquisition year
+    const acquisitionYearInput = document.querySelector('input[name="acquisitionYear"]');
+    if (acquisitionYearInput) {
+        acquisitionYearInput.addEventListener('change', function() {
+            const year = parseInt(this.value);
+            const currentYear = new Date().getFullYear();
+            
+            if (year > currentYear) {
+                alert('Acquisition year cannot be in the future');
+                this.value = '';
+            }
+        });
+    }
+
+    // Validate property values
+    const purchaseValueInput = document.querySelector('input[name="purchaseValue"]');
+    const currentValueInput = document.querySelector('input[name="currentValue"]');
+    const assessmentValueInput = document.querySelector('input[name="assessmentValue"]');
+
+    function validatePropertyValues() {
+        if (purchaseValueInput && currentValueInput && assessmentValueInput) {
+            const purchaseValue = parseFloat(purchaseValueInput.value) || 0;
+            const currentValue = parseFloat(currentValueInput.value) || 0;
+            const assessmentValue = parseFloat(assessmentValueInput.value) || 0;
+
+            if (purchaseValue > currentValue) {
+                alert('Current value should be equal to or greater than purchase value');
+                currentValueInput.value = '';
+                return false;
+            }
+
+            if (assessmentValue > (currentValue * 1.5)) {
+                alert('Assessment value seems unusually high compared to current value');
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Form validation
+    const form = document.getElementById('propertyTaxForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Validate required checkbox groups
+        const checkboxGroups = document.querySelectorAll('.checkbox-group[data-required="true"]');
+        let isValid = true;
+        
+        checkboxGroups.forEach(group => {
+            const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+            const checked = Array.from(checkboxes).some(cb => cb.checked);
+            if (!checked) {
+                const groupLabel = group.previousElementSibling;
+                alert(`Please select at least one option for ${groupLabel.textContent}`);
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            return;
+        }
+
+        // Validate property values
+        if (!validatePropertyValues()) {
+            return;
+        }
+
+        // If all validations pass, submit the form
+        this.submit();
+    });
+});
+</script>
+</html>

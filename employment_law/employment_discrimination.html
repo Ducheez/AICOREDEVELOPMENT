@@ -1,0 +1,533 @@
+<div class="form-container">
+    <h2 class="form-title">Employment Law - Discrimination Case Information</h2>
+    <form id="employmentDiscriminationForm" onsubmit="return validateForm(event)">
+        <!-- Employment Information -->
+        <div class="form-section">
+            <h3>Employment Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Date of Hire</label>
+                <input type="date" name="hireDate" class="form-control" required data-nofuture="true">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Job Title/Position</label>
+                <input type="text" name="jobTitle" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Employment Status</label>
+                <select name="employmentStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="employed">Still employed</option>
+                    <option value="terminated">Terminated</option>
+                    <option value="resigned">Resigned</option>
+                    <option value="laid-off">Laid off</option>
+                    <option value="suspended">Suspended</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div id="lastDayDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Last Day of Employment</label>
+                <input type="date" name="lastWorkDay" class="form-control" data-nofuture="true">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Salary/Wage</label>
+                <input type="number" name="salary" class="form-control currency-input" required placeholder="Annual salary or hourly wage">
+                <select name="payType" class="form-control select-field" required>
+                    <option value="">Select pay type</option>
+                    <option value="annual">Annual Salary</option>
+                    <option value="hourly">Hourly Wage</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Employer Information -->
+        <div class="form-section">
+            <h3>Employer Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Company Name</label>
+                <input type="text" name="companyName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Business</label>
+                <select name="businessType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="private">Private Company</option>
+                    <option value="public">Public Company</option>
+                    <option value="government">Government Agency</option>
+                    <option value="non-profit">Non-Profit Organization</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Approximate Number of Employees</label>
+                <select name="employeeCount" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="1-14">1-14 employees</option>
+                    <option value="15-50">15-50 employees</option>
+                    <option value="51-100">51-100 employees</option>
+                    <option value="101-500">101-500 employees</option>
+                    <option value="500+">More than 500 employees</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Work Location</label>
+                <input type="text" name="workLocation" class="form-control" required 
+                       placeholder="City, State">
+            </div>
+        </div>
+
+        <!-- Discrimination Details -->
+        <div class="form-section">
+            <h3>Discrimination Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Discrimination (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationType" value="age">
+                        <label>Age</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationType" value="race">
+                        <label>Race</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationType" value="gender">
+                        <label>Gender</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationType" value="disability">
+                        <label>Disability</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationType" value="religion">
+                        <label>Religion</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationType" value="national-origin">
+                        <label>National Origin</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationType" value="pregnancy">
+                        <label>Pregnancy</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationType" value="sexual-orientation">
+                        <label>Sexual Orientation</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationType" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">When did the discrimination begin?</label>
+                <input type="date" name="discriminationStart" class="form-control" required data-nofuture="true">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Is the discrimination ongoing?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="ongoingDiscrimination" value="yes">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="ongoingDiscrimination" value="no" data-conditional="endDate">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="endDate" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">When did the discrimination end?</label>
+                <input type="date" name="discriminationEnd" class="form-control" data-nofuture="true">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">How did the discrimination occur? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationForm" value="hiring">
+                        <label>Hiring</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationForm" value="promotion">
+                        <label>Promotion Denial</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationForm" value="pay">
+                        <label>Pay/Benefits</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationForm" value="discipline">
+                        <label>Discipline</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationForm" value="termination">
+                        <label>Termination</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationForm" value="harassment">
+                        <label>Harassment</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationForm" value="retaliation">
+                        <label>Retaliation</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="discriminationForm" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Description of Discriminatory Actions</label>
+                <textarea name="discriminationDescription" class="form-control textarea-field" required
+                    placeholder="Describe in detail the discriminatory actions or treatment"></textarea>
+            </div>
+        </div>
+
+        <!-- Evidence and Documentation -->
+        <div class="form-section">
+            <h3>Evidence and Documentation</h3>
+
+            <div class="form-group">
+                <label class="form-label">Do you have any documentation of the discrimination?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documentation" value="emails">
+                        <label>Emails</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documentation" value="messages">
+                        <label>Text Messages/Messages</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documentation" value="performance">
+                        <label>Performance Reviews</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documentation" value="witnesses">
+                        <label>Witness Statements</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documentation" value="photos">
+                        <label>Photos/Videos</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documentation" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Are there witnesses to the discrimination?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="witnesses" value="yes" data-conditional="witnessDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="witnesses" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="witnessDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Number of Witnesses</label>
+                <input type="number" name="witnessCount" class="form-control" min="1">
+                
+                <label class="form-label">Witness Types</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="witnessTypes" value="coworkers">
+                        <label>Coworkers</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="witnessTypes" value="supervisors">
+                        <label>Supervisors</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="witnessTypes" value="hr">
+                        <label>HR Personnel</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="witnessTypes" value="customers">
+                        <label>Customers/Clients</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="witnessTypes" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reporting and Response -->
+        <div class="form-section">
+            <h3>Reporting and Response</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Did you report the discrimination?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="reportedDiscrimination" value="yes" data-conditional="reportDetails" required>
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="reportedDiscrimination" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reportDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Date of Report</label>
+                <input type="date" name="reportDate" class="form-control" data-nofuture="true">
+
+                <label class="form-label">Reported To</label>
+                <select name="reportedTo" class="form-control select-field">
+                    <option value="">Select recipient</option>
+                    <option value="supervisor">Direct Supervisor</option>
+                    <option value="hr">Human Resources</option>
+                    <option value="management">Upper Management</option>
+                    <option value="eeoc">EEOC</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label class="form-label">Company's Response</label>
+                <textarea name="companyResponse" class="form-control textarea-field"
+                    placeholder="Describe how the company responded to your report"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have you filed a complaint with any government agencies?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="complaints" value="eeoc">
+                        <label>EEOC</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="complaints" value="state">
+                        <label>State Agency</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="complaints" value="other">
+                        <label>Other Agency</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Damages -->
+        <div class="form-section">
+            <h3>Damages</h3>
+
+            <div class="form-group">
+                <label class="form-label">What damages have you suffered? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="damages" value="lost-wages">
+                            <label>Lost Wages</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="damages" value="lost-benefits">
+                            <label>Lost Benefits</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="damages" value="lost-promotion">
+                            <label>Lost Promotion/Advancement</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="damages" value="emotional">
+                            <label>Emotional Distress</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="damages" value="medical">
+                            <label>Medical Expenses</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="damages" value="reputation">
+                            <label>Damage to Reputation</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="damages" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-group" data-conditional="lost-wages">
+                    <label class="form-label">Estimated Lost Wages</label>
+                    <input type="number" name="lostWagesAmount" class="form-control currency-input" placeholder="$">
+                </div>
+    
+                <div class="form-group" data-conditional="medical">
+                    <label class="form-label">Medical Expenses Incurred</label>
+                    <input type="number" name="medicalExpenses" class="form-control currency-input" placeholder="$">
+                </div>
+    
+                <div class="form-group">
+                    <label class="form-label">Have you sought medical or mental health treatment?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="soughtTreatment" value="yes" data-conditional="treatmentDetails">
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="soughtTreatment" value="no">
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="treatmentDetails" class="form-group conditional-field" style="display: none;">
+                    <label class="form-label">Type of Treatment</label>
+                    <textarea name="treatmentDescription" class="form-control textarea-field"
+                        placeholder="Describe the type of treatment received"></textarea>
+                </div>
+            </div>
+    
+            <!-- Retaliation -->
+            <div class="form-section">
+                <h3>Retaliation</h3>
+    
+                <div class="form-group">
+                    <label class="form-label required">Have you experienced retaliation for reporting discrimination?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="retaliation" value="yes" data-conditional="retaliationDetails" required>
+                            <label>Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="retaliation" value="no" required>
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="retaliationDetails" class="form-group conditional-field" style="display: none;">
+                    <label class="form-label">Form of Retaliation (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="retaliationType" value="termination">
+                            <label>Termination</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="retaliationType" value="demotion">
+                            <label>Demotion</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="retaliationType" value="harassment">
+                            <label>Increased Harassment</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="retaliationType" value="hostile">
+                            <label>Hostile Work Environment</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="retaliationType" value="schedule">
+                            <label>Schedule Changes</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="retaliationType" value="duties">
+                            <label>Changed Job Duties</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="retaliationType" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+    
+                    <label class="form-label">Description of Retaliation</label>
+                    <textarea name="retaliationDescription" class="form-control textarea-field"
+                        placeholder="Describe the retaliatory actions in detail"></textarea>
+                </div>
+            </div>
+    
+            <!-- Desired Outcome -->
+            <div class="form-section">
+                <h3>Desired Outcome</h3>
+    
+                <div class="form-group">
+                    <label class="form-label required">What outcome are you seeking? (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="desiredOutcome" value="reinstatement">
+                            <label>Reinstatement to Position</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="desiredOutcome" value="compensation">
+                            <label>Monetary Compensation</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="desiredOutcome" value="promotion">
+                            <label>Promotion/Transfer</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="desiredOutcome" value="policy">
+                            <label>Policy Changes</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="desiredOutcome" value="training">
+                            <label>Anti-discrimination Training</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="desiredOutcome" value="disciplinary">
+                            <label>Disciplinary Action Against Offender</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="desiredOutcome" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label class="form-label">Additional Comments About Desired Outcome</label>
+                    <textarea name="outcomeComments" class="form-control textarea-field"
+                        placeholder="Please provide any additional details about your desired outcome"></textarea>
+                </div>
+            </div>
+    
+            <!-- Legal Representation -->
+            <div class="form-section">
+                <h3>Legal Representation Timeline</h3>
+    
+                <div class="form-group">
+                    <label class="form-label required">When are you planning to hire an attorney?</label>
+                    <select name="hiringTimeline" class="form-control select-field" required>
+                        <option value="">Select timeline</option>
+                        <option value="immediately">Immediately</option>
+                        <option value="this-week">This week</option>
+                        <option value="this-month">This month</option>
+                        <option value="this-year">This year</option>
+                        <option value="exploring">Just exploring options</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Form Navigation -->
+            <div class="form-navigation">
+                <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+                <button type="submit" class="nav-button submit-button">Submit Form</button>
+            </div>
+        </form>
+    </div>

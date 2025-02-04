@@ -1,0 +1,462 @@
+<div class="form-container">
+    <h2 class="form-title">Business Law - Business Formation Information</h2>
+    <form id="businessFormationForm" onsubmit="return validateForm(event)">
+        <!-- Basic Business Information -->
+        <div class="form-section">
+            <h3>Basic Business Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Desired Business Name</label>
+                <input type="text" name="businessName" class="form-control" required 
+                       placeholder="Enter your proposed business name">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Alternative Business Names</label>
+                <input type="text" name="alternativeNames" class="form-control" required 
+                       placeholder="Enter alternative names in case first choice is unavailable">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Business Entity</label>
+                <select name="entityType" class="form-control select-field" required>
+                    <option value="">Select entity type</option>
+                    <option value="llc">Limited Liability Company (LLC)</option>
+                    <option value="corporation">Corporation</option>
+                    <option value="s-corp">S-Corporation</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="sole-proprietorship">Sole Proprietorship</option>
+                    <option value="non-profit">Non-Profit Organization</option>
+                    <option value="benefit-corp">Benefit Corporation</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherEntityType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Primary Business Industry</label>
+                <select name="industry" class="form-control select-field" required>
+                    <option value="">Select industry</option>
+                    <option value="retail">Retail</option>
+                    <option value="technology">Technology</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="service">Professional Services</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="restaurant">Restaurant/Food Service</option>
+                    <option value="construction">Construction</option>
+                    <option value="real-estate">Real Estate</option>
+                    <option value="finance">Finance/Insurance</option>
+                    <option value="entertainment">Entertainment/Media</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherIndustry" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Planned Start Date</label>
+                <input type="date" name="startDate" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Business Details -->
+        <div class="form-section">
+            <h3>Business Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Business Description</label>
+                <textarea name="businessDescription" class="form-control textarea-field" required
+                    placeholder="Describe your business operations and services"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Expected Number of Employees (First Year)</label>
+                <select name="employeeCount" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="1">Just me</option>
+                    <option value="2-5">2-5 employees</option>
+                    <option value="6-10">6-10 employees</option>
+                    <option value="11-20">11-20 employees</option>
+                    <option value="21-50">21-50 employees</option>
+                    <option value="50+">More than 50 employees</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Primary Business Location</label>
+                <select name="locationType" class="form-control select-field" required>
+                    <option value="">Select location type</option>
+                    <option value="commercial">Commercial Space</option>
+                    <option value="retail">Retail Space</option>
+                    <option value="office">Office Space</option>
+                    <option value="industrial">Industrial/Warehouse</option>
+                    <option value="home">Home-Based</option>
+                    <option value="virtual">Virtual/Online Only</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherLocation" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Will you operate in multiple states?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="multiState" value="yes" data-conditional="statesList">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="multiState" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="statesList" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">List States of Operation</label>
+                <textarea name="operatingStates" class="form-control textarea-field"
+                    placeholder="List all states where you plan to operate"></textarea>
+            </div>
+        </div>
+
+        <!-- Ownership Structure -->
+        <div class="form-section">
+            <h3>Ownership Structure</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Number of Owners/Partners</label>
+                <select name="ownerCount" class="form-control select-field" required>
+                    <option value="">Select number</option>
+                    <option value="1">1 owner</option>
+                    <option value="2">2 owners</option>
+                    <option value="3-5">3-5 owners</option>
+                    <option value="5+">More than 5 owners</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Ownership Distribution</label>
+                <textarea name="ownershipDistribution" class="form-control textarea-field" required
+                    placeholder="Describe how ownership will be distributed (e.g., percentages)"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Will any owners be passive investors?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="passiveInvestors" value="yes" data-conditional="investorDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="passiveInvestors" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="investorDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Describe Investor Roles</label>
+                <textarea name="investorRoles" class="form-control textarea-field"
+                    placeholder="Describe the roles and involvement of passive investors"></textarea>
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Initial Investment Amount</label>
+                <input type="number" name="initialInvestment" class="form-control currency-input" required placeholder="$">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Source of Funding</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="fundingSource" value="personal">
+                        <label>Personal Savings</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="fundingSource" value="investors">
+                        <label>Outside Investors</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="fundingSource" value="loans">
+                        <label>Bank Loans</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="fundingSource" value="crowdfunding">
+                        <label>Crowdfunding</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="fundingSource" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Expected First Year Revenue</label>
+                <select name="expectedRevenue" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-50000">Under $50,000</option>
+                    <option value="50000-100000">$50,000 - $100,000</option>
+                    <option value="100000-250000">$100,000 - $250,000</option>
+                    <option value="250000-500000">$250,000 - $500,000</option>
+                    <option value="500000-1000000">$500,000 - $1,000,000</option>
+                    <option value="1000000+">Over $1,000,000</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Compliance and Licensing -->
+        <div class="form-section">
+            <h3>Compliance and Licensing</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Will your business require special licenses or permits?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="specialLicenses" value="yes" data-conditional="licenseDetails" required>
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="specialLicenses" value="no" required>
+                        <label>No</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="specialLicenses" value="unsure" required>
+                        <label>Unsure</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="licenseDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Describe Required Licenses/Permits</label>
+                <textarea name="licenseDescription" class="form-control textarea-field"
+                    placeholder="List any known required licenses or permits"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Do you need assistance with:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assistanceNeeded" value="ein">
+                        <label>EIN (Tax ID) Application</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assistanceNeeded" value="licenses">
+                        <label>Business Licenses</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assistanceNeeded" value="contracts">
+                        <label>Operating Agreements/Contracts</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assistanceNeeded" value="trademark">
+                        <label>Trademark Registration</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assistanceNeeded" value="tax">
+                        <label>Tax Registration</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Considerations -->
+        <div class="form-section">
+            <h3>Additional Considerations</h3>
+
+            <div class="form-group">
+                <label class="form-label">Do you need assistance with employment agreements?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="employmentAgreements" value="yes">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="employmentAgreements" value="no">
+                        <label>No</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="employmentAgreements" value="future">
+                        <label>Not now, but in the future</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Do you need assistance with intellectual property protection?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="ipProtection" value="yes" data-conditional="ipDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="ipProtection" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ipDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Type of IP Protection Needed</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="ipType" value="trademark">
+                        <label>Trademark</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="ipType" value="patent">
+                        <label>Patent</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="ipType" value="copyright">
+                        <label>Copyright</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="ipType" value="trade-secret">
+                        <label>Trade Secret Protection</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Additional Comments or Concerns</label>
+                <textarea name="additionalComments" class="form-control textarea-field"
+                    placeholder="Any other information you'd like to share"></textarea>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="form-section">
+            <h3>Formation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When do you need to form your business?</label>
+                <select name="formationTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediate">Immediately</option>
+                    <option value="1-month">Within 1 month</option>
+                    <option value="3-months">Within 3 months</option>
+                    <option value="6-months">Within 6 months</option>
+                    <option value="planning">Still in planning phase</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Are there any time-sensitive factors?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="timeSensitive" value="yes" data-conditional="timeFactors" required>
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="timeSensitive" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="timeFactors" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Describe Time-Sensitive Factors</label>
+                <textarea name="timeFactorsDescription" class="form-control textarea-field"
+                    placeholder="Explain any time-sensitive factors affecting your business formation"></textarea>
+            </div>
+        </div>
+
+        <!-- Legal Questions -->
+        <div class="form-section">
+            <h3>Legal Questions</h3>
+
+            <div class="form-group">
+                <label class="form-label">Do you have any specific legal questions about:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalQuestions" value="liability">
+                        <label>Liability Protection</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalQuestions" value="taxes">
+                        <label>Tax Implications</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalQuestions" value="compliance">
+                        <label>Regulatory Compliance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalQuestions" value="ownership">
+                        <label>Ownership Structure</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalQuestions" value="contracts">
+                        <label>Contracts/Agreements</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalQuestions" value="other" data-conditional="otherLegalQuestions">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="otherLegalQuestions" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Please specify your other legal questions</label>
+                <textarea name="otherLegalQuestionsText" class="form-control textarea-field"></textarea>
+            </div>
+        </div>
+
+        <!-- Future Considerations -->
+        <div class="form-section">
+            <h3>Future Considerations</h3>
+
+            <div class="form-group">
+                <label class="form-label">Do you anticipate any of the following in the next 2 years?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="futureConsiderations" value="expansion">
+                        <label>Business Expansion</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="futureConsiderations" value="investors">
+                        <label>Seeking Investors</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="futureConsiderations" value="merger">
+                        <label>Merger/Acquisition</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="futureConsiderations" value="public">
+                        <label>Going Public</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="futureConsiderations" value="international">
+                        <label>International Operations</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>

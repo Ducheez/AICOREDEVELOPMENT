@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Defective Products Injury Claim Form</h1>
+        <p class="description">Provide detailed information about your injury caused by a defective product.</p>
+
+        <form id="defective-products-form">
+            <div class="form-group">
+                <label>Personal Information</label>
+                <div class="input-group">
+                    <input 
+                        type="number" 
+                        id="age" 
+                        name="age" 
+                        placeholder="Your Age" 
+                        min="0" 
+                        max="120"
+                    >
+                    <input 
+                        type="text" 
+                        id="occupation" 
+                        name="occupation" 
+                        placeholder="Your Occupation"
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Status of Claim</label>
+                <select id="claim-status" name="claim-status">
+                    <option value="">Select Claim Status</option>
+                    <option value="no-action">No Action Taken Yet</option>
+                    <option value="compensation-demand">Demand for Compensation Made</option>
+                    <option value="lawsuit-filed">Lawsuit Filed</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="purchase-date">Date of Product Purchase</label>
+                <input 
+                    type="date" 
+                    id="purchase-date" 
+                    name="purchase-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Purchased From</label>
+                <select id="purchase-source" name="purchase-source">
+                    <option value="">Select Source of Purchase</option>
+                    <option value="business">A Business</option>
+                    <option value="individual">An Individual</option>
+                    <option value="online">Online Retailer</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product-cost">Product Cost</label>
+                <input 
+                    type="number" 
+                    id="product-cost" 
+                    name="product-cost" 
+                    placeholder="Enter product cost in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="defect-discovery-date">Date Product Was Determined Defective</label>
+                <input 
+                    type="date" 
+                    id="defect-discovery-date" 
+                    name="defect-discovery-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Injuries Caused</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="injury-none" name="injuries" value="none">
+                    <label for="injury-none">No Injuries</label>
+                    
+                    <input type="checkbox" id="injury-cuts" name="injuries" value="cuts">
+                    <label for="injury-cuts">Cuts and Bruises</label>
+                    
+                    <input type="checkbox" id="injury-broken-bones" name="injuries" value="broken-bones">
+                    <label for="injury-broken-bones">Broken Bones</label>
+                    
+                    <input type="checkbox" id="injury-headaches" name="injuries" value="headaches">
+                    <label for="injury-headaches">Headaches</label>
+                    
+                    <input type="checkbox" id="injury-nausea" name="injuries" value="nausea">
+                    <label for="injury-nausea">Nausea</label>
+                    
+                    <input type="checkbox" id="injury-sleep" name="injuries" value="sleep">
+                    <label for="injury-sleep">Difficulty Sleeping</label>
+                    
+                    <input type="checkbox" id="injury-anxiety" name="injuries" value="anxiety">
+                    <label for="injury-anxiety">Anxiety</label>
+                    
+                    <input type="checkbox" id="injury-breathing" name="injuries" value="breathing">
+                    <label for="injury-breathing">Difficulty Breathing</label>
+                    
+                    <input type="checkbox" id="injury-vision" name="injuries" value="vision">
+                    <label for="injury-vision">Impaired Vision</label>
+                    
+                    <input type="checkbox" id="injury-other" name="injuries" value="other">
+                    <label for="injury-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Type of Defective Product</label>
+                <select id="product-type" name="product-type">
+                    <option value="">Select Product Type</option>
+                    <option value="consumer-electronics">Consumer Electronics</option>
+                    <option value="household-appliance">Household Appliance</option>
+                    <option value="automotive">Automotive Part</option>
+                    <option value="medical-device">Medical Device</option>
+                    <option value="children-product">Children's Product</option>
+                    <option value="tool">Power Tool</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product-manufacturer">Product Manufacturer</label>
+                <input 
+                    type="text" 
+                    id="product-manufacturer" 
+                    name="product-manufacturer" 
+                    placeholder="Name of Product Manufacturer"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Nature of Defect</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="defect-design" name="defect-nature" value="design">
+                    <label for="defect-design">Design Defect</label>
+                    
+                    <input type="checkbox" id="defect-manufacturing" name="defect-nature" value="manufacturing">
+                    <label for="defect-manufacturing">Manufacturing Defect</label>
+                    
+                    <input type="checkbox" id="defect-warning" name="defect-nature" value="warning">
+                    <label for="defect-warning">Inadequate Warning</label>
+                    
+                    <input type="checkbox" id="defect-marketing" name="defect-nature" value="marketing">
+                    <label for="defect-marketing">Marketing Defect</label>
+                    
+                    <input type="checkbox" id="defect-other" name="defect-nature" value="other">
+                    <label for="defect-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Gross Annual Income</label>
+                <select id="annual-income" name="annual-income">
+                    <option value="">Select Annual Income Range</option>
+                    <option value="25000-or-less">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125000-plus">$125,000+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="additional-details">Additional Case Details</label>
+                <textarea 
+                    id="additional-details" 
+                    name="additional-details" 
+                    rows="4" 
+                    placeholder="Provide any additional information about the defective product and your injury"
+                ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Defective Product Claim Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('defective-products-form');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Collect form data
+        const formData = new FormData(form);
+        const formObject = {};
+        
+        for (const [key, value] of formData.entries()) {
+            // Handle checkboxes and multi-select fields
+            if (formObject[key]) {
+                if (!Array.isArray(formObject[key])) {
+                    formObject[key] = [formObject[key]];
+                }
+                formObject[key].push(value);
+            } else {
+                formObject[key] = value;
+            }
+        }
+        
+        // Basic validation
+        const requiredFields = ['age', 'purchase-date', 'product-type'];
+        const missingFields = requiredFields.filter(field => !formObject[field]);
+        
+        if (missingFields.length > 0) {
+            alert('Please fill out all required fields: ' + missingFields.join(', '));
+            return;
+        }
+        
+        // TODO: Implement actual form submission logic
+        console.log('Form Data:', formObject);
+        
+        // Placeholder submission message
+        alert('Your defective product claim details have been submitted. We will review your case and contact you shortly.');
+        
+        // Optional: Reset form after submission
+        form.reset();
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,268 @@
+<div class="form-container">
+    <h2 class="form-title">Administrative Law - Environmental Law</h2>
+    <form id="environmentalLawForm" onsubmit="return validateForm(event)">
+        <!-- Party Information -->
+        <div class="form-section">
+            <h3>Party Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Role</label>
+                <select name="role" class="form-control select-field" required>
+                    <option value="">Select role</option>
+                    <option value="individual">Individual Affected by Environmental Issue</option>
+                    <option value="business">Business Entity</option>
+                    <option value="government">Government Agency</option>
+                    <option value="ngo">Environmental Organization</option>
+                    <option value="whistleblower">Environmental Whistleblower</option>
+                    <option value="property-owner">Property Owner</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Matter</label>
+                <select name="matterType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="compliance">Regulatory Compliance</option>
+                    <option value="violation">Environmental Violation</option>
+                    <option value="permitting">Environmental Permitting</option>
+                    <option value="cleanup">Environmental Cleanup</option>
+                    <option value="assessment">Environmental Assessment</option>
+                    <option value="litigation">Environmental Litigation</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherMatterType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Environmental Issue -->
+        <div class="form-section">
+            <h3>Environmental Issue Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Areas of Environmental Concern</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="environmentalAreas[]" value="other">
+                        <label>Other Environmental Issues</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Geographic Scope</label>
+                <select name="geographicScope" class="form-control select-field" required>
+                    <option value="">Select scope</option>
+                    <option value="local">Local (City/County)</option>
+                    <option value="state">State-wide</option>
+                    <option value="regional">Regional (Multiple States)</option>
+                    <option value="federal">Federal</option>
+                    <option value="international">International</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Status</label>
+                <select name="currentStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="ongoing">Ongoing Environmental Issue</option>
+                    <option value="investigation">Under Investigation</option>
+                    <option value="enforcement">Enforcement Action Pending</option>
+                    <option value="litigation">In Litigation</option>
+                    <option value="cleanup">Cleanup/Remediation Phase</option>
+                    <option value="monitoring">Post-Cleanup Monitoring</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Regulatory Involvement -->
+        <div class="form-section">
+            <h3>Regulatory Involvement</h3>
+
+            <div class="form-group">
+                <label class="form-label">Agencies Involved</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="agencies[]" value="epa">
+                        <label>EPA</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="agencies[]" value="state-agency">
+                        <label>State Environmental Agency</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="agencies[]" value="local-agency">
+                        <label>Local Environmental Agency</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="agencies[]" value="other">
+                        <label>Other Agencies</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Have Any Notices of Violation Been Issued?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="violationNotices" value="yes" required data-conditional="violationDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="violationNotices" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="violationDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Most Recent Notice</label>
+                    <input type="date" name="violationDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Status of Response</label>
+                    <select name="responseStatus" class="form-control select-field">
+                        <option value="">Select status</option>
+                        <option value="pending">Response Pending</option>
+                        <option value="submitted">Response Submitted</option>
+                        <option value="accepted">Response Accepted</option>
+                        <option value="rejected">Response Rejected</option>
+                        <option value="appealing">Appealing Decision</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Damages/Remediation -->
+        <div class="form-section">
+            <h3>Damages and Remediation</h3>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Cost of Environmental Damage/Cleanup</label>
+                <select name="estimatedCost" class="form-control select-field">
+                    <option value="">Select range</option>
+                    <option value="under-10k">Under $10,000</option>
+                    <option value="10k-50k">$10,000 - $50,000</option>
+                    <option value="50k-250k">$50,000 - $250,000</option>
+                    <option value="250k-1m">$250,000 - $1 million</option>
+                    <option value="over-1m">Over $1 million</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Types of Damage</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="damageTypes[]" value="soil">
+                        <label>Soil Contamination</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="damageTypes[]" value="water">
+                        <label>Water Pollution</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="damageTypes[]" value="air">
+                        <label>Air Quality Impact</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="damageTypes[]" value="habitat">
+                        <label>Habitat Destruction</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="damageTypes[]" value="health">
+                        <label>Public Health Impact</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+});
+</script>" value="water">
+                        <label>Clean Water Act</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="environmentalAreas[]" value="air">
+                        <label>Clean Air Act</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="environmentalAreas[]" value="waste">
+                        <label>Hazardous Waste</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="environmentalAreas[]" value="pesticides">
+                        <label>Pesticides/FIFRA</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="environmentalAreas[]" value="species">
+                        <label>Endangered Species</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="environmentalAreas[]" value="wetlands">
+                        <label>Wetlands</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="environmentalAreas[]" value="superfund">
+                        <label>Superfund/CERCLA</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="environmentalAreas[]

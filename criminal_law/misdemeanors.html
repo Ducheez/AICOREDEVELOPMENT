@@ -1,0 +1,274 @@
+<div class="form-container">
+    <h2 class="form-title">Criminal Law - Misdemeanor Case</h2>
+    <form id="misdemeanorsForm" onsubmit="return validateForm(event)">
+        <!-- Reason for Seeking Defense -->
+        <div class="form-section">
+            <h3>Misdemeanor Allegations</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Primary Reason for Seeking Legal Assistance</label>
+                <select name="legalAssistanceReason" class="form-control select-field" required>
+                    <option value="">Select reason</option>
+                    <option value="arrested">I have been arrested or charged with a misdemeanor</option>
+                    <option value="suspect">I may be a suspect in a misdemeanor</option>
+                    <option value="relative">My friend or relative has been arrested or charged</option>
+                    <option value="appeal">I want to appeal a misdemeanor conviction</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherReason" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Specific Misdemeanor Charges</label>
+                <textarea name="misdemeanorCharges" class="form-control textarea-field" required
+                          placeholder="Describe the specific misdemeanor charges"></textarea>
+            </div>
+        </div>
+
+        <!-- Arrest and Court Details -->
+        <div class="form-section">
+            <h3>Arrest and Court Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Date of Arrest</label>
+                <input type="date" name="arrestDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Location of Arrest</label>
+                <input type="text" name="arrestLocation" class="form-control" 
+                       placeholder="City, County, State">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Next Court Appearance</label>
+                <input type="date" name="nextCourtDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Court Name and Location</label>
+                <input type="text" name="courtLocation" class="form-control" 
+                       placeholder="Court Name, City, County, State">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Purpose of Next Court Appearance</label>
+                <select name="courtAppearancePurpose" class="form-control select-field" required>
+                    <option value="">Select purpose</option>
+                    <option value="no-date">No court date set</option>
+                    <option value="first-appearance">First appearance or arraignment</option>
+                    <option value="negotiations">Negotiations before trial</option>
+                    <option value="motion">Motion hearing</option>
+                    <option value="trial">Trial</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherCourtPurpose" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Prior Criminal History -->
+        <div class="form-section">
+            <h3>Criminal History</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Number of Prior Arrests</label>
+                <input type="number" name="priorArrests" class="form-control" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Number of Prior Misdemeanor Convictions</label>
+                <input type="number" name="misdemeanorConvictions" class="form-control" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Number of Prior Felony Convictions</label>
+                <input type="number" name="felonyConvictions" class="form-control" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Number of Prior Juvenile Convictions</label>
+                <input type="number" name="juvenileConvictions" class="form-control" required min="0">
+            </div>
+        </div>
+
+        <!-- Custody and Bail Status -->
+        <div class="form-section">
+            <h3>Current Legal Status</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Current Custody Status</label>
+                <select name="custodyStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="in-custody">In custody (jail)</option>
+                    <option value="out-of-custody">Out of custody</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Bail Status</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="bailStatus" value="set">
+                        <label>Bail set at: </label>
+                        <input type="number" name="bailAmount" class="form-control currency-input" placeholder="$">
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="bailStatus" value="not-set">
+                        <label>No bail has been set</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="bailStatus" value="unknown">
+                        <label>I don't know</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Probation Status</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="probationStatus" value="no">
+                        <label>No</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="probationStatus" value="yes" data-conditional="probationDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="probationStatus" value="unknown">
+                        <label>I don't know</label>
+                    </div>
+                </div>
+
+                <div id="probationDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Terms of Probation</label>
+                    <textarea name="probationTerms" class="form-control textarea-field"
+                              placeholder="Describe the terms of your probation"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Gender</label>
+                <select name="gender" class="form-control select-field" required>
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="nonbinary">Non-binary</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherGender" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Citizenship or Residency Status</label>
+                <select name="citizenshipStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="us-citizen">U.S. Citizen</option>
+                    <option value="permanent-resident">Permanent Resident</option>
+                    <option value="temporary-visa">Temporary Visa Holder</option>
+                    <option value="undocumented">Undocumented</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherCitizenshipStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle probation details visibility
+    const probationRadios = document.querySelectorAll('input[name="probationStatus"]');
+    const probationDetailsField = document.getElementById('probationDetails');
+    const probationTextarea = probationDetailsField.querySelector('textarea');
+
+    probationRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            probationDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            probationTextarea.required = this.value === 'yes';
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});
+</script>

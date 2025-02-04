@@ -1,0 +1,289 @@
+<!-- templates/forms/real_estate_law/foreclosures.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Foreclosure Case Information</h2>
+    <form id="foreclosure-form" class="legal-form">
+        <div class="form-section">
+            <h3>Property Information</h3>
+            
+            <div class="form-group">
+                <label for="current_market_value">What is the current market value of the property? ($)</label>
+                <input type="number" 
+                       id="current_market_value" 
+                       name="current_market_value" 
+                       class="form-control" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="amount_owed">What is the approximate amount owed on the property? ($)</label>
+                <input type="number" 
+                       id="amount_owed" 
+                       name="amount_owed" 
+                       class="form-control" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="property_type">Type of Property</label>
+                <select id="property_type" name="property_type" class="form-control" required>
+                    <option value="">Select Property Type</option>
+                    <option value="single_family">Single Family Home</option>
+                    <option value="multi_family">Multi-Family Home</option>
+                    <option value="condo">Condominium</option>
+                    <option value="commercial">Commercial Property</option>
+                    <option value="vacant_land">Vacant Land</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Mortgage Information</h3>
+
+            <div class="form-group">
+                <label>How many months of missed mortgage payments are there?</label>
+                <select id="missed_payments" name="missed_payments" class="form-control" required>
+                    <option value="">Select Number of Months</option>
+                    <option value="1-3">1-3 months</option>
+                    <option value="4-6">4-6 months</option>
+                    <option value="7-12">7-12 months</option>
+                    <option value="12+">More than 12 months</option>
+                    <option value="none">No missed payments</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>What type of mortgage do you have?</label>
+                <select id="mortgage_type" name="mortgage_type" class="form-control" required>
+                    <option value="">Select Mortgage Type</option>
+                    <option value="conventional">Conventional</option>
+                    <option value="fha">FHA</option>
+                    <option value="va">VA</option>
+                    <option value="usda">USDA</option>
+                    <option value="arm">Adjustable Rate Mortgage (ARM)</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Monthly Mortgage Payment Amount ($)</label>
+                <input type="number" 
+                       id="monthly_payment" 
+                       name="monthly_payment" 
+                       class="form-control" 
+                       required>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Legal Status</h3>
+
+            <div class="form-group">
+                <label>Has a foreclosure lawsuit been filed?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="lawsuit_yes" 
+                           name="foreclosure_lawsuit" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="lawsuit_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="lawsuit_no" 
+                           name="foreclosure_lawsuit" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="lawsuit_no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group lawsuit-date-group" style="display: none;">
+                <label for="lawsuit_date">When was the foreclosure lawsuit filed?</label>
+                <input type="text" 
+                       id="lawsuit_date" 
+                       name="lawsuit_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY">
+            </div>
+
+            <div class="form-group">
+                <label>Has a foreclosure judgment been entered?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="judgment_yes" 
+                           name="foreclosure_judgment" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="judgment_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="judgment_no" 
+                           name="foreclosure_judgment" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="judgment_no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group judgment-date-group" style="display: none;">
+                <label for="judgment_date">When was the foreclosure judgment entered?</label>
+                <input type="text" 
+                       id="judgment_date" 
+                       name="judgment_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY">
+            </div>
+
+            <div class="form-group">
+                <label>Has a sale date been set?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="sale_yes" 
+                           name="sale_date_set" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="sale_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="sale_no" 
+                           name="sale_date_set" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="sale_no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group sale-date-group" style="display: none;">
+                <label for="sale_date">What is the scheduled sale date?</label>
+                <input type="text" 
+                       id="sale_date" 
+                       name="sale_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Additional Information</h3>
+
+            <div class="form-group">
+                <label>Have you attempted loan modification?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="modification_yes" 
+                           name="loan_modification" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="modification_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="modification_no" 
+                           name="loan_modification" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="modification_no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Are you currently living in the property?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="occupancy_yes" 
+                           name="current_occupancy" 
+                           value="yes" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="occupancy_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="occupancy_no" 
+                           name="current_occupancy" 
+                           value="no" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="occupancy_no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>When are you planning to hire an attorney?</label>
+                <select id="hiring_timeframe" name="hiring_timeframe" class="form-control" required>
+                    <option value="">Select Timeframe</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this_week">This week</option>
+                    <option value="this_month">This month</option>
+                    <option value="this_year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show/hide lawsuit date field based on selection
+    document.getElementsByName('foreclosure_lawsuit').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelector('.lawsuit-date-group').style.display = 
+                this.value === 'yes' ? 'block' : 'none';
+        });
+    });
+
+    // Show/hide judgment date field based on selection
+    document.getElementsByName('foreclosure_judgment').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelector('.judgment-date-group').style.display = 
+                this.value === 'yes' ? 'block' : 'none';
+        });
+    });
+
+    // Show/hide sale date field based on selection
+    document.getElementsByName('sale_date_set').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelector('.sale-date-group').style.display = 
+                this.value === 'yes' ? 'block' : 'none';
+        });
+    });
+
+    // Date input validation
+    document.querySelectorAll('.date-input').forEach(input => {
+        input.addEventListener('blur', function() {
+            const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/([12]\d{3})$/;
+            if (this.value && !dateRegex.test(this.value)) {
+                this.classList.add('is-invalid');
+                if (!this.nextElementSibling?.classList.contains('invalid-feedback')) {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'invalid-feedback';
+                    feedback.textContent = 'Please enter date in MM/DD/YYYY format';
+                    this.parentNode.appendChild(feedback);
+                }
+            } else {
+                this.classList.remove('is-invalid');
+                const feedback = this.nextElementSibling;
+                if (feedback?.classList.contains('invalid-feedback')) {
+                    feedback.remove();
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Dangerous Property or Buildings Injury Claim Form</h1>
+        <p class="description">Provide detailed information about your injury on a dangerous property.</p>
+
+        <form id="dangerous-property-form">
+            <div class="form-group">
+                <label>Personal Information</label>
+                <div class="input-group">
+                    <input 
+                        type="number" 
+                        id="age" 
+                        name="age" 
+                        placeholder="Your Age" 
+                        min="0" 
+                        max="120"
+                    >
+                    <input 
+                        type="text" 
+                        id="occupation" 
+                        name="occupation" 
+                        placeholder="Your Occupation"
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Legal Assistance Needed</label>
+                <select id="legal-assistance" name="legal-assistance" required>
+                    <option value="">Select Type of Legal Assistance</option>
+                    <option value="file-claim">File a Claim for an Injury</option>
+                    <option value="defend-claim">Defend Against a Claim Made by Someone Else</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="injury-date">Date of Injury</label>
+                <input 
+                    type="date" 
+                    id="injury-date" 
+                    name="injury-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="injury-location">Location of Injury</label>
+                <input 
+                    type="text" 
+                    id="injury-location" 
+                    name="injury-location" 
+                    placeholder="Street, City, State, ZIP"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Injuries Sustained</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="injury-lower-back" name="injuries" value="lower-back">
+                    <label for="injury-lower-back">Lower Back Pain</label>
+                    
+                    <input type="checkbox" id="injury-upper-back" name="injuries" value="upper-back">
+                    <label for="injury-upper-back">Upper Back Pain</label>
+                    
+                    <input type="checkbox" id="injury-shoulder" name="injuries" value="shoulder">
+                    <label for="injury-shoulder">Shoulder Pain</label>
+                    
+                    <input type="checkbox" id="injury-neck" name="injuries" value="neck">
+                    <label for="injury-neck">Neck Pain</label>
+                    
+                    <input type="checkbox" id="injury-headaches" name="injuries" value="headaches">
+                    <label for="injury-headaches">Headaches</label>
+                    
+                    <input type="checkbox" id="injury-nausea" name="injuries" value="nausea">
+                    <label for="injury-nausea">Nausea</label>
+                    
+                    <input type="checkbox" id="injury-sleep" name="injuries" value="sleep">
+                    <label for="injury-sleep">Difficulty Sleeping</label>
+                    
+                    <input type="checkbox" id="injury-anxiety" name="injuries" value="anxiety">
+                    <label for="injury-anxiety">Anxiety</label>
+                    
+                    <input type="checkbox" id="injury-cuts" name="injuries" value="cuts">
+                    <label for="injury-cuts">Cuts and Bruises</label>
+                    
+                    <input type="checkbox" id="injury-broken-bones" name="injuries" value="broken-bones">
+                    <label for="injury-broken-bones">Broken Bones</label>
+                    
+                    <input type="checkbox" id="injury-other" name="injuries" value="other">
+                    <label for="injury-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Dangerous Condition Details</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="condition-slip-fall" name="dangerous-conditions" value="slip-fall">
+                    <label for="condition-slip-fall">Slip and Fall</label>
+                    
+                    <input type="checkbox" id="condition-uneven-surface" name="dangerous-conditions" value="uneven-surface">
+                    <label for="condition-uneven-surface">Uneven Surface</label>
+                    
+                    <input type="checkbox" id="condition-poor-lighting" name="dangerous-conditions" value="poor-lighting">
+                    <label for="condition-poor-lighting">Poor Lighting</label>
+                    
+                    <input type="checkbox" id="condition-broken-stairs" name="dangerous-conditions" value="broken-stairs">
+                    <label for="condition-broken-stairs">Broken Stairs</label>
+                    
+                    <input type="checkbox" id="condition-debris" name="dangerous-conditions" value="debris">
+                    <label for="condition-debris">Debris or Obstacles</label>
+                    
+                    <input type="checkbox" id="condition-wet-floor" name="dangerous-conditions" value="wet-floor">
+                    <label for="condition-wet-floor">Wet or Slippery Floor</label>
+                    
+                    <input type="checkbox" id="condition-other" name="dangerous-conditions" value="other">
+                    <label for="condition-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Type of Property</label>
+                <select id="property-type" name="property-type">
+                    <option value="">Select Property Type</option>
+                    <option value="residential">Residential Property</option>
+                    <option value="commercial">Commercial Property</option>
+                    <option value="public">Public Property</option>
+                    <option value="industrial">Industrial Property</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Insurance Coverage</label>
+                <div class="radio-group">
+                    <label>Do you believe your insurance will cover this injury?</label>
+                    <input type="radio" id="insurance-yes" name="insurance-coverage" value="yes">
+                    <label for="insurance-yes">Yes</label>
+                    
+                    <input type="radio" id="insurance-no" name="insurance-coverage" value="no">
+                    <label for="insurance-no">No</label>
+                    
+                    <input type="radio" id="insurance-unknown" name="insurance-coverage" value="unknown">
+                    <label for="insurance-unknown">I'm Not Sure</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Third Party Insurance</label>
+                <div class="radio-group">
+                    <label>Do you believe the property owner's insurance will cover this injury?</label>
+                    <input type="radio" id="third-party-yes" name="third-party-insurance" value="yes">
+                    <label for="third-party-yes">Yes</label>
+                    
+                    <input type="radio" id="third-party-no" name="third-party-insurance" value="no">
+                    <label for="third-party-no">No</label>
+                    
+                    <input type="radio" id="third-party-unknown" name="third-party-insurance" value="unknown">
+                    <label for="third-party-unknown">I'm Not Sure</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Witnesses</label>
+                <div class="radio-group">
+                    <label>Are there witnesses to the injury?</label>
+                    <input type="radio" id="witnesses-present" name="witnesses" value="present">
+                    <label for="witnesses-present">Yes, Witnesses Present</label>
+                    
+                    <input type="radio" id="witnesses-none" name="witnesses" value="none">
+                    <label for="witnesses-none">No Witnesses</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Medical Treatment Status</label>
+                <select id="medical-status" name="medical-status">
+                    <option value="">Select Current Medical Status</option>
+                    <option value="no-treatment">No Treatment Yet</option>
+                    <option value="ongoing">Still Receiving Treatment</option>
+                    <option value="stopped-restart">Stopped Treatment, Needs to Restart</option>
+                    <option value="completed">Treatment Completed</option>
+                    <option value="unsure">Unsure</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Medical Practitioners Consulted</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="doctor-medical" name="medical-practitioners" value="medical-doctor">
+                    <label for="doctor-medical">Medical Doctor</label>
+                    
+                    <input type="checkbox" id="doctor-surgeon" name="medical-practitioners" value="surgeon">
+                    <label for="doctor-surgeon">Surgeon</label>
+                    
+                    <input type="checkbox" id="doctor-chiropractor" name="medical-practitioners" value="chiropractor">
+                    <label for="doctor-chiropractor">Chiropractor</label>
+                    
+                    <input type="checkbox" id="doctor-acupuncturist" name="medical-practitioners" value="acupuncturist">
+                    <label for="doctor-acupuncturist">Acupuncturist</label>
+                    
+                    <input type="checkbox" id="doctor-physical-therapist" name="medical-practitioners" value="physical-therapist">
+                    <label for="doctor-physical-therapist">Physical Therapist</label>
+                    
+                    <input type="checkbox" id="doctor-other" name="medical-practitioners" value="other">
+                    <label for="doctor-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="medical-costs">Approximate Medical Costs to Date</label>
+                <input 
+                    type="number" 
+                    id="medical-costs" 
+                    name="medical-costs" 
+                    placeholder="Enter total medical costs in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Work Impact</label>
+                <div class="radio-group">
+                    <label>Have you missed work due to the injury?</label>
+                    <input type="radio" id="work-missed-no" name="work-missed" value="no">
+                    <label for="work-missed-no">No Work Missed</label>
+                    
+                    <input type="radio" id="work-missed-days" name="work-missed" value="days">
+                    <label for="work-missed-days">Missed Days</label>
+                    
+                    <input type="radio" id="work-missed-months" name="work-missed" value="months">
+                    <label for="work-missed-months">Missed Months</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lost-income">Lost Work Income</label>
+                <input 
+                    type="number" 
+                    id="lost-income" 
+                    name="lost-income" 
+                    placeholder="Enter total lost income in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Current Status of Claim</label>
+                <select id="claim-status" name="claim-status">
+                    <option value="">Select Claim Status</option>
+                    <option value="no-action">No Action Taken Yet</option>
+                    <option value="compensation-demand">Demand for Compensation Made</option>
+                    <option value="lawsuit-filed">Lawsuit Filed</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Gross Annual Income</label>
+                <select id="annual-income" name="annual-income">
+                    <option value="">Select Annual Income Range</option>
+                    <option value="25000-or-less">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125000-plus">$125,000+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="additional-details">Additional Case Details</label>
+                <textarea 
+                    id="additional-details" 
+                    name="additional-details" 
+                    rows="4" 
+                    placeholder="Provide any additional information about your dangerous property injury"
+                ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Dangerous Property Claim Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('dangerous-property-form');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Collect form data
+        const formData = new FormData(form);
+        const formObject = {};
+        
+        for (const [key, value] of formData.entries()) {
+            // Handle checkboxes and multi-select fields
+            if (formObject[key]) {
+                if (!Array.isArray(formObject[key])) {
+                    formObject[key] = [formObject[key]];
+                }
+                formObject[key].push(value);
+            } else {
+                formObject[key] = value;
+            }
+        }
+        
+        // Basic validation
+        const requiredFields = ['injury-date', 'age'];
+        const missingFields = requiredFields.filter(field => !formObject[field]);
+        
+        if (missingFields.length > 0) {
+            alert('Please fill out all required fields: ' + missingFields.join(', '));
+            return;
+        }
+        
+        // TODO: Implement actual form submission logic
+        console.log('Form Data:', formObject);
+        
+        // Placeholder submission message
+        alert('Your dangerous property injury claim details have been submitted. We will review your case and contact you shortly.');
+        
+        // Optional: Reset form after submission
+        form.reset();
+    });
+});
+</script>

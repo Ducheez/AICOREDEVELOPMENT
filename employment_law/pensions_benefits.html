@@ -1,0 +1,340 @@
+<div class="form-container">
+    <h2 class="form-title">Employment Law - Pensions and Benefits Information</h2>
+    <form id="pensionsBenefitsForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Role</label>
+                <select name="role" class="form-control select-field" required>
+                    <option value="">Select your role</option>
+                    <option value="employee">Current Employee</option>
+                    <option value="former">Former Employee</option>
+                    <option value="retiree">Retiree</option>
+                    <option value="beneficiary">Beneficiary</option>
+                    <option value="spouse">Spouse/Former Spouse</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Years of Employment/Service</label>
+                <input type="number" name="yearsOfService" class="form-control" required min="0" max="99">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Employment Status</label>
+                <select name="employmentStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="active">Currently Employed</option>
+                    <option value="retired">Retired</option>
+                    <option value="terminated">Employment Terminated</option>
+                    <option value="disabled">Disabled</option>
+                    <option value="laid-off">Laid Off</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Employer Information -->
+        <div class="form-section">
+            <h3>Employer Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Employer Name</label>
+                <input type="text" name="employerName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Plan Administrator (if known)</label>
+                <input type="text" name="planAdministrator" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Plan</label>
+                <select name="planType" class="form-control select-field" required>
+                    <option value="">Select plan type</option>
+                    <option value="pension">Pension Plan (Defined Benefit)</option>
+                    <option value="401k">401(k) Plan</option>
+                    <option value="403b">403(b) Plan</option>
+                    <option value="profit">Profit Sharing Plan</option>
+                    <option value="esop">Employee Stock Ownership Plan (ESOP)</option>
+                    <option value="health">Health Insurance</option>
+                    <option value="disability">Disability Insurance</option>
+                    <option value="life">Life Insurance</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Benefits Issue -->
+        <div class="form-section">
+            <h3>Benefits Issue</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Issue</label>
+                <select name="issueType" class="form-control select-field" required>
+                    <option value="">Select issue type</option>
+                    <option value="denial">Denial of Benefits</option>
+                    <option value="reduction">Reduction in Benefits</option>
+                    <option value="termination">Termination of Benefits</option>
+                    <option value="calculation">Benefit Calculation Dispute</option>
+                    <option value="eligibility">Eligibility Dispute</option>
+                    <option value="vesting">Vesting Dispute</option>
+                    <option value="cobra">COBRA Issues</option>
+                    <option value="disability">Disability Benefit Issues</option>
+                    <option value="claims">Claims Processing Issues</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">When did this issue start?</label>
+                <input type="date" name="issueStartDate" class="form-control" required data-nofuture="true">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Description of Issue</label>
+                <textarea name="issueDescription" class="form-control textarea-field" required
+                    placeholder="Please describe the benefits issue in detail"></textarea>
+            </div>
+        </div>
+
+        <!-- Claim Information -->
+        <div class="form-section">
+            <h3>Claim Information</h3>
+
+            <div class="form-group">
+                <label class="form-label">Have you filed a claim?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="claimFiled" value="yes" data-conditional="claimDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="claimFiled" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="claimDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Date Claim Filed</label>
+                <input type="date" name="claimDate" class="form-control" data-nofuture="true">
+                
+                <label class="form-label">Claim Status</label>
+                <select name="claimStatus" class="form-control select-field">
+                    <option value="">Select status</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="denied">Denied</option>
+                    <option value="appealed">Under Appeal</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label class="form-label">Claim Number (if known)</label>
+                <input type="text" name="claimNumber" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have you appealed a denial?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="appealFiled" value="yes" data-conditional="appealDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="appealFiled" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="appealDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Date of Appeal</label>
+                <input type="date" name="appealDate" class="form-control" data-nofuture="true">
+                
+                <label class="form-label">Appeal Status</label>
+                <select name="appealStatus" class="form-control select-field">
+                    <option value="">Select status</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="denied">Denied</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Documentation -->
+        <div class="form-section">
+            <h3>Documentation</h3>
+
+            <div class="form-group">
+                <label class="form-label">Do you have any of the following documents? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documents" value="plan">
+                        <label>Plan Document/Summary Plan Description</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documents" value="benefits">
+                        <label>Benefits Statement</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documents" value="claim">
+                        <label>Claim Forms</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documents" value="denial">
+                        <label>Denial Letter</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documents" value="appeal">
+                        <label>Appeal Documents</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documents" value="medical">
+                        <label>Medical Records</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documents" value="correspondence">
+                        <label>Correspondence with Plan/Employer</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="documents" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Impact -->
+        <div class="form-section">
+            <h3>Financial Impact</h3>
+
+            <div class="form-group">
+                <label class="form-label">Amount in Dispute (if applicable)</label>
+                <input type="number" name="disputeAmount" class="form-control currency-input" placeholder="$">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Type of Benefits Affected (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="affectedBenefits" value="pension">
+                        <label>Pension Payments</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="affectedBenefits" value="medical">
+                        <label>Medical Benefits</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="affectedBenefits" value="disability">
+                        <label>Disability Benefits</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="affectedBenefits" value="life">
+                        <label>Life Insurance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="affectedBenefits" value="retirement">
+                        <label>Retirement Account</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="affectedBenefits" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have you incurred any out-of-pocket expenses?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="outOfPocket" value="yes" data-conditional="expenseDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="outOfPocket" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="expenseDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Total Out-of-Pocket Expenses</label>
+                <input type="number" name="expenseAmount" class="form-control currency-input" placeholder="$">
+                
+                <label class="form-label">Description of Expenses</label>
+                <textarea name="expenseDescription" class="form-control textarea-field"
+                    placeholder="Describe the types of expenses incurred"></textarea>
+            </div>
+        </div>
+
+        <!-- Desired Outcome -->
+        <div class="form-section">
+            <h3>Desired Outcome</h3>
+
+            <div class="form-group">
+                <label class="form-label required">What outcome are you seeking? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="payment">
+                        <label>Payment of Benefits</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="reinstatement">
+                        <label>Reinstatement of Benefits</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="correction">
+                        <label>Correction of Benefit Calculation</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="coverage">
+                        <label>Coverage for Specific Treatment/Service</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="reimbursement">
+                        <label>Reimbursement of Expenses</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="desiredOutcome" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Additional Comments About Desired Outcome</label>
+                <textarea name="outcomeComments" class="form-control textarea-field"
+                    placeholder="Please provide any additional details about your desired outcome"></textarea>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>

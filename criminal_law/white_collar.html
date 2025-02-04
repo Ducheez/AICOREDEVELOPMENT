@@ -1,0 +1,227 @@
+<div class="form-container">
+    <h2 class="form-title">Criminal Law - White Collar Crime</h2>
+    <form id="whiteCollarCrimeForm" onsubmit="return validateForm(event)">
+        <!-- Reason for Seeking Defense -->
+        <div class="form-section">
+            <h3>White Collar Crime Allegations</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Primary Reason for Seeking Legal Assistance</label>
+                <select name="legalAssistanceReason" class="form-control select-field" required>
+                    <option value="">Select reason</option>
+                    <option value="investigated">I am being investigated</option>
+                    <option value="charged">I have been charged with a white-collar crime</option>
+                    <option value="potential-charges">I anticipate potential charges</option>
+                    <option value="defending">Defending against allegations</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherReason" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Specific White Collar Crime Allegations</label>
+                <select name="crimeType" class="form-control select-field" required>
+                    <option value="">Select type of white-collar crime</option>
+                    <option value="fraud">Fraud</option>
+                    <option value="embezzlement">Embezzlement</option>
+                    <option value="insider-trading">Insider Trading</option>
+                    <option value="money-laundering">Money Laundering</option>
+                    <option value="securities-violation">Securities Violation</option>
+                    <option value="tax-evasion">Tax Evasion</option>
+                    <option value="falsifying-records">Falsifying Business Records</option>
+                    <option value="bribery">Bribery</option>
+                    <option value="cybercrime">Cybercrime</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherCrimeType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Financial Details of Alleged Crime -->
+        <div class="form-section">
+            <h3>Financial Details</h3>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Amount Involved in Allegation</label>
+                <input type="number" name="allegedAmount" class="form-control currency-input" 
+                       placeholder="Total monetary amount involved">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date Range of Alleged Illegal Activity</label>
+                <div class="field-group">
+                    <label>From:</label>
+                    <input type="date" name="activityStartDate" class="form-control">
+                    <label>To:</label>
+                    <input type="date" name="activityEndDate" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Organizational Context</label>
+                <select name="organizationType" class="form-control select-field">
+                    <option value="">Select organization type</option>
+                    <option value="private-company">Private Company</option>
+                    <option value="public-company">Publicly Traded Company</option>
+                    <option value="nonprofit">Nonprofit</option>
+                    <option value="government">Government Entity</option>
+                    <option value="small-business">Small Business</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherOrganizationType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Investigative and Legal Proceedings -->
+        <div class="form-section">
+            <h3>Investigative Details</h3>
+
+            <div class="form-group">
+                <label class="form-label">Have you been contacted by investigators?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="investigatorContact" value="yes" data-conditional="investigationDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="investigatorContact" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+
+                <div id="investigationDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Investigating Agency</label>
+                        <select name="investigatingAgency" class="form-control select-field">
+                            <option value="">Select agency</option>
+                            <option value="fbi">FBI</option>
+                            <option value="sec">Securities and Exchange Commission (SEC)</option>
+                            <option value="irs">Internal Revenue Service (IRS)</option>
+                            <option value="state-attorney">State Attorney General's Office</option>
+                            <option value="local-law">Local Law Enforcement</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" name="otherInvestigatingAgency" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date of First Contact</label>
+                        <input type="date" name="investigationContactDate" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal and Professional Background -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Occupation/Job Title</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Professional Position</label>
+                <select name="professionalPosition" class="form-control select-field" required>
+                    <option value="">Select position</option>
+                    <option value="employee">Employee</option>
+                    <option value="manager">Manager</option>
+                    <option value="executive">Executive</option>
+                    <option value="owner">Business Owner</option>
+                    <option value="consultant">Consultant</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherProfessionalPosition" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle investigator contact conditional field
+    const investigatorRadios = document.querySelectorAll('input[name="investigatorContact"]');
+    const investigationDetailsField = document.getElementById('investigationDetails');
+
+    investigatorRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            investigationDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            const inputs = investigationDetailsField.querySelectorAll('select, input');
+            inputs.forEach(input => {
+                input.required = this.value === 'yes';
+            });
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});
+</script>

@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Drafting Wills and Trusts Form</h1>
+        <p class="description">Please provide information to help draft your will or trust.</p>
+
+        <form id="drafting-wills-form">
+            <div class="form-group">
+                <label for="estate-value">Estimated Value of Your Estate</label>
+                <input 
+                    type="number" 
+                    id="estate-value" 
+                    name="estate-value" 
+                    placeholder="Enter estimated estate value in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Legal Assistance Needed</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="draft-will" name="legal-assistance" value="draft-will">
+                    <label for="draft-will">Draft a Will</label>
+                    
+                    <input type="checkbox" id="draft-trust" name="legal-assistance" value="draft-trust">
+                    <label for="draft-trust">Draft a Trust</label>
+                    
+                    <input type="checkbox" id="estate-plan" name="legal-assistance" value="estate-plan">
+                    <label for="estate-plan">Plan Entire Estate</label>
+                    
+                    <input type="checkbox" id="unsure" name="legal-assistance" value="unsure">
+                    <label for="unsure">Not Sure</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Previous Will or Trust</label>
+                <div class="radio-group">
+                    <input type="radio" id="previous-will-yes" name="previous-will" value="yes">
+                    <label for="previous-will-yes">Yes, drafted on:</label>
+                    <input 
+                        type="date" 
+                        id="previous-will-date" 
+                        name="previous-will-date" 
+                        format="mm/dd/yyyy"
+                    >
+                    
+                    <input type="radio" id="previous-will-no" name="previous-will" value="no">
+                    <label for="previous-will-no">No Previous Will</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Potential Beneficiaries</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="beneficiary-children" name="beneficiaries" value="children">
+                    <label for="beneficiary-children">Children</label>
+                    
+                    <input type="checkbox" id="beneficiary-spouse" name="beneficiaries" value="spouse">
+                    <label for="beneficiary-spouse">Spouse/Partner</label>
+                    
+                    <input type="checkbox" id="beneficiary-parents" name="beneficiaries" value="parents">
+                    <label for="beneficiary-parents">Parents</label>
+                    
+                    <input type="checkbox" id="beneficiary-siblings" name="beneficiaries" value="siblings">
+                    <label for="beneficiary-siblings">Siblings</label>
+                    
+                    <input type="checkbox" id="beneficiary-grandchildren" name="beneficiaries" value="grandchildren">
+                    <label for="beneficiary-grandchildren">Grandchildren</label>
+                    
+                    <input type="checkbox" id="beneficiary-friends" name="beneficiaries" value="friends">
+                    <label for="beneficiary-friends">Friends</label>
+                    
+                    <input type="checkbox" id="beneficiary-charities" name="beneficiaries" value="charities">
+                    <label for="beneficiary-charities">Charities</label>
+                    
+                    <input type="checkbox" id="beneficiary-self" name="beneficiaries" value="self">
+                    <label for="beneficiary-self">Myself</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Marital Status</label>
+                <select id="marital-status" name="marital-status">
+                    <option value="">Select Marital Status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="legally-separated">Legally Separated</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Employment Status</label>
+                <select id="employment-status" name="employment-status">
+                    <option value="">Select Employment Status</option>
+                    <option value="employed">Employed by Another</option>
+                    <option value="self-employed">Self-Employed</option>
+                    <option value="unemployed">Unemployed</option>
+                    <option value="retired">Retired</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Estate Assets</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="asset-home" name="assets" value="home">
+                    <label for="asset-home">Home</label>
+                    
+                    <input type="checkbox" id="asset-bank-accounts" name="assets" value="bank-accounts">
+                    <label for="asset-bank-accounts">Bank Accounts</label>
+                    
+                    <input type="checkbox" id="asset-stocks-bonds" name="assets" value="stocks-bonds">
+                    <label for="asset-stocks-bonds">Stocks or Bonds</label>
+                    
+                    <input type="checkbox" id="asset-investment-property" name="assets" value="investment-property">
+                    <label for="asset-investment-property">Investment Property</label>
+                    
+                    <input type="checkbox" id="asset-business" name="assets" value="business">
+                    <label for="asset-business">Business</label>
+                    
+                    <input type="checkbox" id="asset-retirement-account" name="assets" value="retirement-account">
+                    <label for="asset-retirement-account">Retirement Account</label>
+                    
+                    <input type="checkbox" id="asset-other" name="assets" value="other">
+                    <label for="asset-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Gross Annual Income</label>
+                <select id="annual-income" name="annual-income">
+                    <option value="">Select Income Range</option>
+                    <option value="25000-or-less">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125000-plus">$125,000+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Number of Children</label>
+                <select id="children-count" name="children-count">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7-plus">7+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Will Drafting Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('drafting-wills-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // TODO: Implement form submission logic
+    alert('Form submission will be handled by the backend');
+});
+</script>
+{% endblock %}

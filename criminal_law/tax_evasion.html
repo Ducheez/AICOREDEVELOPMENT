@@ -1,0 +1,263 @@
+<div class="form-container">
+    <h2 class="form-title">Criminal Law - Tax Evasion</h2>
+    <form id="taxEvasionForm" onsubmit="return validateForm(event)">
+        <!-- Tax Evasion Details -->
+        <div class="form-section">
+            <h3>Tax Evasion Allegations</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Reason for Seeking Legal Assistance</label>
+                <select name="legalAssistanceReason" class="form-control select-field" required>
+                    <option value="">Select reason</option>
+                    <option value="investigation">I am under investigation</option>
+                    <option value="charges">I have been charged with tax evasion</option>
+                    <option value="potential-charges">I anticipate potential charges</option>
+                    <option value="irs-dispute">Resolving a dispute with the IRS</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherReason" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Alleged Tax Evasion Amount</label>
+                <input type="number" name="allegedTaxAmount" class="form-control currency-input" 
+                       placeholder="Total amount of alleged unpaid taxes" required>
+            </div>
+        </div>
+
+        <!-- Tax Years in Question -->
+        <div class="form-section">
+            <h3>Tax Years Under Scrutiny</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Select Tax Years in Question</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="current">
+                        <label>Current Tax Year</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="previous-1">
+                        <label>Previous Tax Year (1 year back)</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="previous-2">
+                        <label>Two Years Back</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="previous-3">
+                        <label>Three Years Back</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="previous-4">
+                        <label>Four Years Back</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="previous-5">
+                        <label>Five Years Back</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="taxYears" value="other" data-conditional="otherTaxYears">
+                        <label>Other Years</label>
+                    </div>
+                </div>
+
+                <div id="otherTaxYears" class="conditional-field" style="display: none;">
+                    <label class="form-label">Specify Other Tax Years</label>
+                    <input type="text" name="specifiedTaxYears" class="form-control" 
+                           placeholder="Enter specific tax years (e.g., 2015, 2016)">
+                </div>
+            </div>
+        </div>
+
+        <!-- IRS Negotiations -->
+        <div class="form-section">
+            <h3>Desired IRS Negotiations</h3>
+
+            <div class="form-group">
+                <label class="form-label">What type of resolution are you seeking?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsResolution" value="offer-compromise">
+                        <label>Offer in Compromise</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsResolution" value="installment-plan">
+                        <label>Installment Payment Agreement</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsResolution" value="penalty-removal">
+                        <label>Tax Penalties Removed</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsResolution" value="stop-liens">
+                        <label>Stop Tax Liens and Levies</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="irsResolution" value="stop-investigation">
+                        <label>Stop Criminal Investigation</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investigation Details -->
+        <div class="form-section">
+            <h3>Investigative Information</h3>
+
+            <div class="form-group">
+                <label class="form-label">Have you been contacted by tax authorities?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="taxAuthorityContact" value="yes" data-conditional="investigationDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="taxAuthorityContact" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+
+                <div id="investigationDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Investigating Agency</label>
+                        <select name="investigatingAgency" class="form-control select-field">
+                            <option value="">Select agency</option>
+                            <option value="irs">Internal Revenue Service (IRS)</option>
+                            <option value="state-tax">State Tax Authority</option>
+                            <option value="federal">Federal Prosecutors</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" name="otherInvestigatingAgency" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date of First Contact</label>
+                        <input type="date" name="investigationContactDate" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Marital Status</label>
+                <select name="maritalStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherMaritalStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle Other Tax Years visibility
+    const otherYearsCheckbox = document.querySelector('input[name="taxYears"][value="other"]');
+    const otherYearsField = document.getElementById('otherTaxYears');
+    
+    otherYearsCheckbox.addEventListener('change', function() {
+        otherYearsField.style.display = this.checked ? 'block' : 'none';
+        const input = otherYearsField.querySelector('input');
+        input.required = this.checked;
+    });
+
+    // Handle tax authority contact conditional field
+    const taxAuthorityRadios = document.querySelectorAll('input[name="taxAuthorityContact"]');
+    const investigationDetailsField = document.getElementById('investigationDetails');
+
+    taxAuthorityRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            investigationDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            const inputs = investigationDetailsField.querySelectorAll('select, input');
+            inputs.forEach(input => {
+                input.required = this.value === 'yes';
+            });
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});
+</script>

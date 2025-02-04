@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Condominiums and Cooperatives Intake Form</h1>
+        <p class="description">Provide details about your condominium or cooperative legal matter.</p>
+
+        <form id="condos-coops-form">
+            <div class="form-group">
+                <label>Your Role in This Matter</label>
+                <select id="matter-role" name="matter-role" required>
+                    <option value="">Select Your Role</option>
+                    <option value="owner">Owner of a Condominium or Cooperative</option>
+                    <option value="board-member">Member of a Condominium Board</option>
+                    <option value="buyer">Buyer of a Condominium or Cooperative</option>
+                    <option value="seller">Seller of a Condominium or Cooperative</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="property-value">Current Market Value of the Property</label>
+                <input 
+                    type="number" 
+                    id="property-value" 
+                    name="property-value" 
+                    placeholder="Enter property value in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Type of Property</label>
+                <select id="property-type" name="property-type">
+                    <option value="">Select Property Type</option>
+                    <option value="condo">Condominium</option>
+                    <option value="co-op">Cooperative</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Legal Issues</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="issue-bylaws" name="legal-issues" value="bylaws">
+                    <label for="issue-bylaws">Bylaws and Regulations</label>
+                    
+                    <input type="checkbox" id="issue-fees" name="legal-issues" value="fees">
+                    <label for="issue-fees">Maintenance Fees or Assessments</label>
+                    
+                    <input type="checkbox" id="issue-dispute" name="legal-issues" value="dispute">
+                    <label for="issue-dispute">Board Disputes</label>
+                    
+                    <input type="checkbox" id="issue-rental" name="legal-issues" value="rental">
+                    <label for="issue-rental">Rental Restrictions</label>
+                    
+                    <input type="checkbox" id="issue-renovation" name="legal-issues" value="renovation">
+                    <label for="issue-renovation">Renovation or Modification Approval</label>
+                    
+                    <input type="checkbox" id="issue-other" name="legal-issues" value="other">
+                    <label for="issue-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="property-location">Property Location</label>
+                <input 
+                    type="text" 
+                    id="property-location" 
+                    name="property-location" 
+                    placeholder="Street Address, City, State, ZIP"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Specific Legal Assistance Needed</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="assistance-contract-review" name="legal-assistance" value="contract-review">
+                    <label for="assistance-contract-review">Contract Review</label>
+                    
+                    <input type="checkbox" id="assistance-dispute-resolution" name="legal-assistance" value="dispute-resolution">
+                    <label for="assistance-dispute-resolution">Dispute Resolution</label>
+                    
+                    <input type="checkbox" id="assistance-board-advice" name="legal-assistance" value="board-advice">
+                    <label for="assistance-board-advice">Board Advisory Services</label>
+                    
+                    <input type="checkbox" id="assistance-rule-interpretation" name="legal-assistance" value="rule-interpretation">
+                    <label for="assistance-rule-interpretation">Rule Interpretation</label>
+                    
+                    <input type="checkbox" id="assistance-other" name="legal-assistance" value="other">
+                    <label for="assistance-other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="additional-details">Additional Details or Concerns</label>
+                <textarea 
+                    id="additional-details" 
+                    name="additional-details" 
+                    rows="4" 
+                    placeholder="Provide any additional information about your condominium or cooperative matter"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Condominiums and Cooperatives Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('condos-coops-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // TODO: Implement form submission logic
+    alert('Form submission will be handled by the backend');
+});
+</script>
+{% endblock %}

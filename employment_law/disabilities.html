@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="form-container">
+    <h2 class="form-title">Employment Law - Disabilities</h2>
+    <form id="disabilitiesForm" onsubmit="return validateForm(event)">
+        <!-- Employment Information -->
+        <div class="form-section">
+            <h3>Employment Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Date of Hire</label>
+                <input type="date" name="hireDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Occupation/Job Title</label>
+                <input type="text" name="jobTitle" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Employment Status</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="employmentStatus" value="current" required>
+                        <label>Currently Employed</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="employmentStatus" value="leave" required>
+                        <label>On Leave</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="employmentStatus" value="terminated" required>
+                        <label>Employment Terminated</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="employmentStatus" value="constructive-discharge" required>
+                        <label>Forced to Resign</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">If no longer employed, last day of work</label>
+                <input type="date" name="lastWorkDate" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Employment</label>
+                <select name="employmentType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="full-time">Full-Time</option>
+                    <option value="part-time">Part-Time</option>
+                    <option value="temporary">Temporary</option>
+                    <option value="seasonal">Seasonal</option>
+                    <option value="contract">Contract</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherEmploymentType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Essential Job Functions</label>
+                <textarea name="jobFunctions" class="form-control textarea-field" required
+                          placeholder="Describe the essential functions of your job"></textarea>
+            </div>
+        </div>
+
+        <!-- Disability Information -->
+        <div class="form-section">
+            <h3>Disability Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Nature of Disability</label>
+                <textarea name="disabilityNature" class="form-control textarea-field" required
+                          placeholder="Describe your disability and how it affects your ability to perform your job duties"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">When did your disability begin?</label>
+                <input type="date" name="disabilityStartDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Is your disability:</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="disabilityDuration" value="temporary">
+                        <label>Temporary</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="disabilityDuration" value="permanent">
+                        <label>Permanent</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="disabilityDuration" value="unknown">
+                        <label>Unknown/Not Sure</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Do you have medical documentation of your disability?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="medicalDocumentation" value="yes" data-conditional="documentationDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="medicalDocumentation" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="documentationDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Most Recent Medical Documentation</label>
+                    <input type="date" name="documentationDate" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Accommodation Request -->
+        <div class="form-section">
+            <h3>Accommodation Request</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Have you requested accommodation?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="requestedAccommodation" value="yes" required data-conditional="accommodationDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="requestedAccommodation" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="accommodationDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Initial Accommodation Request</label>
+                    <input type="date" name="accommodationRequestDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Type(s) of Accommodation Requested</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="accommodationType[]" value="schedule">
+                            <label>Modified Work Schedule</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="accommodationType[]" value="equipment">
+                            <label>Special Equipment</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="accommodationType[]" value="duties">
+                            <label>Modified Job Duties</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="accommodationType[]" value="leave">
+                            <label>Leave of Absence</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="accommodationType[]" value="remote">
+                            <label>Remote Work</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="accommodationType[]" value="assistance">
+                            <label>Personal Assistance</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="accommodationType[]" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Specific Accommodation Details</label>
+                    <textarea name="accommodationDetails" class="form-control textarea-field"
+                              placeholder="Describe the specific accommodations you requested"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Employer's Response to Request</label>
+                    <select name="employerResponse" class="form-control select-field">
+                        <option value="">Select response</option>
+                        <option value="granted">Granted All Accommodations</option>
+                        <option value="partial">Granted Some Accommodations</option>
+                        <option value="denied">Denied All Accommodations</option>
+                        <option value="pending">Still Pending</option>
+                        <option value="ignored">No Response</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">If denied, reason given by employer</label>
+                    <textarea name="denialReason" class="form-control textarea-field"
+                              placeholder="Explain the reason given for denial, if any"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Treatment of Employee -->
+        <div class="form-section">
+            <h3>Treatment of Employee</h3>
+
+            <div class="form-group">
+                <label class="form-label">Have you experienced any of the following?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="treatment[]" value="harassment">
+                        <label>Harassment or Hostile Treatment</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="treatment[]" value="demotion">
+                        <label>Demotion</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="treatment[]" value="discipline">
+                        <label>Disciplinary Action</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="treatment[]" value="reduced-hours">
+                        <label>Reduced Hours</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="treatment[]" value="passed-promotion">
+                        <label>Passed Over for Promotion</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="treatment[]" value="termination">
+                        <label>Termination</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="treatment[]" value="other">
+                        <label>Other Adverse Action</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Have you complained about discrimination?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="complaintFiled" value="yes" data-conditional="complaintDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="complaintFiled" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="complaintDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Complaint</label>
+                    <input type="date" name="complaintDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Type of Complaint</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="complaintType[]" value="internal">
+                            <label>Internal HR Complaint</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="complaintType[]" value="eeoc">
+                            <label>EEOC Charge</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="complaintType[]" value="state">
+                            <label>State Agency Complaint</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="complaintType[]" value="union">
+                            <label>Union Grievance</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="complaintType[]" value="other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Status of Complaint</label>
+                    <select name="complaintStatus" class="form-control select-field">
+                        <option value="">Select status</option>
+                        <option value="pending">Pending</option>
+                        <option value="investigation">Under Investigation</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="dismissed">Dismissed</option>
+                        <option value="withdrawn">Withdrawn</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+
+    // Handle employment status and last work date
+    const employmentStatusRadios = document.querySelectorAll('input[name="employmentStatus"]');
+    const lastWorkDateInput = document.querySelector('input[name="lastWorkDate"]');
+    
+    employmentStatusRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            const isTerminated = ['terminated', 'constructive-discharge'].includes(this.value);
+            if (lastWorkDateInput) {
+                lastWorkDateInput.required = isTerminated;
+                lastWorkDateInput.style.display = isTerminated ? 'block' : 'none';
+            }
+        });
+    });
+
+    // Validate dates
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    dateInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            
+            // Special handling for hire date
+            if (input.name === 'hireDate') {
+                if (selectedDate > today) {
+                    alert('Hire date cannot be in the future');
+                    this.value = '';
+                }
+            }
+            // Special handling for last work date
+            else if (input.name === 'lastWorkDate') {
+                const hireDate = new Date(document.querySelector('input[name="hireDate"]').value);
+                if (selectedDate < hireDate) {
+                    alert('Last work date cannot be before hire date');
+                    this.value = '';
+                }
+                if (selectedDate > today) {
+                    alert('Last work date cannot be in the future');
+                    this.value = '';
+                }
+            }
+            // General date validation for other dates
+            else if (selectedDate > today && input.name !== 'accommodationRequestDate') {
+                alert('Date cannot be in the future');
+                this.value = '';
+            }
+        });
+    });
+
+    // Handle complaint details visibility
+    const complaintCheckboxes = document.querySelectorAll('input[name="complaintType[]"]');
+    const complaintTypeOther = document.querySelector('input[name="complaintType[]"][value="other"]');
+    const complaintDetailsTextarea = document.querySelector('textarea[name="complaintDetails"]');
+
+    if (complaintTypeOther && complaintDetailsTextarea) {
+        complaintTypeOther.addEventListener('change', function() {
+            complaintDetailsTextarea.style.display = this.checked ? 'block' : 'none';
+            complaintDetailsTextarea.required = this.checked;
+        });
+    }
+
+    // Form validation
+    const form = document.getElementById('disabilitiesForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Validate required fields
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('invalid');
+                const fieldLabel = field.previousElementSibling;
+                alert(`Please fill in the field: ${fieldLabel.textContent}`);
+            } else {
+                field.classList.remove('invalid');
+            }
+        });
+
+        // Validate conditional requirements
+        const employmentStatus = form.querySelector('input[name="employmentStatus"]:checked');
+        if (employmentStatus && ['terminated', 'constructive-discharge'].includes(employmentStatus.value)) {
+            const lastWorkDate = form.querySelector('input[name="lastWorkDate"]');
+            if (!lastWorkDate.value) {
+                isValid = false;
+                lastWorkDate.classList.add('invalid');
+                alert('Please enter the last day of work');
+            }
+        }
+
+        // Validate accommodation request details
+        const accommodationRequested = form.querySelector('input[name="requestedAccommodation"]:checked');
+        if (accommodationRequested && accommodationRequested.value === 'yes') {
+            const accommodationTypes = form.querySelectorAll('input[name="accommodationType[]"]:checked');
+            if (accommodationTypes.length === 0) {
+                isValid = false;
+                alert('Please select at least one type of accommodation requested');
+            }
+        }
+
+        if (!isValid) {
+            return;
+        }
+
+        // If all validations pass, submit the form
+        this.submit();
+    });
+
+    // Handle textarea character limits
+    const textareas = document.querySelectorAll('textarea');
+    const maxLength = 2000;
+
+    textareas.forEach(textarea => {
+        textarea.addEventListener('input', function() {
+            if (this.value.length > maxLength) {
+                this.value = this.value.substring(0, maxLength);
+                alert(`Text cannot exceed ${maxLength} characters`);
+            }
+        });
+    });
+});
+</script>
+</html>

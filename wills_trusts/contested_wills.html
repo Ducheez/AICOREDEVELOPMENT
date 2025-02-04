@@ -1,0 +1,149 @@
+\{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="app-container">
+        <h1>Contested Wills Form</h1>
+        <p class="description">Please provide detailed information about the contested will case.</p>
+
+        <form id="contested-wills-form">
+            <div class="form-group">
+                <label for="estate-value">Estimated Value of the Estate</label>
+                <input 
+                    type="number" 
+                    id="estate-value" 
+                    name="estate-value" 
+                    placeholder="Enter estimated estate value in dollars" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="deceased-date">Date of Deceased's Passing</label>
+                <input 
+                    type="date" 
+                    id="deceased-date" 
+                    name="deceased-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="relationship">Your Relationship to the Deceased</label>
+                <select id="relationship" name="relationship">
+                    <option value="">Select Relationship</option>
+                    <option value="spouse">Spouse</option>
+                    <option value="child">Child</option>
+                    <option value="parent">Parent</option>
+                    <option value="sibling">Sibling</option>
+                    <option value="grandchild">Grandchild</option>
+                    <option value="beneficiary">Beneficiary Named in Will</option>
+                    <option value="personal-representative">Personal Representative Named in Will</option>
+                    <option value="creditor">Creditor</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="deceased-state">State of Deceased's Residence</label>
+                <select id="deceased-state" name="deceased-state">
+                    <option value="">Select State</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <!-- Add all 50 states -->
+                    <option value="WY">Wyoming</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Will Status</label>
+                <div class="radio-group">
+                    <input type="radio" id="will-exists-yes" name="will-exists" value="yes">
+                    <label for="will-exists-yes">Will Exists</label>
+                    
+                    <input type="radio" id="will-exists-no" name="will-exists" value="no">
+                    <label for="will-exists-no">No Will Exists</label>
+                    
+                    <input type="radio" id="will-exists-unknown" name="will-exists" value="unknown">
+                    <label for="will-exists-unknown">Unsure</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="will-creation-date">Date of Most Recent Will (if known)</label>
+                <input 
+                    type="date" 
+                    id="will-creation-date" 
+                    name="will-creation-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Legal Assistance Needed</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="challenge-will" name="legal-assistance" value="challenge-will">
+                    <label for="challenge-will">Challenge the Will</label>
+                    
+                    <input type="checkbox" id="protect-interests" name="legal-assistance" value="protect-interests">
+                    <label for="protect-interests">Protect My Interests in the Estate</label>
+                    
+                    <input type="checkbox" id="manage-estate" name="legal-assistance" value="manage-estate">
+                    <label for="manage-estate">Manage, Distribute, or Settle the Estate</label>
+                    
+                    <input type="checkbox" id="creditor-claim" name="legal-assistance" value="creditor-claim">
+                    <label for="creditor-claim">Make a Claim as a Creditor</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Legal Actions</label>
+                <select id="legal-actions" name="legal-actions">
+                    <option value="">Select Current Status</option>
+                    <option value="no-action">No Legal Actions Taken</option>
+                    <option value="will-filed">Will Filed with Court</option>
+                    <option value="proceedings-started">Court Proceedings Started Without Will</option>
+                    <option value="will-contested">Someone is Contesting the Will Filed with Court</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="court-date">Scheduled Court Date (if applicable)</label>
+                <input 
+                    type="date" 
+                    id="court-date" 
+                    name="court-date" 
+                    format="mm/dd/yyyy"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>When Are You Looking to Hire an Attorney?</label>
+                <select id="attorney-timeline" name="attorney-timeline">
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This Week</option>
+                    <option value="this-month">This Month</option>
+                    <option value="this-year">This Year</option>
+                    <option value="exploring">Just Exploring Options</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Case Details</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('contested-wills-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // TODO: Implement form submission logic
+    alert('Form submission will be handled by the backend');
+});
+</script>
+{% endblock %}

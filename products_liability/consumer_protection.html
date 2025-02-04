@@ -1,0 +1,494 @@
+<!-- templates/forms/products_liability/consumer_protection.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Consumer Protection and Fraud Case Information</h2>
+    <form id="consumer-protection-form" class="legal-form">
+        <div class="form-section">
+            <h3>Entity Information</h3>
+            
+            <div class="form-group">
+                <label>What kind of entity committed consumer fraud against you?</label>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="entity_individual" 
+                           name="entity_type" 
+                           value="individual" 
+                           class="form-check-input" 
+                           required>
+                    <label class="form-check-label" for="entity_individual">An individual</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="entity_business" 
+                           name="entity_type" 
+                           value="business" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="entity_business">A business</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" 
+                           id="entity_other" 
+                           name="entity_type" 
+                           value="other" 
+                           class="form-check-input">
+                    <label class="form-check-label" for="entity_other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group" id="entity_details_div" style="display: none;">
+                <label for="entity_details">Please provide details about the entity:</label>
+                <textarea id="entity_details" 
+                         name="entity_details" 
+                         class="form-control" 
+                         rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Type of Consumer Protection / Fraud</h3>
+
+            <div class="form-group">
+                <label>What areas does your case involve? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="type_goods" 
+                               name="case_types[]" 
+                               value="consumer_goods" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="type_goods">The sale of consumer goods</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="type_services" 
+                               name="case_types[]" 
+                               value="services" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="type_services">The performance of services</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="type_credit" 
+                               name="case_types[]" 
+                               value="credit_reporting" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="type_credit">Inaccurate credit reporting</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="type_identity" 
+                               name="case_types[]" 
+                               value="id_theft" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="type_identity">ID theft</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="type_scam" 
+                               name="case_types[]" 
+                               value="scam" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="type_scam">Scam or fraudulent scheme</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="type_advertising" 
+                               name="case_types[]" 
+                               value="false_advertising" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="type_advertising">False or misleading advertising</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="type_contracts" 
+                               name="case_types[]" 
+                               value="contracts" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="type_contracts">Unfair contracts or terms</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="type_price" 
+                               name="case_types[]" 
+                               value="price_gouging" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="type_price">Price gouging</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="type_other" 
+                               name="case_types[]" 
+                               value="other" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="type_other">Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" id="case_type_details_div" style="display: none;">
+                <label for="case_type_details">Please describe the type of fraud or consumer protection issue:</label>
+                <textarea id="case_type_details" 
+                         name="case_type_details" 
+                         class="form-control" 
+                         rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Incident Details</h3>
+
+            <div class="form-group">
+                <label for="incident_date">When did the incident or fraud occur? (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="incident_date" 
+                       name="incident_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="discovery_date">When did you discover the fraud or issue? (MM/DD/YYYY)</label>
+                <input type="text" 
+                       id="discovery_date" 
+                       name="discovery_date" 
+                       class="form-control date-input" 
+                       placeholder="MM/DD/YYYY" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">What is the approximate amount of money involved or lost? ($)</label>
+                <input type="number" 
+                       id="amount" 
+                       name="amount" 
+                       class="form-control" 
+                       min="0" 
+                       step="0.01" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Do you have documentation of the fraud or consumer protection violation?</label>
+                <div class="checkbox-group">
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="doc_contracts" 
+                               name="documentation[]" 
+                               value="contracts" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="doc_contracts">Contracts or agreements</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="doc_receipts" 
+                               name="documentation[]" 
+                               value="receipts" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="doc_receipts">Receipts or invoices</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="doc_correspondence" 
+                               name="documentation[]" 
+                               value="correspondence" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="doc_correspondence">Emails or correspondence</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="doc_advertising" 
+                               name="documentation[]" 
+                               value="advertising" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="doc_advertising">Advertisements or marketing materials</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="doc_photos" 
+                               name="documentation[]" 
+                               value="photos" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="doc_photos">Photos or videos</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="doc_reports" 
+                               name="documentation[]" 
+                               value="reports" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="doc_reports">Police or incident reports</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Actions Taken</h3>
+
+            <div class="form-group">
+                <label>Have you reported this to any authorities?</label>
+                <div class="checkbox-group">
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="reported_police" 
+                               name="reported_to[]" 
+                               value="police" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="reported_police">Police</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="reported_ftc" 
+                               name="reported_to[]" 
+                               value="ftc" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="reported_ftc">Federal Trade Commission (FTC)</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="reported_ag" 
+                               name="reported_to[]" 
+                               value="attorney_general" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="reported_ag">State Attorney General</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="reported_bbb" 
+                               name="reported_to[]" 
+                               value="bbb" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="reported_bbb">Better Business Bureau</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               id="reported_other" 
+                               name="reported_to[]" 
+                               value="other" 
+                               class="form-check-input">
+                        <label class="form-check-label" for="reported_other">Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" id="report_details_div" style="display: none;">
+                <label for="report_details">Please provide details about your reports:</label>
+                <textarea id="report_details" 
+                         name="report_details" 
+                         class="form-control" 
+                         rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="attempted_resolution">Have you attempted to resolve this with the entity directly?</label>
+                <select id="attempted_resolution" name="attempted_resolution" class="form-control" required>
+                    <option value="">Select Answer</option>
+                    <option value="no_attempt">No attempt made</option>
+                    <option value="contacted">Contacted but no response</option>
+                    <option value="negotiating">Currently negotiating</option>
+                    <option value="refused">They refused to help</option>
+                    <option value="partial">Partial resolution offered</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label for="income">What is your gross annual income?</label>
+                <select id="income" name="income" class="form-control" required>
+                    <option value="">Select Income Range</option>
+                    <option value="25000">$25,000 or less</option>
+                    <option value="50000">$25,001–$50,000</option>
+                    <option value="75000">$50,001–$75,000</option>
+                    <option value="100000">$75,001–$100,000</option>
+                    <option value="125000">$100,001–$125,000</option>
+                    <option value="125001">$125,000+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hiring_timeframe">When are you planning to hire an attorney?</label>
+                <select id="hiring_timeframe" name="hiring_timeframe" class="form-control" required>
+                    <option value="">Select Timeframe</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this_week">This week</option>
+                    <option value="this_month">This month</option>
+                    <option value="this_year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle entity type details
+    document.getElementsByName('entity_type').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const detailsDiv = document.getElementById('entity_details_div');
+            detailsDiv.style.display = this.value === 'other' ? 'block' : 'none';
+            document.getElementById('entity_details').required = this.value === 'other';
+        });
+    });
+
+    // Handle case type details
+    document.getElementById('type_other').addEventListener('change', function() {
+        const detailsDiv = document.getElementById('case_type_details_div');
+        detailsDiv.style.display = this.checked ? 'block' : 'none';
+        document.getElementById('case_type_details').required = this.checked;
+    });
+
+    // Handle report details
+    document.getElementById('reported_other').addEventListener('change', function() {
+        const detailsDiv = document.getElementById('report_details_div');
+        detailsDiv.style.display = this.checked ? 'block' : 'none';
+        document.getElementById('report_details').required = this.checked;
+    });
+
+    // Validate at least one case type is selected
+    const caseTypeCheckboxes = document.querySelectorAll('input[name="case_types[]"]');
+    caseTypeCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const anyChecked = Array.from(caseTypeCheckboxes)
+                .some(box => box.checked);
+            if (!anyChecked) {
+                alert('Please select at least one type of consumer protection issue.');
+            }
+        });
+    });
+
+    // Date validation
+    document.querySelectorAll('.date-input').forEach(input => {
+        input.addEventListener('blur', function() {
+            const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/([12]\d{3})$/;
+            if (this.value && !dateRegex.test(this.value)) {
+                this.classList.add('is-invalid');
+                if (!this.nextElementSibling?.classList.contains('invalid-feedback')) {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'invalid-feedback';
+                    feedback.textContent = 'Please enter date in MM/DD/YYYY format';
+                    this.parentNode.appendChild(feedback);
+                }
+            } else {
+                this.classList.remove('is-invalid');
+                const feedback = this.nextElementSibling;
+                if (feedback?.classList.contains('invalid-feedback')) {
+                    feedback.remove();
+                }
+            }
+        });
+    });
+
+    // Validate discovery date is not before incident date
+    document.getElementById('discovery_date').addEventListener('blur', function() {
+        const incidentDate = new Date(document.getElementById('incident_date').value);
+        const discoveryDate = new Date(this.value);
+        
+        if (!isNaN(incidentDate.getTime()) && !isNaN(discoveryDate.getTime())) {
+            if (discoveryDate < incidentDate) {
+                this.classList.add('is-invalid');
+                if (!this.nextElementSibling?.classList.contains('invalid-feedback')) {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'invalid-feedback';
+                    feedback.textContent = 'Discovery date cannot be before incident date';
+                    this.parentNode.appendChild(feedback);
+                }
+            }
+        }
+    });
+
+    // Handle documentation requirements
+    const documentationCheckboxes = document.querySelectorAll('input[name="documentation[]"]');
+    let documentationWarningShown = false;
+    
+    documentationCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const anyChecked = Array.from(documentationCheckboxes)
+                .some(box => box.checked);
+            if (!anyChecked && !documentationWarningShown) {
+                alert('Having documentation of the fraud or violation will strengthen your case. Please gather any available documentation.');
+                documentationWarningShown = true;
+            }
+        });
+    });
+
+    // Form validation and submission
+    document.getElementById('consumer-protection-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Check required fields
+        if (!this.checkValidity()) {
+            e.stopPropagation();
+            this.classList.add('was-validated');
+            return;
+        }
+
+        // Validate case types
+        const caseTypesSelected = Array.from(caseTypeCheckboxes)
+            .some(box => box.checked);
+        if (!caseTypesSelected) {
+            alert('Please select at least one type of consumer protection issue.');
+            return;
+        }
+
+        // Validate dates
+        const incidentDate = new Date(document.getElementById('incident_date').value);
+        const discoveryDate = new Date(document.getElementById('discovery_date').value);
+        if (discoveryDate < incidentDate) {
+            alert('Discovery date cannot be before incident date.');
+            return;
+        }
+
+        // If all validation passes, prepare form data
+        const formData = new FormData(this);
+        
+        // Add formatted dates
+        formData.append('incident_date_formatted', 
+            new Date(document.getElementById('incident_date').value)
+                .toISOString().split('T')[0]);
+        formData.append('discovery_date_formatted', 
+            new Date(document.getElementById('discovery_date').value)
+                .toISOString().split('T')[0]);
+
+        // Submit the form
+        console.log('Form is valid, submitting...');
+        // Here you would typically send the formData to your server
+        
+        // Show success message
+        alert('Your consumer protection case information has been submitted successfully.');
+    });
+
+    // Reset form handler
+    document.getElementById('consumer-protection-form').addEventListener('reset', function() {
+        // Clear all error states and validation messages
+        this.classList.remove('was-validated');
+        document.querySelectorAll('.is-invalid').forEach(el => {
+            el.classList.remove('is-invalid');
+        });
+        document.querySelectorAll('.invalid-feedback').forEach(el => {
+            el.remove();
+        });
+
+        // Reset all conditional displays
+        document.getElementById('entity_details_div').style.display = 'none';
+        document.getElementById('case_type_details_div').style.display = 'none';
+        document.getElementById('report_details_div').style.display = 'none';
+
+        // Reset warning flags
+        documentationWarningShown = false;
+    });
+});
+</script>
+{% endblock %}

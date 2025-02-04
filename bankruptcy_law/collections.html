@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="form-container">
+    <h2 class="form-title">Bankruptcy Law - Collections</h2>
+    <form id="collectionsForm" onsubmit="return validateForm(event)">
+        <!-- Party Information -->
+        <div class="form-section">
+            <h3>Party Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Role</label>
+                <select name="role" class="form-control select-field" required>
+                    <option value="">Select role</option>
+                    <option value="debtor">Individual Owing Debt</option>
+                    <option value="creditor">Creditor Seeking Collection</option>
+                    <option value="business-debtor">Business Owing Debt</option>
+                    <option value="collection-agency">Collection Agency</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Are You Currently Represented by an Attorney?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="hasAttorney" value="yes" required>
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="hasAttorney" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Debt Information -->
+        <div class="form-section">
+            <h3>Debt Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Debt</label>
+                <select name="debtType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="medical">Medical Bills</option>
+                    <option value="personal-loan">Personal Loan</option>
+                    <option value="business">Business Debt</option>
+                    <option value="utility">Utility Bills</option>
+                    <option value="rent">Rent/Lease</option>
+                    <option value="mortgage">Mortgage</option>
+                    <option value="auto">Auto Loan</option>
+                    <option value="student">Student Loans</option>
+                    <option value="tax">Tax Debt</option>
+                    <option value="judgment">Court Judgment</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherDebtType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Original Debt Amount</label>
+                <input type="number" name="originalAmount" class="form-control currency-input" 
+                       placeholder="Enter original amount owed" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Amount Owed</label>
+                <input type="number" name="currentAmount" class="form-control currency-input" 
+                       placeholder="Enter current amount owed" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Date Debt Was Incurred</label>
+                <input type="date" name="debtDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date of Last Payment</label>
+                <input type="date" name="lastPaymentDate" class="form-control">
+            </div>
+        </div>
+
+        <!-- Collection Status -->
+        <div class="form-section">
+            <h3>Collection Status</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Current Collection Stage</label>
+                <select name="collectionStage" class="form-control select-field" required>
+                    <option value="">Select stage</option>
+                    <option value="pre-collection">Pre-Collection/Past Due</option>
+                    <option value="internal">Internal Collections</option>
+                    <option value="agency">With Collection Agency</option>
+                    <option value="legal">Legal Action Pending</option>
+                    <option value="judgment">Post-Judgment</option>
+                    <option value="garnishment">Wage Garnishment</option>
+                    <option value="lien">Property Lien</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Has Legal Action Been Filed?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="legalAction" value="yes" required data-conditional="legalActionDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="legalAction" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="legalActionDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date Legal Action Filed</label>
+                    <input type="date" name="legalActionDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Court Information</label>
+                    <input type="text" name="courtInfo" class="form-control" 
+                           placeholder="Name and location of court">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Case Number</label>
+                    <input type="text" name="caseNumber" class="form-control" 
+                           placeholder="If known">
+                </div>
+            </div>
+        </div>
+
+        <!-- Collection Communications -->
+        <div class="form-section">
+            <h3>Collection Communications</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Have You Received Collection Notices?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="receivedNotices" value="yes" required data-conditional="noticeDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="receivedNotices" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="noticeDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Most Recent Notice</label>
+                    <input type="date" name="recentNoticeDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Type of Communications Received</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="communicationType[]" value="letters">
+                            <label>Collection Letters</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="communicationType[]" value="calls">
+                            <label>Phone Calls</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="communicationType[]" value="emails">
+                            <label>Emails</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="communicationType[]" value="text">
+                            <label>Text Messages</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="communicationType[]" value="legal">
+                            <label>Legal Documents</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Have You Disputed the Debt?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="disputedDebt" value="yes" required data-conditional="disputeDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="disputedDebt" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="disputeDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date Debt Was Disputed</label>
+                    <input type="date" name="disputeDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Reason for Dispute</label>
+                    <select name="disputeReason" class="form-control select-field">
+                        <option value="">Select reason</option>
+                        <option value="not-mine">Not My Debt</option>
+                        <option value="amount">Incorrect Amount</option>
+                        <option value="paid">Already Paid</option>
+                        <option value="settlement">Settled Previously</option>
+                        <option value="bankruptcy">Discharged in Bankruptcy</option>
+                        <option value="statute">Beyond Statute of Limitations</option>
+                        <option value="fraud">Fraudulent Debt</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? this.value === 'yes' : this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+
+    // Validate dates
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    dateInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            if (input.name !== 'debtDate' && input.name !== 'lastPaymentDate' && selectedDate > today) {
+                alert('Date cannot be in the future');
+                this.value = '';
+            }
+        });
+    });
+});
+</script>
+</html>

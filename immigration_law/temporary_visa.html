@@ -1,0 +1,303 @@
+<div class="form-container">
+    <h2 class="form-title">Immigration Law - Temporary Visa Application</h2>
+    <form id="temporaryVisaForm" onsubmit="return validateForm(event)">
+        <!-- Current Immigration Status -->
+        <div class="form-section">
+            <h3>Current Immigration Status</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Current Location</label>
+                <select name="currentStatus" class="form-control select-field" required>
+                    <option value="">Select current status</option>
+                    <option value="outside-us">Outside the United States</option>
+                    <option value="visa">Currently in the United States on a Visa</option>
+                    <option value="undocumented">In the United States without Proper Documentation</option>
+                    <option value="removal-proceedings">In Deportation/Removal Proceedings</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Existing or Previous Visa Status</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="existingVisa" value="yes" data-conditional="existingVisaDetails">
+                        <label>I currently have or previously had a U.S. visa</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="existingVisa" value="no">
+                        <label>I have never had a U.S. visa</label>
+                    </div>
+                </div>
+
+                <div id="existingVisaDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Previous Visa Type</label>
+                        <select name="previousVisaType" class="form-control select-field">
+                            <option value="">Select previous visa type</option>
+                            <option value="tourist">Tourist (B1/B2)</option>
+                            <option value="student">Student (F1/M1)</option>
+                            <option value="work">Work (H1B, L1, etc.)</option>
+                            <option value="exchange">Exchange Visitor (J1)</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" name="otherPreviousVisaType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Previous Visa Expiration Date</label>
+                        <input type="date" name="previousVisaExpiration" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Temporary Visa Type -->
+        <div class="form-section">
+            <h3>Temporary Visa Application Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Temporary Visa Sought</label>
+                <select name="visaType" class="form-control select-field" required>
+                    <option value="">Select temporary visa type</option>
+                    <option value="work">Work Visa</option>
+                    <option value="student">Student/Education Visa</option>
+                    <option value="tourism">Tourism</option>
+                    <option value="business">Business</option>
+                    <option value="fiancee">Fiancee</option>
+                    <option value="family">Visiting Family Members</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherVisaType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div id="workVisaDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Specific Work Visa Category</label>
+                    <select name="workVisaCategory" class="form-control select-field">
+                        <option value="">Select work visa category</option>
+                        <option value="h1b">H-1B (Specialty Occupation)</option>
+                        <option value="l1">L-1 (Intracompany Transferee)</option>
+                        <option value="o1">O-1 (Extraordinary Ability)</option>
+                        <option value="h2b">H-2B (Temporary Non-Agricultural Workers)</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" name="otherWorkVisaCategory" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                </div>
+            </div>
+
+            <div id="studentVisaDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Type of Educational Institution</label>
+                    <select name="educationalInstitutionType" class="form-control select-field">
+                        <option value="">Select institution type</option>
+                        <option value="university">University/College</option>
+                        <option value="community-college">Community College</option>
+                        <option value="vocational">Vocational School</option>
+                        <option value="language">Language School</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" name="otherInstitutionType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Name of Educational Institution</label>
+                    <input type="text" name="educationalInstitutionName" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Personal Details</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Gender</label>
+                <select name="gender" class="form-control select-field" required>
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="nonbinary">Non-binary</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherGender" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Marital Status</label>
+                <select name="maritalStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherMaritalStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Country of Origin</label>
+                <select name="countryOfOrigin" class="form-control select-field" required>
+                    <option value="">Select country</option>
+                    <option value="mexico">Mexico</option>
+                    <option value="canada">Canada</option>
+                    <option value="india">India</option>
+                    <option value="china">China</option>
+                    <option value="philippines">Philippines</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherCountry" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Occupation or Profession</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Travel and Stay Details -->
+        <div class="form-section">
+            <h3>Proposed Travel and Stay Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Proposed Date of Entry to the United States</label>
+                <input type="date" name="proposedEntryDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Proposed Length of Stay</label>
+                <select name="proposedStayLength" class="form-control select-field" required>
+                    <option value="">Select length of stay</option>
+                    <option value="less-3-months">Less than 3 months</option>
+                    <option value="3-6-months">3-6 months</option>
+                    <option value="6-12-months">6-12 months</option>
+                    <option value="1-2-years">1-2 years</option>
+                    <option value="more-2-years">More than 2 years</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Language Assistance -->
+        <div class="form-section">
+            <h3>Language Assistance</h3>
+
+            <div class="form-group">
+                <label class="form-label">Do you need a translator?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="languageAssistance" value="yes" data-conditional="translatorDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="languageAssistance" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+
+                <div id="translatorDetails" class="conditional-field" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Preferred Language</label>
+                        <input type="text" name="preferredLanguage" class="form-control" 
+                               placeholder="Enter your preferred language">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle existing visa conditional field
+    const existingVisaRadios = document.querySelectorAll('input[name="existingVisa"]');
+    const existingVisaDetailsField = document.getElementById('existingVisaDetails');
+
+    existingVisaRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            existingVisaDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            const inputs = existingVisaDetailsField.querySelectorAll('select, input');
+            inputs.forEach(input => {
+                input.required = this.value === 'yes';
+            });
+        });
+    });
+
+    // Handle visa type conditional fields
+    const visaTypeSelect = document.querySelector('select[name="visaType"]');
+    const workVisaDetailsField = document.getElementById('workVisaDetails');
+    const studentVisaDetailsField = document.getElementById('studentVisaDetails');
+
+    visaTypeSelect.addEventListener('change', function() {
+        // Hide all conditional fields first
+        workVisaDetailsField.style.display = 'none';
+        studentVisaDetailsField.style.display = 'none';
+
+        // Show relevant field based on selection
+        if (this.value === 'work') {
+            workVisaDetailsField.style.display = 'block';
+            const inputs = workVisaDetailsField.querySelectorAll('select, input');
+            inputs.forEach(input => {
+                input.required = true;
+            });
+        } else if (this.value === 'student') {
+            studentVisaDetailsField.style.display = 'block';
+            const inputs = studentVisaDetailsField.querySelectorAll('select, input');
+            inputs.forEach(input => {
+                input.required = true;
+            });
+        }
+    });
+
+    // Handle language assistance conditional field
+    const languageAssistanceRadios = document.querySelectorAll('input[name="languageAssistance"]');
+    const translatorDetailsField = document.getElementById('translatorDetails');
+
+    languageAssistanceRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            translatorDetailsField.style.display = this.value === 'yes' ? 'block' : 'none';
+            const languageInput = translatorDetailsField.querySelector('input');
+            languageInput.required = this.value === 'yes';
+        });
+    });
+});
+</script>

@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Intellectual Property - Copyright Case Information</h2>
+    <form id="copyrightForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Creator/Applicant Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Copyright Assistance</label>
+                <select name="copyrightAssistanceType" class="form-control select-field" required>
+                    <option value="">Select type of assistance</option>
+                    <option value="obtain">Obtain a copyright</option>
+                    <option value="enforce">Enforce a copyright against an infringer</option>
+                    <option value="defend">Defend against a copyright infringement claim</option>
+                    <option value="ownership">Resolve copyright ownership dispute</option>
+                    <option value="license">License or assign a copyright</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherAssistanceType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Copyrighted Work Details -->
+        <div class="form-section">
+            <h3>Copyrighted Work Details</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Copyrightable Work</label>
+                <select name="workType" class="form-control select-field" required>
+                    <option value="">Select type of work</option>
+                    <option value="literary">Literary Work</option>
+                    <option value="dramatic">Dramatic Work</option>
+                    <option value="music-lyrics">Music with Lyrics</option>
+                    <option value="music-instrumental">Instrumental Music</option>
+                    <option value="audiovisual">Movie or Audiovisual Work</option>
+                    <option value="pictorial">Pictorial, Graphic, or Sculptural Work</option>
+                    <option value="architectural">Architectural Work</option>
+                    <option value="software">Computer Software</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherWorkType" class="form-control" 
+                       placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Title of the Work</label>
+                <input type="text" name="workTitle" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date of Creation</label>
+                <input type="date" name="creationDate" class="form-control" max="{{ current_date }}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date of First Publication (if applicable)</label>
+                <input type="date" name="publicationDate" class="form-control" max="{{ current_date }}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Work Description</label>
+                <textarea name="workDescription" class="form-control textarea-field" 
+                          placeholder="Provide a brief description of the work" required></textarea>
+            </div>
+        </div>
+
+        <!-- Dispute or Ownership Details -->
+        <div class="form-section">
+            <h3>Dispute or Ownership Details</h3>
+
+            <div class="form-group">
+                <label class="form-label">Who is the Current Copyright Owner?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="copyrightOwner" value="creator">
+                        <label>I am the original creator</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="copyrightOwner" value="employer">
+                        <label>Work created as part of employment</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="copyrightOwner" value="commissioned">
+                        <label>Commissioned work</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="copyrightOwner" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+                <input type="text" name="otherOwnerDetails" class="form-control" 
+                       placeholder="Provide details about ownership" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Dispute or Ownership Details</label>
+                <textarea name="ownershipDetails" class="form-control textarea-field" 
+                          placeholder="Describe any disputes or complex ownership situations"></textarea>
+            </div>
+        </div>
+
+        <!-- Potential Infringement -->
+        <div class="form-section">
+            <h3>Potential Infringement</h3>
+
+            <div class="form-group">
+                <label class="form-label">Has Your Work Been Potentially Infringed?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="infringementStatus" value="yes">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="infringementStatus" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group conditional-field" id="infringementDetails" style="display: none;">
+                <label class="form-label">Infringement Details</label>
+                <textarea name="infringementDescription" class="form-control textarea-field" 
+                          placeholder="Describe the potential copyright infringement"></textarea>
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<!-- Add form-specific script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show/hide "Other" input fields for selects
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Show/hide copyright owner details
+    const copyrightOwnerRadios = document.querySelectorAll('input[name="copyrightOwner"]');
+    const otherOwnerDetails = document.querySelector('input[name="otherOwnerDetails"]');
+    copyrightOwnerRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            otherOwnerDetails.style.display = this.value === 'other' ? 'block' : 'none';
+            otherOwnerDetails.required = this.value === 'other';
+        });
+    });
+
+    // Show/hide infringement details
+    const infringementRadios = document.querySelectorAll('input[name="infringementStatus"]');
+    const infringementDetailsSection = document.getElementById('infringementDetails');
+    const infringementDescriptionField = document.querySelector('textarea[name="infringementDescription"]');
+    
+    infringementRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'yes') {
+                infringementDetailsSection.style.display = 'block';
+                infringementDescriptionField.required = true;
+            } else {
+                infringementDetailsSection.style.display = 'none';
+                infringementDescriptionField.required = false;
+                infringementDescriptionField.value = '';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

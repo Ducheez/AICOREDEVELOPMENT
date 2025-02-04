@@ -1,0 +1,227 @@
+<div class="form-container">
+    <h2 class="form-title">Administrative Law - Education and Schools</h2>
+    <form id="educationForm" onsubmit="return validateForm(event)">
+        <!-- Student Information -->
+        <div class="form-section">
+            <h3>Student Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Student's Age</label>
+                <input type="number" name="studentAge" class="form-control" required min="3" max="25">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Current Grade Level</label>
+                <select name="gradeLevel" class="form-control select-field" required>
+                    <option value="">Select grade level</option>
+                    <option value="pre-k">Pre-Kindergarten</option>
+                    <option value="k">Kindergarten</option>
+                    <option value="1">1st Grade</option>
+                    <option value="2">2nd Grade</option>
+                    <option value="3">3rd Grade</option>
+                    <option value="4">4th Grade</option>
+                    <option value="5">5th Grade</option>
+                    <option value="6">6th Grade</option>
+                    <option value="7">7th Grade</option>
+                    <option value="8">8th Grade</option>
+                    <option value="9">9th Grade</option>
+                    <option value="10">10th Grade</option>
+                    <option value="11">11th Grade</option>
+                    <option value="12">12th Grade</option>
+                    <option value="college">College/University</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherGradeLevel" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of School</label>
+                <select name="schoolType" class="form-control select-field" required>
+                    <option value="">Select school type</option>
+                    <option value="public">Public School</option>
+                    <option value="private">Private School</option>
+                    <option value="charter">Charter School</option>
+                    <option value="magnet">Magnet School</option>
+                    <option value="religious">Religious School</option>
+                    <option value="homeschool">Homeschool</option>
+                    <option value="college">College/University</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherSchoolType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Issue Information -->
+        <div class="form-section">
+            <h3>Education Issue</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Education Issue</label>
+                <select name="issueType" class="form-control select-field" required>
+                    <option value="">Select issue type</option>
+                    <option value="special-education">Special Education/IEP</option>
+                    <option value="discipline">School Discipline</option>
+                    <option value="discrimination">Discrimination</option>
+                    <option value="accommodation">Disability Accommodation</option>
+                    <option value="bullying">Bullying/Harassment</option>
+                    <option value="enrollment">Enrollment/Registration</option>
+                    <option value="curriculum">Curriculum Dispute</option>
+                    <option value="transportation">Transportation</option>
+                    <option value="fees">School Fees/Costs</option>
+                    <option value="records">Student Records</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherIssueType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Does the student have an IEP or 504 Plan?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="hasIEP" value="iep" data-conditional="iepDetails">
+                        <label>Yes, has IEP</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="hasIEP" value="504">
+                        <label>Yes, has 504 Plan</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="hasIEP" value="no">
+                        <label>No</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="hasIEP" value="unsure">
+                        <label>Not Sure</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="iepDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date of Last IEP Meeting</label>
+                    <input type="date" name="lastIEPDate" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Have you filed a formal complaint?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="complaintFiled" value="yes" data-conditional="complaintDetails" required>
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="complaintFiled" value="no" required>
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="complaintDetails" class="conditional-field" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Date Complaint Filed</label>
+                    <input type="date" name="complaintDate" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Your Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Relationship to Student</label>
+                <select name="relationship" class="form-control select-field" required>
+                    <option value="">Select relationship</option>
+                    <option value="parent">Parent</option>
+                    <option value="guardian">Legal Guardian</option>
+                    <option value="student">Self (Adult Student)</option>
+                    <option value="advocate">Educational Advocate</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRelationship" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Your Gross Annual Income</label>
+                <select name="income" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT' && otherInput.name.startsWith('other')) {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle conditional fields
+    const conditionalTriggers = document.querySelectorAll('[data-conditional]');
+    conditionalTriggers.forEach(trigger => {
+        trigger.addEventListener('change', function() {
+            const targetId = this.dataset.conditional;
+            const targetField = document.getElementById(targetId);
+            if (targetField) {
+                const show = this.type === 'radio' ? 
+                    (this.value === 'yes' || this.value === 'iep') : 
+                    this.checked;
+                targetField.style.display = show ? 'block' : 'none';
+                const requiredInputs = targetField.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.required = show;
+                });
+            }
+        });
+    });
+});
+</script>

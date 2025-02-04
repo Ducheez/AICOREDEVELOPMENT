@@ -1,0 +1,398 @@
+<div class="form-container">
+    <h2 class="form-title">Business Law - Buying or Selling a Business</h2>
+    <form id="businessSaleForm" onsubmit="return validateForm(event)">
+        <!-- Transaction Overview -->
+        <div class="form-section">
+            <h3>Transaction Details</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Role in the Transaction</label>
+                <select name="transactionRole" class="form-control select-field" required>
+                    <option value="">Select your role</option>
+                    <option value="seller">Seller of the Business</option>
+                    <option value="buyer">Buyer of the Business</option>
+                    <option value="broker">Business Broker</option>
+                    <option value="advisor">Financial Advisor</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherTransactionRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Proposed Sale Date</label>
+                <input type="date" name="proposedSaleDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Estimated Business Sale Price</label>
+                <input type="number" name="salePrice" class="form-control currency-input" 
+                       placeholder="Total proposed sale price" required>
+            </div>
+        </div>
+
+        <!-- Business Characteristics -->
+        <div class="form-section">
+            <h3>Business Profile</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Business Structure</label>
+                <select name="businessStructure" class="form-control select-field" required>
+                    <option value="">Select business structure</option>
+                    <option value="sole-proprietorship">Sole Proprietorship</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="llc">Limited Liability Company (LLC)</option>
+                    <option value="corporation">Corporation</option>
+                    <option value="s-corporation">S Corporation</option>
+                    <option value="nonprofit">Nonprofit Organization</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherBusinessStructure" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Business Industry</label>
+                <select name="businessIndustry" class="form-control select-field" required>
+                    <option value="">Select industry</option>
+                    <option value="technology">Technology</option>
+                    <option value="retail">Retail</option>
+                    <option value="services">Professional Services</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="finance">Finance</option>
+                    <option value="hospitality">Hospitality</option>
+                    <option value="construction">Construction</option>
+                    <option value="education">Education</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherBusinessIndustry" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Number of Employees</label>
+                <select name="employeeCount" class="form-control select-field" required>
+                    <option value="">Select employee range</option>
+                    <option value="1-5">1-5 employees</option>
+                    <option value="6-20">6-20 employees</option>
+                    <option value="21-50">21-50 employees</option>
+                    <option value="51-100">51-100 employees</option>
+                    <option value="101-500">101-500 employees</option>
+                    <option value="500+">More than 500 employees</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Years in Business</label>
+                <input type="number" name="yearsInBusiness" class="form-control" required min="0" max="100">
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Overview</h3>
+
+            <div class="form-group">
+                <label class="form-label">Annual Revenue (Most Recent Year)</label>
+                <input type="number" name="annualRevenue" class="form-control currency-input" 
+                       placeholder="Total annual revenue">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Annual Profit</label>
+                <input type="number" name="annualProfit" class="form-control currency-input" 
+                       placeholder="Total annual profit">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Business Assets</label>
+                <div class="field-group">
+                    <div>
+                        <label>Real Estate</label>
+                        <input type="number" name="assetRealEstate" class="form-control currency-input" placeholder="$">
+                    </div>
+                    <div>
+                        <label>Equipment</label>
+                        <input type="number" name="assetEquipment" class="form-control currency-input" placeholder="$">
+                    </div>
+                    <div>
+                        <label>Inventory</label>
+                        <input type="number" name="assetInventory" class="form-control currency-input" placeholder="$">
+                    </div>
+                    <div>
+                        <label>Accounts Receivable</label>
+                        <input type="number" name="assetReceivables" class="form-control currency-input" placeholder="$">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Business Liabilities</label>
+                <div class="field-group">
+                    <div>
+                        <label>Business Loans</label>
+                        <input type="number" name="liabilityLoans" class="form-control currency-input" placeholder="$">
+                    </div>
+                    <div>
+                        <label>Accounts Payable</label>
+                        <input type="number" name="liabilityPayables" class="form-control currency-input" placeholder="$">
+                    </div>
+                    <div>
+                        <label>Tax Obligations</label>
+                        <input type="number" name="liabilityTaxes" class="form-control currency-input" placeholder="$">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sale Transaction Details -->
+        <div class="form-section">
+            <h3>Sale Transaction Specifics</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Sale</label>
+                <select name="saleType" class="form-control select-field" required>
+                    <option value="">Select sale type</option>
+                    <option value="asset-purchase">Asset Purchase</option>
+                    <option value="stock-purchase">Stock Purchase</option>
+                    <option value="merger">Merger</option>
+                    <option value="equity-transfer">Equity Transfer</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherSaleType" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Payment Structure</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="paymentStructure" value="cash">
+                        <label>Full Cash Payment</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="paymentStructure" value="installment">
+                        <label>Installment Payments</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="paymentStructure" value="earn-out">
+                        <label>Earn-Out Agreement</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="paymentStructure" value="seller-financing">
+                        <label>Seller Financing</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="paymentStructure" value="stock-exchange">
+                        <label>Stock/Equity Exchange</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="paymentStructure" value="other" data-conditional="otherPaymentDetails">
+                        <label>Other</label>
+                    </div>
+                </div>
+
+                <div id="otherPaymentDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Specify Other Payment Structure</label>
+                    <input type="text" name="otherPaymentStructureDetails" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Assets to be Transferred</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assetsTransferred" value="real-estate">
+                        <label>Real Estate</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assetsTransferred" value="equipment">
+                        <label>Equipment</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assetsTransferred" value="inventory">
+                        <label>Inventory</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assetsTransferred" value="client-contracts">
+                        <label>Client Contracts</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assetsTransferred" value="intellectual-property">
+                        <label>Intellectual Property</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="assetsTransferred" value="other" data-conditional="otherAssetDetails">
+                        <label>Other</label>
+                    </div>
+                </div>
+
+                <div id="otherAssetDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Specify Other Assets</label>
+                    <input type="text" name="otherAssetsTransferred" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Considerations -->
+        <div class="form-section">
+            <h3>Legal Assistance Needed</h3>
+
+            <div class="form-group">
+                <label class="form-label">Specific Legal Services Required</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalServices" value="due-diligence">
+                        <label>Due Diligence</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalServices" value="contract-review">
+                        <label>Contract Review</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalServices" value="negotiate-terms">
+                        <label>Negotiate Transaction Terms</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalServices" value="tax-strategy">
+                        <label>Tax Strategy</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalServices" value="regulatory-compliance">
+                        <label>Regulatory Compliance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="legalServices" value="other" data-conditional="otherLegalServiceDetails">
+                        <label>Other</label>
+                    </div>
+                </div>
+
+                <div id="otherLegalServiceDetails" class="conditional-field" style="display: none;">
+                    <label class="form-label">Specify Other Legal Services</label>
+                    <input type="text" name="otherLegalServices" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Owner/Contact Information -->
+        <div class="form-section">
+            <h3>Business Owner Details</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Your Role in the Business</label>
+                <select name="businessRole" class="form-control select-field" required>
+                    <option value="">Select your role</option>
+                    <option value="owner">Business Owner</option>
+                    <option value="ceo">CEO/President</option>
+                    <option value="cfo">CFO/Financial Officer</option>
+                    <option value="partner">Business Partner</option>
+                    <option value="manager">Manager</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherBusinessRole" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Personal Financial Information -->
+        <div class="form-section">
+            <h3>Personal Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Your Gross Annual Income</label>
+                <select name="personalIncome" class="form-control select-field" required>
+                    <option value="">Select range</option>
+                    <option value="0-25000">$25,000 or less</option>
+                    <option value="25001-50000">$25,001–$50,000</option>
+                    <option value="50001-75000">$50,001–$75,000</option>
+                    <option value="75001-100000">$75,001–$100,000</option>
+                    <option value="100001-125000">$100,001–$125,000</option>
+                    <option value="125001+">$125,000+</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle "Other" input fields for select elements
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            const otherInput = this.nextElementSibling;
+            if (otherInput && otherInput.tagName === 'INPUT') {
+                otherInput.style.display = this.value === 'other' ? 'block' : 'none';
+                otherInput.required = this.value === 'other';
+            }
+        });
+    });
+
+    // Handle other payment structure conditional field
+    const otherPaymentCheckbox = document.querySelector('input[name="paymentStructure"][value="other"]');
+    const otherPaymentField = document.getElementById('otherPaymentDetails');
+    
+    otherPaymentCheckbox.addEventListener('change', function() {
+        otherPaymentField.style.display = this.checked ? 'block' : 'none';
+        const input = otherPaymentField.querySelector('input');
+        input.required = this.checked;
+    });
+
+    // Handle other assets transferred conditional field
+    const otherAssetsCheckbox = document.querySelector('input[name="assetsTransferred"][value="other"]');
+    const otherAssetsField = document.getElementById('otherAssetDetails');
+    
+    otherAssetsCheckbox.addEventListener('change', function() {
+        otherAssetsField.style.display = this.checked ? 'block' : 'none';
+        const input = otherAssetsField.querySelector('input');
+        input.required = this.checked;
+    });
+
+    // Handle other legal services conditional field
+    const otherLegalServicesCheckbox = document.querySelector('input[name="legalServices"][value="other"]');
+    const otherLegalServicesField = document.getElementById('otherLegalServiceDetails');
+    
+    otherLegalServicesCheckbox.addEventListener('change', function() {
+        otherLegalServicesField.style.display = this.checked ? 'block' : 'none';
+        const input = otherLegalServicesField.querySelector('input');
+        input.required = this.checked;
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    currencyInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        });
+    });
+});
+</script>

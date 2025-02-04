@@ -1,0 +1,265 @@
+<div class="form-container">
+    <h2 class="form-title">Family Law - Guardianship Information</h2>
+    <form id="guardianshipForm" onsubmit="return validateForm(event)">
+        <!-- Personal Information -->
+        <div class="form-section">
+            <h3>Proposed Guardian Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label required">Your Age</label>
+                <input type="number" name="age" class="form-control" required min="18" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Marital Status</label>
+                <select name="maritalStatus" class="form-control select-field" required>
+                    <option value="">Select status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                    <option value="separated">Separated</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherMaritalStatus" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Occupation</label>
+                <input type="text" name="occupation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Relationship to Person Needing Guardian</label>
+                <select name="relationship" class="form-control select-field" required>
+                    <option value="">Select relationship</option>
+                    <option value="grandparent">Grandparent</option>
+                    <option value="aunt-uncle">Aunt/Uncle</option>
+                    <option value="sibling">Sibling</option>
+                    <option value="other-relative">Other Relative</option>
+                    <option value="friend">Family Friend</option>
+                    <option value="professional">Professional Guardian</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherRelationship" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Ward Information -->
+        <div class="form-section">
+            <h3>Information About Person Needing Guardian (Ward)</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Age of Ward</label>
+                <input type="number" name="wardAge" class="form-control" required min="0" max="120">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Type of Guardianship Needed</label>
+                <select name="guardianshipType" class="form-control select-field" required>
+                    <option value="">Select type</option>
+                    <option value="minor">Guardianship of Minor</option>
+                    <option value="adult">Guardianship of Adult</option>
+                    <option value="estate">Guardianship of Estate</option>
+                    <option value="both">Both Person and Estate</option>
+                    <option value="temporary">Temporary Guardianship</option>
+                    <option value="limited">Limited Guardianship</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Reason for Guardianship</label>
+                <select name="guardianshipReason" class="form-control select-field" required>
+                    <option value="">Select primary reason</option>
+                    <option value="minor-parents-deceased">Minor - Parents Deceased</option>
+                    <option value="minor-parents-unable">Minor - Parents Unable to Care</option>
+                    <option value="adult-mental-disability">Adult - Mental Disability</option>
+                    <option value="adult-physical-disability">Adult - Physical Disability</option>
+                    <option value="adult-elderly">Adult - Elderly Care</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherReason" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Current Living Situation -->
+        <div class="form-section">
+            <h3>Current Living Situation</h3>
+
+            <div class="form-group">
+                <label class="form-label required">Where is the ward currently living?</label>
+                <select name="currentLiving" class="form-control select-field" required>
+                    <option value="">Select living situation</option>
+                    <option value="with-proposed">With Proposed Guardian</option>
+                    <option value="with-parents">With Parents</option>
+                    <option value="with-relatives">With Other Relatives</option>
+                    <option value="facility">In Care Facility</option>
+                    <option value="hospital">In Hospital</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" name="otherLiving" class="form-control" placeholder="Please specify if Other" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Current Caregivers</label>
+                <textarea name="currentCaregivers" class="form-control textarea-field" 
+                    placeholder="Describe who is currently providing care"></textarea>
+            </div>
+        </div>
+
+        <!-- Health and Care Needs -->
+        <div class="form-section">
+            <h3>Health and Care Needs</h3>
+
+            <div class="form-group">
+                <label class="form-label">Medical Conditions</label>
+                <textarea name="medicalConditions" class="form-control textarea-field" 
+                    placeholder="Describe any relevant medical conditions"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Special Care Requirements</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="careRequirements" value="medical">
+                        <label>Medical Care</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="careRequirements" value="medications">
+                        <label>Medication Management</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="careRequirements" value="therapy">
+                        <label>Physical/Occupational Therapy</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="careRequirements" value="education">
+                        <label>Educational Support</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="careRequirements" value="other" data-conditional="careDetails">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="careDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Describe Other Care Requirements</label>
+                <textarea name="otherCareRequirements" class="form-control textarea-field"></textarea>
+            </div>
+        </div>
+
+        <!-- Financial Information -->
+        <div class="form-section">
+            <h3>Financial Information</h3>
+
+            <div class="form-group">
+                <label class="form-label">Ward's Income Sources (check all that apply)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="incomeSource" value="ssi">
+                        <label>Social Security/SSI</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="incomeSource" value="disability">
+                        <label>Disability Benefits</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="incomeSource" value="inheritance">
+                        <label>Inheritance</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="incomeSource" value="trust">
+                        <label>Trust Fund</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="incomeSource" value="other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Monthly Income of Ward</label>
+                <input type="number" name="wardIncome" class="form-control currency-input" placeholder="$">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Value of Ward's Assets</label>
+                <input type="number" name="wardAssets" class="form-control currency-input" placeholder="$">
+            </div>
+        </div>
+
+        <!-- Other Interested Parties -->
+        <div class="form-section">
+            <h3>Other Interested Parties</h3>
+
+            <div class="form-group">
+                <label class="form-label">Are there other family members involved?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="familyInvolved" value="yes" data-conditional="familyDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="familyInvolved" value="no">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="familyDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Describe Family Involvement</label>
+                <textarea name="familyInvolvement" class="form-control textarea-field"
+                    placeholder="Describe other family members' involvement or interest in guardianship"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Are there any objections to your guardianship?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="objections" value="yes" data-conditional="objectionDetails">
+                        <label>Yes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="objections" value="no">
+                        <label>No</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="objections" value="unknown">
+                        <label>Unknown</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="objectionDetails" class="form-group conditional-field" style="display: none;">
+                <label class="form-label">Describe Objections</label>
+                <textarea name="objectionDescription" class="form-control textarea-field"
+                    placeholder="Describe who is objecting and their reasons"></textarea>
+            </div>
+        </div>
+
+        <!-- Legal Representation -->
+        <div class="form-section">
+            <h3>Legal Representation Timeline</h3>
+
+            <div class="form-group">
+                <label class="form-label required">When are you planning to hire an attorney?</label>
+                <select name="hiringTimeline" class="form-control select-field" required>
+                    <option value="">Select timeline</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-year">This year</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Form Navigation -->
+        <div class="form-navigation">
+            <button type="button" class="nav-button back-button" onclick="showSummary()">Back to Summary</button>
+            <button type="submit" class="nav-button submit-button">Submit Form</button>
+        </div>
+    </form>
+</div>

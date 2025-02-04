@@ -22,8 +22,7 @@ email-validator==2.0.0
 pandas==2.0.2
 numpy==1.24.3
 
-# Logging
-logging==0.5.1.2
+
 
 # Optional but Recommended
 gunicorn==20.1.0  # Production WSGI server
